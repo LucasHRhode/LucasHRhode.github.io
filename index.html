@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lucas's Portfolio</title>
+  
+  <!-- Bootstrap & Other CSS/Fonts -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="app.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=Raleway|Rubik:400,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rancho&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Crimson+Text&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  
+  <!-- Timeline CSS -->
+  <link href="css/addons-pro/timeline.css" rel="stylesheet">
+  <link href="css/addons-pro/timeline.min.css" rel="stylesheet">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142114907-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-142114907-1');
+  </script>
+</head>
+
+<body>
+  <!-- NavBar -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-rainbow fixed-top">
+    <a class="navbar-brand" href="#">
+      <img src="img/stonybrooklogo.png" alt="Logo" style="width: 250px; height: auto;">
+    </a>
+    <button class="navbar-toggler" type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#home" data-toggle="collapse" data-target=".navbar-collapse.show">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#aboutme" data-toggle="collapse" data-target=".navbar-collapse.show">About Me</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#projects" data-toggle="collapse" data-target=".navbar-collapse.show">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#articles" data-toggle="collapse" data-target=".navbar-collapse.show">Articles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#notes" data-toggle="collapse" data-target=".navbar-collapse.show">Class Notes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact" data-toggle="collapse" data-target=".navbar-collapse.show">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="home">
+    <div id="particles-js"></div> <!-- Particle container -->
+    <div class="container text-center">
+      <div class="typewriter">
+        <h1 id="printtext" style="color: white; font-family: 'Anonymous Pro', monospace;
+                   padding-top: 35vh; margin-bottom:3%;
+                   text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.8); font-size: 6rem">
+          Lucas Rhode
+        </h1>
+      </div>
+      <h2 class="introtext" style="color: white; font-family: 'Raleway', sans-serif;
+                   font-weight: 400; line-height: 1.2;
+                   text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.8); font-size: 2rem">
+        I'm an Electrical Engineering student interested in quantum research and advancing technologies that bridge theory and practical applications.
+      </h2>
+      <br>
+      <div class="container">
+        <a href="#contact" class="btn btn-info" id="get-btn" role="button">GET IN TOUCH</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Me -->
+  
+  <div id="aboutme">
+    <br><br><br>
+    <div class="container">
+      <h1 class="heading" data-aos="fade-up" style="color: black; padding-top: 1%;">
+        About Me
+      </h1>
+      <hr>
+
+      <div class="dark-mode-toggle">
+        <label class="dark-mode-btn">
+          <input type="checkbox" id="darkModeToggle">
+          <span class="dark-mode-slider"></span>
+        </label>
+        <span class="toggle-label">Dark Mode</span>
+      </div>
+
+      <!-- =========================================
+           EDUCATION 
+           ========================================= -->
+      <div class="container py-5">
+        <!-- Clickable heading + icon -->
+        <!-- data-toggle="collapse" points to #education-collapse -->
+        <div style="display:inline; cursor: pointer;"
+            data-toggle="collapse"
+            data-target="#education-collapse"
+            aria-expanded="true"
+            aria-controls="education-collapse"
+            data-aos="fade-right">
+          <img src="img/university.png" 
+            data-light-src="img/university.png" 
+            data-dark-src="img/university_white.png"
+            class="theme-image" alt="University Icon"
+            style="display: inline; height: 50px; width: auto; vertical-align: middle;">
+          <h1 class="heading" style="display: inline; vertical-align: middle;">
+            Education
+          </h1>
+        </div>
+
+        <!-- Collapsible content (shown by default) -->
+        <div id="education-collapse" class="collapse show">
+          <div class="row">
+            <div class="col-lg-7 mx-auto">
+              <!-- Timeline -->
+              <ul class="timeline" data-aos="fade-right">
+                <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                  <div class="timeline-arrow"></div>
+                  <div style="position: relative;">
+                    <a href="https://www.stonybrook.edu/simonsscholars/" target="_blank"
+                       style="float: right; margin-left: 15px;">
+                      <img src="img/simonsstem.png"
+                           alt="Stony Brook Logo"
+                           style="height: 150px; width: auto;">
+                    </a>
+                    <!-- Text Content -->
+                    <div style="flex: 1; min-width: 300px;">
+                      <h4>Bachelor of Engineering in Electrical Engineering</h4>
+                      <span class="small text-gray">
+                        <i class="fa fa-clock-o mr-1"></i>June 2024-Present
+                      </span>
+                      <h2 class="h5 mb-0">Stony Brook University, New York</h2>
+                      <p class="text-small mt-2 font-weight-light">Currently in my freshman year</p>
+                      <p>Some of my major projects done during this span:</p>
+                      <ul>
+                        <li>
+                          <b>GUI for a Quantum Network Simulator (Ongoing):</b> Developing a graphical user interface to simulate and visualize quantum network protocols. The project integrates node creation, entanglement protocols, and simulation analysis, making it user-friendly for researchers and students alike.
+                        </li>
+                        <li>
+                          <b>Smart USB Charger with Integrated Digital Clock:</b> Designed and built a microcontroller-based USB charger as part of my ESE 123 coursework. This project included embedded systems programming, soldering, and circuit assembly.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> <!-- end #education-collapse -->
+      </div>
+      <hr>
+
+      <!-- =========================================
+           WORK 
+           ========================================= -->
+      <div class="container py-5">
+        <!-- Clickable heading + icon -->
+        <div style="display:inline; cursor: pointer;"
+            data-toggle="collapse"
+            data-target="#work-collapse"
+            aria-expanded="true"
+            aria-controls="work-collapse"
+            data-aos="fade-left">
+          <img src="img/work.png" 
+            data-light-src="img/work.png" 
+            data-dark-src="img/work_white.png"
+            class="theme-image" alt="Work Icon"
+            style="display: inline; height: 50px; width: auto; vertical-align: middle;">
+        
+          <h1 class="heading" style="display: inline; vertical-align: middle;">
+            Work
+          </h1>
+        </div>
+
+        <!-- Collapsible content (shown by default) -->
+        <div id="work-collapse" class="collapse show">
+          <div class="row">
+            <div class="col-lg-7 mx-auto">
+              <ul class="timeline" data-aos="fade-left">
+                <!-- Teacher Assistant Timeline Item -->
+                <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                  <div class="timeline-arrow"></div>
+                  <div style="position: relative;">
+                    <a href="https://www.mercy.edu/m3u" target="_blank"
+                       style="float: right; margin-left: 15px;">
+                      <img src="img/mercyuniversity.png"
+                           alt="Mercy University Logo"
+                           style="height: 120px; width: auto;">
+                    </a>
+                    <div style="flex: 1; min-width: 300px;">
+                      <h4>Teacher Assistant (M3C Young Scholars Program)</h4>
+                      <span class="small text-gray">
+                        <i class="fa fa-clock-o mr-1"></i>June 2023 - August 2023
+                      </span>
+                      <h2 class="h5 mb-0">Mercy University, Dobbs Ferry, NY</h2>
+                      <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li style="font-size: 1rem;">
+                          Supported high school students in mathematics, providing one-on-one tutoring, grading, and project guidance.
+                        </li>
+                        <li style="font-size: 1rem;">
+                          Organized a field trip and supervised a team project exploring the mathematics of scuba diving.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <!-- Facility Operations Timeline Item -->
+                <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                  <div class="timeline-arrow"></div>
+                  <div style="position: relative;">
+                    <a href="https://www.lifetime.life/" target="_blank"
+                       style="float: right; margin-left: 15px;">
+                      <img src="img/lifetimefitness.png"
+                           alt="LifeTime Fitness Logo"
+                           style="height: 120px; width: auto;">
+                    </a>
+                    <div style="flex: 1; min-width: 300px;">
+                      <h4>Facility Operations Team Member</h4>
+                      <span class="small text-gray">
+                        <i class="fa fa-clock-o mr-1"></i>July 2023 - June 2024
+                      </span>
+                      <h2 class="h5 mb-0">LifeTime Fitness, Harrison, NY</h2>
+                      <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li style="font-size: 1rem;">
+                          Ensured cleanliness and sanitation of the facility while delivering exceptional customer service to club members.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> <!-- end #work-collapse -->
+      </div>
+      <hr>
+
+      <!-- =========================================
+           RESEARCH 
+           ========================================= -->
+      <div class="container py-5">
+        <!-- Clickable heading + icon -->
+        <div style="display:inline; cursor: pointer;"
+            data-toggle="collapse"
+            data-target="#research-collapse"
+            aria-expanded="true"
+            aria-controls="research-collapse"
+            data-aos="fade-right">
+          <img src="img/research.webp" 
+            data-light-src="img/research.webp"
+            data-dark-src="img/research_white.png"
+            class="theme-image" alt="Research Icon"
+            style="display: inline; height: 50px; width: auto; vertical-align: middle;">
+        
+          <h1 class="heading" style="display: inline; vertical-align: middle;">
+            Research
+          </h1>
+        </div>
+
+        <!-- Collapsible content -->
+        <div id="research-collapse" class="collapse show">
+          <div class="row">
+            <div class="col-lg-7 mx-auto">
+              <ul class="timeline" data-aos="fade-right">
+                <!-- Quantum Engineering and Photonics Group -->
+                <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                  <div class="timeline-arrow"></div>
+                  <h4>Quantum Engineering and Photonics Group</h4>
+                  <span class="small text-gray">
+                    <i class="fa fa-clock-o mr-1"></i>Fall 2024 - Present
+                  </span>
+                  <h2 class="h5 mb-0">Stony Brook University</h2>
+                  <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li style="font-size: 1rem;">
+                      Working under Dr. Hyeongrak Choi in the development of a graphical user interface (GUI) for a quantum network simulator.
+                    </li>
+                    <li style="font-size: 1rem;">
+                      Conducting quantum network simulations using QuantumSavory.jl to explore photon-spin interactions.
+                    </li>
+                    <li style="font-size: 1rem;">
+                      Contributing to bi-weekly group presentations on quantum network theory and practical applications.
+                    </li>
+                  </ul>
+                </li>
+
+
+                <!-- QuEST Project with Dr. Angela Kelly -->
+                <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                  <div class="timeline-arrow"></div>
+                  <h4>QuEST Project - Science Education Research</h4>
+                  <span class="small text-gray">
+                    <i class="fa fa-clock-o mr-1"></i>Spring 2025 - Present
+                  </span>
+                  <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li style="font-size: 1rem;">
+                      Conducting research under Dr. Angela Kelly on student motivation in quantum science and physics education.
+                    </li>
+                    <li style="font-size: 1rem;">
+                      Performing a literature review on accessibility and engagement in STEM fields.
+                    </li>
+                    <li style="font-size: 1rem;">
+                      Interviewing young men who recently attended a QIST camp to analyze their motivations and experiences.
+                    </li>
+                    <li style="font-size: 1rem;">
+                      Conducting statistical analyses on survey and interview data to identify trends in STEM accessibility and interest.
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> <!-- end #research-collapse -->
+      </div>
+      <hr>
+
+      <!-- =========================================
+           AFFILIATIONS 
+           ========================================= -->
+      <div class="container py-5">
+        <!-- Clickable heading + icon -->
+        <div style="display:inline; cursor: pointer;"
+            data-toggle="collapse"
+            data-target="#affiliations-collapse"
+            aria-expanded="true"
+            aria-controls="affiliations-collapse"
+            data-aos="fade-left">
+          <img src="img/affiliations_icon.png" 
+            data-light-src="img/affiliations_icon.png"
+            data-dark-src="img/affiliations_icon_white.png"
+            class="theme-image" alt="Affiliations Icon"
+            style="display: inline; height: 50px; width: auto; vertical-align: middle;">
+        
+          <h1 class="heading" style="display: inline; vertical-align: middle;">
+            Affiliations
+          </h1>
+        </div>
+
+        <!-- Collapsible content -->
+        <div id="affiliations-collapse" class="collapse show">
+          <div class="row">
+            <div class="col-lg-7 mx-auto">
+              <ul class="timeline" data-aos="fade-left">
+                <!-- VIP Rocket Launch Team -->
+                <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                  <div class="timeline-arrow"></div>
+                  <div style="position: relative;">
+                    <a href="https://www.instagram.com/sburocketteam/" target="_blank"
+                       style="float: right; margin-left: 15px;">
+                      <img src="img/vip_rocket_logo.jpg"
+                           alt="VIP Rocket Launch Team Logo"
+                           style="height: 120px; width: auto;">
+                    </a>
+                    <div style="flex: 1; min-width: 300px;">
+                      <h4>VIP Rocket Launch Team</h4>
+                      <span class="small text-gray">
+                        <i class="fa fa-clock-o mr-1"></i>Fall 2024 - Present
+                      </span>
+                      <h2 class="h5 mb-0">Stony Brook University</h2>
+                      <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li style="font-size: 1rem;">
+                          Took <b>VIP 295</b> to explore rocket design principles, propulsion systems, and launch objectives.
+                        </li>
+                        <li style="font-size: 1rem;">
+                          Taking <b>VIP 395</b> to explore rocket design principles, propulsion systems, and launch objectives.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <!-- VIP Solar Racing Team -->
+                <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                  <div class="timeline-arrow"></div>
+                  <div style="position: relative;">
+                    <a href="https://sbusolarracing.weebly.com/"
+                       target="_blank" style="float: right; margin-left: 15px;">
+                      <img src="img/vip_solar_logo.png"
+                           alt="VIP Solar Racing Team Logo"
+                           style="height: 120px; width: auto;">
+                    </a>
+                    <div style="flex: 1; min-width: 300px;">
+                      <h4>VIP Solar Racing Team</h4>
+                      <span class="small text-gray">
+                        <i class="fa fa-clock-o mr-1"></i>Fall 2024 - Present
+                      </span>
+                      <h2 class="h5 mb-0">Stony Brook University</h2>
+                      <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li style="font-size: 1rem;">
+                          Contributing to design and testing of solar-powered racing vehicles through interdisciplinary collaboration.
+                        </li>
+                        <li style="font-size: 1rem;">
+                          Took <b>VIP 102</b> to explore rocket design principles, propulsion systems, and launch objectives.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <!-- Seawolf Philanthropy Council -->
+                <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                  <div class="timeline-arrow"></div>
+                  <div style="position: relative;">
+                    <a href="https://sbugives.carrd.co/?fbclid=PAZXh0bgNhZW0CMTEAAaaaFyG_1xTcs8I1BucJfqAgyMMPbT9bWhkULqLc6PpWcwmtfOF-xTgFBBc_aem_xbSC5wH_BJUoQixVFlOKDQ"
+                       target="_blank" style="float: right; margin-left: 15px;">
+                      <img src="img/seawolf_philanthropy_logo.png"
+                        data-light-src="img/seawolf_philanthropy_logo.png"
+                        data-dark-src="img/seawolf_philanthropy_logo_white.png"
+                        class="theme-image" alt="Seawolf Philanthropy Council Logo"
+                        style="height: 120px; width: auto;">
+                    </a>
+                    <div style="flex: 1; min-width: 300px;">
+                      <h4>Seawolf Philanthropy Council</h4>
+                      <span class="small text-gray">
+                        <i class="fa fa-clock-o mr-1"></i>Fall 2024 - Present
+                      </span>
+                      <h2 class="h5 mb-0">Vice Chair of Research & Analysis</h2>
+                      <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li style="font-size: 1rem;">
+                          Leading data-driven initiatives to strengthen philanthropic efforts and community outreach.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> <!-- end #affiliations-collapse -->
+      </div>
+     
+      <hr>
+	  
+      <!-- Skill Set -->
+		  <div class="container">
+			  <h2 class="heading" style="color: black;" data-aos="fade-up">Skill Set</h2>
+		
+			  <!-- Python -->
+			  <div class="row mb-4" data-aos="fade-right">
+		  		<div class="col-lg-3 col-md-6 col-sm-12">
+		  			<div class="skill">
+		  				<h4 style="font-family: 'Nunito', sans-serif;">Python</h4>
+		  			</div>
+		  		</div>
+		  		<div class="col-lg-9 col-md-6 col-sm-12">
+		  			<div class="progress">
+		  				<div class="progress-bar" role="progressbar" data-width="90%" style="background-color: rgb(233, 51, 51);" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+		  			</div>
+		  		</div>
+		  	</div>
+		
+	  		<!-- C -->
+		  	<div class="row mb-4" data-aos="fade-right">
+	  			<div class="col-lg-3 col-md-6 col-sm-12">
+		  			<div class="skill">
+		  				<h4 style="font-family: 'Nunito', sans-serif;">C</h4>
+		  			</div>
+		  		</div>
+		  		<div class="col-lg-9 col-md-6 col-sm-12">
+		  			<div class="progress">
+		  				<div class="progress-bar" role="progressbar" data-width="50%" style="background-color: rgb(238, 140, 21);" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+		  			</div>
+		  		</div>
+		  	</div>
+		
+	  		<!-- C++ -->
+	  		<div class="row mb-4" data-aos="fade-right">
+	  			<div class="col-lg-3 col-md-6 col-sm-12">
+	  				<div class="skill">
+	  					<h4 style="font-family: 'Nunito', sans-serif;">C++</h4>
+	  				</div>
+	  			</div>
+	  			<div class="col-lg-9 col-md-6 col-sm-12">
+	  				<div class="progress">
+	  					<div class="progress-bar" role="progressbar" data-width="70%" style="background-color: rgb(245, 226, 20);" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+	  				</div>
+	  			</div>
+	  		</div>
+		
+	  		<!-- MATLAB -->
+	  		<div class="row mb-4" data-aos="fade-right">
+	  			<div class="col-lg-3 col-md-6 col-sm-12">
+		  			<div class="skill">
+		  				<h4 style="font-family: 'Nunito', sans-serif;">MATLAB</h4>
+		  			</div>
+		  		</div>
+		  		<div class="col-lg-9 col-md-6 col-sm-12">
+		  			<div class="progress">
+		  				<div class="progress-bar" role="progressbar" data-width="30%" style="background-color: rgb(24, 182, 24);" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+		  			</div>
+		  		</div>
+		  	</div>
+		
+		  	<!-- CAD (SolidWorks) -->
+		  	<div class="row mb-4" data-aos="fade-right">
+		  		<div class="col-lg-3 col-md-6 col-sm-12">
+		  			<div class="skill">
+		  				<h4 style="font-family: 'Nunito', sans-serif;">CAD (SolidWorks)</h4>
+		  			</div>
+		  		</div>
+		  		<div class="col-lg-9 col-md-6 col-sm-12">
+		  			<div class="progress">
+		  				<div class="progress-bar" role="progressbar" data-width="30%" style="background-color: rgb(26, 155, 235);" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+		  			</div>
+		  		</div>
+		  	</div>
+		
+		  	<!-- Artificial Intelligence -->
+		  	<div class="row mb-4" data-aos="fade-right">
+		  		<div class="col-lg-3 col-md-6 col-sm-12">
+		  			<div class="skill">
+		  				<h4 style="font-family: 'Nunito', sans-serif;">Artificial Intelligence</h4>
+		  			</div>
+		  		</div>
+		  		<div class="col-lg-9 col-md-6 col-sm-12">
+		  			<div class="progress">
+		  				<div class="progress-bar" role="progressbar" data-width="40%" style="background-color: rgb(31, 48, 237);" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+		  			</div>
+		  		</div>
+		  	</div>
+		
+		  	<!-- Web Development -->
+		  	<div class="row mb-4" data-aos="fade-right">
+		  		<div class="col-lg-3 col-md-6 col-sm-12">
+		  			<div class="skill">
+		  				<h4 style="font-family: 'Nunito', sans-serif;">Web Development</h4>
+		  			</div>
+		  		</div>
+		  		<div class="col-lg-9 col-md-6 col-sm-12">
+		  			<div class="progress">
+		  				<div class="progress-bar" role="progressbar" data-width="50%" style="background-color: rgb(175, 15, 224);" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+		  			</div>
+		  		</div>
+		  	</div>
+	  	</div>
+	  </div>	
+		
+	<br>
+		
+	<!-- Projects -->
+	<div>
+		<div class="container-fluid aos-animate" id="projects" style="padding-top: 8%;" data-aos="fade-up" data-aos-delay="100">
+		<h1 class="heading" style="color: white;">Projects</h1>
+	  	<h3 style="text-align: center; font-family: 'Nunito', sans-serif; padding-bottom: 3%; padding-top: 2%; color: white;">
+			This section will showcase my projects in the future.
+	  	</h3>
+	  	<div class="container">
+			<div class="row">
+		  	<!-- Leave blank -->
+			</div>
+	  	</div>
+		</div>
+  	</div>
+  
+  	<!-- Articles -->
+  	<div>
+		<div class="container-fluid aos-animate" id="articles" style="padding-top: 8%;" data-aos="fade-up" data-aos-delay="100">
+	  	<h1 class="heading" style="color: black;">Articles</h1>
+	  	<h3 style="text-align: center; font-family: 'Nunito', sans-serif; padding-bottom: 3%; padding-top: 2%;">
+			This section will include articles I write in the future.
+	  	</h3>
+	  	<div class="container">
+			<div class="row">
+			  <!-- Leave blank -->
+			</div>
+	  	</div>
+		</div>
+  	</div>
+  
+	<!-- Notes -->
+	<div>
+		<div class="container-fluid aos-animate" id="notes" style="padding-top: 8%; background-color: #212322;" data-aos="fade-up" data-aos-delay="100">
+		  <h1 class="heading" style="color: white;">Class Notes</h1>
+		  <h3 style="text-align: center; font-family: 'Nunito', sans-serif; color: white; padding-bottom: 3%; padding-top: 2%;">
+			A central hub for all my class notes.
+		  </h3>
+		  <div class="row" style="justify-content: center;">
+			<!-- SSP205 -->
+			<a href="notes/ssp205.html" class="col-lg-3 col-md-4 col-sm-6 notes-card" style="background-color: #b51e0e; text-decoration: none;">
+			  <img src="img/ssp205_icon.png" alt="SSP205 Icon" class="notes-icon">
+			  <h3 class="notes-title">SSP205 Pathway to STEM PhD I</h3>
+			  <p>Explore my notes for SSP205 Pathway to STEM PhD I.</p>
+			</a>
+			
+			<!-- ESE124 -->
+			<a href="notes/ese124.html" class="col-lg-3 col-md-4 col-sm-6 notes-card" style="background-color: #ea740e; text-decoration: none;">
+			  <img src="img/ese124_icon.png" alt="ESE124 Icon" class="notes-icon">
+			  <h3 class="notes-title">ESE124 Programming Fundamentals</h3>
+			  <p>Explore my notes for ESE124 Programming Fundamentals.</p>
+			</a>
+			
+			<!-- ESE118 -->
+			<a href="notes/ese118.html" class="col-lg-3 col-md-4 col-sm-6 notes-card" style="background-color: #f1c40f; text-decoration: none;">
+			  <img src="img/ese118_icon.png" alt="ESE118 Icon" class="notes-icon">
+			  <h3 class="notes-title">ESE118 Digital Logic Design</h3>
+			  <p>Explore my notes for ESE118 Digital Logic Design.</p>
+			</a>
+			
+			<!-- PHY132/PHY134 Lab -->
+			<a href="notes/phy132.html" class="col-lg-3 col-md-4 col-sm-6 notes-card" style="background-color: #22ad30; text-decoration: none;">
+			  <img src="img/phy_icon1.png" alt="PHY Icon" class="notes-icon">
+			  <h3 class="notes-title">PHY132/PHY134 Lab</h3>
+			  <p>Explore my notes for PHY132/PHY134 Lab.</p>
+			</a>
+			
+			<!-- MAT308 -->
+			<a href="notes/mat308.html" class="col-lg-3 col-md-4 col-sm-6 notes-card" style="background-color: #1980c4; text-decoration: none;">
+			  <img src="img/mat308_icon.png" alt="MAT Icon" class="notes-icon">
+			  <h3 class="notes-title">MAT308 Differential Equations</h3>
+			  <p>Explore my notes for MAT308 Differential Equations.</p>
+			</a>
+			
+			<!-- Quantum Mechanics -->
+			<a href="notes/quantum.html" class="col-lg-3 col-md-4 col-sm-6 notes-card" style="background-color: #a839d4; text-decoration: none;">
+			  <img src="img/quantum_icon.webp" alt="Quantum Mechanics Icon" class="notes-icon">
+			  <h3 class="notes-title">Quantum Mechanics</h3>
+			  <p>Explore my personal notes for Quantum Mechanics.</p>
+			</a>
+		  </div>
+		</div>
+ 	 </div>
+		  
+	  
+  <!-- Music, Photo Gallery, Resume Section -->
+<div class="container-fluid text-center py-4" style="background-color: white;" id="extras">
+  <div class="row justify-content-center">
+    <!-- Music -->
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+      <a href="music.html" class="btn btn-outline-dark btn-lg w-100" role="button" style="height: 100px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; text-decoration: none;">
+        Music 🎻
+      </a>
+    </div>
+
+    <!-- Photo Gallery -->
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+      <a href="gallery.html" class="btn btn-outline-dark btn-lg w-100" role="button" style="height: 100px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; text-decoration: none;">
+        Photo Gallery 📷
+      </a>
+    </div>
+
+    <!-- Resume -->
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+      <a href="resume.pdf" class="btn btn-outline-dark btn-lg w-100" role="button" style="height: 100px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; text-decoration: none;" target="_blank">
+        Resume 📄
+      </a>
+    </div>
+  </div>
+</div>
+
+			
+	<!-- Contact Me -->
+
+	<div id="contact">
+		<h1 class="heading" style="color: white">
+			Contact Me
+		</h1>
+		<h4 style="color: white;text-align: center;">
+			Lucas Rhode
+		</h4>
+		<h4 style="text-align: center;"><a href="mailto:lucas.rhode@stonybrook.edu">lucas.rhode@stonybrook.edu</a></h2>
+		<p style="text-align: center;">
+			<a target="_blank" rel="noopener" href="https://github.com/LucasHRhode"><i class="fa fa-github fa-2x" style="text-align: center; float: none; margin: auto; display: inline-block;" ></i></a>
+			<a href="https://www.linkedin.com/in/lucasrhode/"><i class="fa fa-linkedin fa-2x" style="padding-left: 4%"></i></a>
+			<a href="https://www.instagram.com/bubble_tea_theory"><i class="fa fa-instagram fa-2x" style="padding-left: 4%"></i></a>
+			</i></a>
+
+			<br>
+
+		</p>
+		<footer>
+		<div style="text-align: center; color: white">
+				Made with 
+				<i class="fa fa-heart" aria-hidden="true">
+				</i>
+				by
+			<a href="https://lucasrhode.github.io/">Lucas Rhode</a>
+
+
+  <!-- Rainbow Decorative Line -->
+  <div class="rainbow-line">
+       
+	</div>
+	</footer>
+	</div>
+
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>   
+   AOS.init(); 
+</script>
+
+<script>
+	particlesJS('particles-js', {
+	  particles: {
+		number: {
+		  value: 80, // Number of particles
+		  density: {
+			enable: true,
+			value_area: 800
+		  }
+		},
+		color: {
+		  value: ["#ff0000", "#ff7f00", "#ffff00", "#0fa80f", "#00bfff", "#0048ff", "#8529d6"] // Rainbow colors
+		},
+		shape: {
+		  type: "circle",
+		  stroke: {
+			width: 0,
+			color: "#000"
+		  }
+		},
+		opacity: {
+		  value: 0.7,
+		  random: true
+		},
+		size: {
+		  value: 5,
+		  random: true
+		},
+		line_linked: {
+		  enable: true,
+		  distance: 150,
+		  color: "#ffffff",
+		  opacity: 0.4,
+		  width: 1
+		},
+		move: {
+		  enable: true,
+		  speed: 3,
+		  direction: "none",
+		  random: false,
+		  straight: false,
+		  out_mode: "out",
+		  bounce: false,
+		  attract: {
+			enable: false,
+			rotateX: 600,
+			rotateY: 1200
+		  }
+		}
+	  },
+	  interactivity: {
+		detect_on: "canvas",
+		events: {
+		  onhover: {
+			enable: true,
+			mode: "repulse"
+		  },
+		  onclick: {
+			enable: true,
+			mode: "push"
+		  },
+		  resize: true
+		},
+		modes: {
+		  grab: {
+			distance: 400,
+			line_linked: {
+			  opacity: 1
+			}
+		  },
+		  bubble: {
+			distance: 400,
+			size: 10,
+			duration: 2,
+			opacity: 0.8,
+			speed: 3
+		  },
+		  repulse: {
+			distance: 200
+		  },
+		  push: {
+			particles_nb: 4
+		  },
+		  remove: {
+			particles_nb: 2
+		  }
+		}
+	  },
+	  retina_detect: true
+	});
+  </script>
+  
+  <script src="progress_animation.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    const body = document.body;
+
+    // Function to update images based on theme
+    function updateImagesForTheme() {
+        const images = document.querySelectorAll(".theme-image");
+        const isDarkMode = body.getAttribute("data-theme") === "dark";
+
+        images.forEach(img => {
+            const lightSrc = img.getAttribute("data-light-src") || img.getAttribute("src");
+            const darkSrc = img.getAttribute("data-dark-src");
+
+            if (isDarkMode) {
+                if (darkSrc) {
+                    img.setAttribute("src", darkSrc);
+                }
+            } else {
+                img.setAttribute("src", lightSrc);
+            }
+        });
+    }
+
+    // Load correct particle animation
+    function loadParticles(theme) {
+        particlesJS("particles-js", theme === "dark" ? darkParticlesConfig : lightParticlesConfig);
+    }
+
+    // Light Mode Particle Configuration
+    const lightParticlesConfig = {
+        particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: ["#ff0000", "#ff7f00", "#ffff00", "#0fa80f", "#00bfff", "#0048ff", "#8529d6"] },
+            shape: { type: "circle" },
+            opacity: { value: 0.7, random: true },
+            size: { value: 5, random: true },
+            line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+            move: { enable: true, speed: 3 },
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } },
+            modes: { repulse: { distance: 200 }, push: { particles_nb: 4 } },
+        },
+        retina_detect: true,
+    };
+
+    // Dark Mode Particle Configuration
+    const darkParticlesConfig = {
+        particles: {
+            number: { value: 100, density: { enable: true, value_area: 1000 } },
+            color: { value: "#ffffff" },
+            shape: { type: "circle" },
+            opacity: { value: 0.9, random: false },
+            size: { value: 2, random: true },
+            line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.2, width: 1 },
+            move: { enable: true, speed: 1, direction: "none", out_mode: "out" },
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: { onhover: { enable: true, mode: "bubble" }, onclick: { enable: true, mode: "push" } },
+            modes: { bubble: { distance: 400, size: 6, duration: 2, opacity: 0.8 }, push: { particles_nb: 4 } },
+        },
+        retina_detect: true,
+    };
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+        body.setAttribute("data-theme", "dark");
+        darkModeToggle.checked = true;
+        loadParticles("dark");
+    } else {
+        loadParticles("light");
+    }
+
+    // Ensure images are updated based on saved theme
+    updateImagesForTheme();
+
+    // Toggle theme and reload particles
+    darkModeToggle.addEventListener("change", function () {
+        if (this.checked) {
+            body.setAttribute("data-theme", "dark");
+            localStorage.setItem("theme", "dark");
+            loadParticles("dark");
+        } else {
+            body.removeAttribute("data-theme");
+            localStorage.setItem("theme", "light");
+            loadParticles("light");
+        }
+        updateImagesForTheme();
+    });
+});
+
+  </script>
+  
+
+</body>
+</html>

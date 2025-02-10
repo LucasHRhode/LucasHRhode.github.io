@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>3D Photo Carousel</title>
+  
+  <!-- Bootstrap 4 CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      min-height: 100vh;
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+
+    h1 {
+      font-weight: 700;
+      margin: 3rem 0;
+      text-align: center;
+      color: #2c3e50;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    /* Carousel Container */
+    .my-carousel-container {
+      position: relative;
+      width: 80%;
+      height: 60vh;
+      max-width: 1200px;
+      margin: 2rem auto;
+      perspective: 2000px;
+      overflow: hidden;
+    }
+
+    /* The wrapper for all slides */
+    .my-carousel {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 1s;
+    }
+
+    /* Individual Slide */
+    .my-carousel-slide {
+      position: absolute;
+      width: 50%;
+      height: 80%;
+      left: 25%;
+      top: 10%;
+      transition: transform 1s, opacity 1s, z-index 1s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+
+      /* Center the image within the slide */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Image styling: keep aspect ratio, no cropping */
+    .my-carousel-slide img {
+      max-width: 100%;
+      max-height: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    }
+
+    /* Navigation Arrows */
+    .my-carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      z-index: 2;
+      padding: 0 1rem;
+    }
+
+    /* Carousel Styles */
+    .my-carousel-nav button {
+      background: rgba(255,255,255,0.9);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .my-carousel-nav button:hover {
+      transform: scale(1.1);
+      background: white;
+    }
+
+    /* Indicators */
+    .my-indicators {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+    }
+
+    .my-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .my-indicator.active {
+      background: #2c3e50;
+      transform: scale(1.3);
+    }
+
+    /* General Album Grid Styles */
+    .album-grid {
+      padding-bottom: 2rem;
+    }
+
+    .album-title {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 10px;
+    }
+
+    /* Album Cover Styling */
+    .album-cover {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      background-color: #f8f9fa;
+      transition: transform 0.3s ease;
+    }
+
+    /* Hover Zoom Effect */
+    .album-cover-container:hover .album-cover {
+      transform: scale(1.1);
+    }
+
+    /* Overlay Effect */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 15px;
+    }
+
+    .album-cover-container:hover .overlay {
+      opacity: 1;
+    }
+
+    /* View Button on Hover */
+    .overlay a {
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #2c3e50;
+      background: #fff;
+      border: none;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .overlay a:hover {
+      background: #f8f9fa;
+      transform: scale(1.1);
+    }
+
+    /* Center "Other Albums" */
+    h2.text-center {
+      margin-bottom: 2rem;
+    }
+
+    /* Card Shadows */
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Lightbox Container (for enlarged image) */
+    .lightbox {
+      position: fixed;
+      top: 0; 
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: none;            /* hidden by default */
+      justify-content: center;
+      align-items: center;
+      background: transparent;  /* no dark overlay */
+      z-index: 99999;           /* ensure it stays above everything */
+    }
+    .lightbox.active {
+      display: flex;
+    }
+    .lightbox img {
+      max-width: 80%;
+      max-height: 80%;
+      /* Start slightly smaller for a scale-in animation */
+      transform: scale(0.8);
+      transition: transform 0.3s ease;
+    }
+    .lightbox.active img {
+      transform: scale(1);
+    }
+
+    @media (max-width: 768px) {
+      .my-carousel-container {
+        width: 90%;
+        height: 50vh;
+      }
+      
+      .my-carousel-slide {
+        width: 70%;
+        left: 15%;
+      }
+    }
+
+    .my-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Center title */
+      padding: 1.5rem 2rem;
+    }
+
+    .my-header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    .back-to-site {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #2c3e50;
+      border: 2px solid #2c3e50;
+      padding: 5px 10px;
+      border-radius: 5px;
+      background-color: #f8f9fa;
+      transition: all 0.3s ease;
+    }
+
+    .back-to-site:hover {
+      color: #ffffff;
+      background-color: #2c3e50;
+    }
+
+    /* Dark Mode Base Styles */
+    body[data-theme="dark"] {
+      background: #121212 !important;
+      color: #ffffff !important;
+    }
+
+    /* Dark Mode Toggle Styles */
+    .dark-mode-toggle {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 1000;
+    }
+
+    .toggle-label {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      color: #2c3e50;
+      font-weight: 700;
+    }
+
+    .dark-mode-btn {
+      position: relative;
+      width: 60px;
+      height: 34px;
+      background: #f8f9fa;
+      border: 2px solid #2c3e50;
+      border-radius: 34px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 3px;
+      transition: background 0.3s ease, border 0.3s ease;
+    }
+
+    .dark-mode-slider {
+      width: 26px;
+      height: 26px;
+      background: #980606;
+      border-radius: 50%;
+      position: absolute;
+      left: 4px;
+      transition: transform 0.3s ease;
+    }
+
+    .dark-mode-btn.dark-mode-active .dark-mode-slider {
+      transform: translateX(26px);
+    }
+
+    /* Responsive Fix for Smaller Screens */
+    @media (max-width: 768px) {
+    .my-header {
+      padding: 1rem;
+    }
+  
+    .dark-mode-toggle {
+      left: 0.5rem;
+    }
+
+    .back-to-site {
+      right: 0.5rem;
+    }
+
+    .my-header h1 {
+      font-size: 2rem;
+    }
+  }
+
+    /* Dark Mode Component Styles */
+    body[data-theme="dark"] .dark-mode-btn {
+      background: #121212;
+      border-color: #fff;
+    }
+
+    body[data-theme="dark"] .dark-mode-slider {
+      background: #fff;
+    }
+
+    body[data-theme="dark"] .toggle-label {
+      color: #fff !important;
+    }
+
+    body[data-theme="dark"] h1,
+    body[data-theme="dark"] h2,
+    body[data-theme="dark"] .album-title {
+      color: #ffffff !important;
+    }
+
+    body[data-theme="dark"] .card {
+      background-color: #1a1a1a;
+      box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1) !important;
+    }
+
+    body[data-theme="dark"] .back-to-site {
+      background: #191919 !important;
+      color: white !important;
+      border-color: white !important;
+    }
+
+    body[data-theme="dark"] .back-to-site:hover {
+      background: white !important;
+      color: black !important;
+    }
+
+    body[data-theme="dark"] .my-carousel-nav button {
+      background: rgba(0, 0, 0, 0.9);
+    }
+
+    body[data-theme="dark"] .my-indicator {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    body[data-theme="dark"] .my-indicator.active {
+      background: #ffffff;
+    }
+  
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="container-fluid my-header">
+    <!-- Dark Mode Toggle (aligned left) -->
+    <div class="dark-mode-toggle">
+      <label class="dark-mode-btn" id="darkModeToggle">
+        <span class="dark-mode-slider"></span>
+      </label>
+      <span class="toggle-label">Dark Mode</span>
+    </div>
+
+    <!-- Page Title (centered) -->
+    <h1>
+      Photo Gallery <span role="img" aria-label="camera">📸</span>
+    </h1>
+
+    <!-- Back to Main Site (aligned right) -->
+    <a href="index.html" class="back-to-site">← Back to Main Site</a>
+  </div>
+
+
+
+  <!-- Carousel -->
+  <div class="my-carousel-container">
+    <div class="my-carousel">
+      <div class="my-carousel-slide active">
+        <img src="img/lucas_photo1.jpg" alt="Photo 1">
+      </div>
+      <div class="my-carousel-slide">
+        <img src="img/lucas_photo2.jpg" alt="Photo 2">
+      </div>
+      <div class="my-carousel-slide">
+        <img src="img/lucas_photo3.jpg" alt="Photo 3">
+      </div>
+      <div class="my-carousel-slide">
+        <img src="img/lucas_photo4.jpg" alt="Photo 4">
+      </div>
+      <div class="my-carousel-slide">
+        <img src="img/lucas_photo5.jpg" alt="Photo 5">
+      </div>
+      <div class="my-carousel-slide">
+        <img src="img/lucas_photo6.jpg" alt="Photo 6">
+      </div>
+      <div class="my-carousel-slide">
+        <img src="img/lucas_photo7.jpg" alt="Photo 7">
+      </div>
+      <div class="my-carousel-slide">
+        <img src="img/lucas_photo8.jpg" alt="Photo 8">
+      </div>
+      <div class="my-carousel-slide">
+        <img src="img/lucas_photo9.jpg" alt="Photo 9">
+      </div>
+      <div class="my-carousel-slide">
+        <img src="img/lucas_photo10.jpg" alt="Photo 10">
+      </div>
+      <div class="my-carousel-slide">
+        <img src="img/lucas_photo11.jpg" alt="Photo 11">
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="my-carousel-nav">
+      <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+      <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- Indicators -->
+    <div class="my-indicators"></div>
+  </div>
+
+  <!-- Album Grid -->
+  <div class="container album-grid mt-5">
+    <h2 class="text-center mb-5" style="font-weight: 700; font-size: 2.5rem; color: #2c3e50; text-shadow: 1px 1px 3px rgba(0,0,0,0.1);">
+      Other Albums
+    </h2>
+    <div class="row justify-content-center">
+      <div class="col-md-4 mb-4">
+        <div class="card text-center border-0 shadow-sm" style="border-radius: 15px;">
+          <div class="album-cover-container" style="position: relative; overflow: hidden; border-radius: 15px;">
+            <img src="img/album1_cover.png" class="card-img-top album-cover" alt="Album 1">
+            <div class="overlay d-flex align-items-center justify-content-center">
+              <a href="#" class="btn btn-light btn-sm">View Album</a>
+            </div>
+          </div>
+          <div class="card-body">
+            <h5 class="album-title" style="font-weight: bold; font-size: 2rem; color: #2c3e50;">FAMILY</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card text-center border-0 shadow-sm" style="border-radius: 15px;">
+          <div class="album-cover-container" style="position: relative; overflow: hidden; border-radius: 15px;">
+            <img src="img/album2_cover.png" class="card-img-top album-cover" alt="Album 2">
+            <div class="overlay d-flex align-items-center justify-content-center">
+              <a href="#" class="btn btn-light btn-sm">View Album</a>
+            </div>
+          </div>
+          <div class="card-body">
+            <h5 class="album-title" style="font-weight: bold; font-size: 2rem; color: #2c3e50;">FRIENDS</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card text-center border-0 shadow-sm" style="border-radius: 15px;">
+          <div class="album-cover-container" style="position: relative; overflow: hidden; border-radius: 15px;">
+            <img src="img/album3_cover.webp" class="card-img-top album-cover" alt="Album 3">
+            <div class="overlay d-flex align-items-center justify-content-center">
+              <a href="#" class="btn btn-light btn-sm">View Album</a>
+            </div>
+          </div>
+          <div class="card-body">
+            <h5 class="album-title" style="font-weight: bold; font-size: 2rem; color: #2c3e50;">THE VIEW</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Lightbox Container (transparent) -->
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Enlarged Image" id="lightbox-img">
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const carousel = document.querySelector('.my-carousel');
+        const slides = document.querySelectorAll('.my-carousel-slide');
+        const indicatorsContainer = document.querySelector('.my-indicators');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        let currentIndex = 0;
+        let autoPlay = true;
+        let interval;
+
+        // Create indicators
+        slides.forEach((_, index) => {
+            const indicator = document.createElement('div');
+            indicator.classList.add('my-indicator');
+            if (index === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(index));
+            indicatorsContainer.appendChild(indicator);
+        });
+
+        function updatePositions() {
+            slides.forEach((slide, index) => {
+                const totalSlides = slides.length;
+                const relativeIndex = ((index - currentIndex + totalSlides) % totalSlides) - 1;
+                const position = relativeIndex * 50;
+                const scale = 1 - Math.abs(relativeIndex * 0.1);
+                const zIndex = totalSlides - Math.abs(relativeIndex);
+                slide.style.transform = `translateX(${position}%) scale(${scale})`;
+                slide.style.zIndex = zIndex;
+                slide.style.opacity = Math.abs(relativeIndex) > 2 ? '0' : '1';
+            });
+
+            document.querySelectorAll('.my-indicator').forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updatePositions();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updatePositions();
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updatePositions();
+        }
+
+        function startAutoPlay() {
+            stopAutoPlay();
+            interval = setInterval(() => {
+                if (autoPlay) nextSlide();
+            }, 5000);
+        }
+
+        function stopAutoPlay() {
+            clearInterval(interval);
+        }
+
+        updatePositions();
+        startAutoPlay();
+
+        document.querySelector('.next-btn').addEventListener('click', () => {
+            autoPlay = false;
+            nextSlide();
+        });
+
+        document.querySelector('.prev-btn').addEventListener('click', () => {
+            autoPlay = false;
+            prevSlide();
+        });
+
+        carousel.addEventListener('mouseenter', () => {
+            autoPlay = false;
+            stopAutoPlay();
+        });
+
+        carousel.addEventListener('mouseleave', () => {
+            autoPlay = true;
+            startAutoPlay();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        slides.forEach((slide) => {
+            const img = slide.querySelector('img');
+            img.addEventListener('click', () => {
+                autoPlay = false;
+                stopAutoPlay();
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+            });
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                autoPlay = true;
+                startAutoPlay();
+            }
+        });
+
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById("darkModeToggle");
+        const body = document.body;
+
+        if (localStorage.getItem("theme") === "dark") {
+            body.setAttribute("data-theme", "dark");
+            darkModeToggle.classList.add("dark-mode-active");
+        }
+
+        darkModeToggle.addEventListener("click", () => {
+            if (body.getAttribute("data-theme") === "dark") {
+                body.removeAttribute("data-theme");
+                localStorage.setItem("theme", "light");
+                darkModeToggle.classList.remove("dark-mode-active");
+            } else {
+                body.setAttribute("data-theme", "dark");
+                localStorage.setItem("theme", "dark");
+                darkModeToggle.classList.add("dark-mode-active");
+            }
+        });
+    });
+</script>
+
+  
+</body>
+</html>

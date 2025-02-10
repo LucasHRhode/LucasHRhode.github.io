@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ESE124 Programming Fundamentals</title>
+
+  <link rel="icon" type="image/png" href="../img/favicon-orange.png">
+
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+  />
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Raleway|Rubik:400,900|Nunito&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Your main app.css -->
+  <!-- Adjust the path if `ese118.html` is inside a "notes" folder, 
+       or move it accordingly. Example: "../app.css" -->
+  <link rel="stylesheet" href="../app.css" />
+
+</head>
+<body style="background-color: #fffef6f3;">
+  <!-- NavBar (similar style to ssp205.html) -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-orange-gradient">
+    <a class="navbar-brand" href="../index.html">
+      <!-- Adjust the path to your main site if needed -->
+      <img
+        src="../img/stonybrooklogo.png"
+        alt="Logo"
+        style="width: 250px; height: auto;"
+      />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <!-- Link back to main site or other pages if you like -->
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html">Back to Main Site</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Title Section with Background Image -->
+  <div
+    class="title-container text-center"
+    style="
+      position: relative;
+      background: url('../img/ese124_banner.jpg') center center / cover no-repeat;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgb(255, 255, 255);
+      text-shadow: 4px 4px 16px rgba(255, 183, 0, 0.7);
+    "
+  >
+    <div class="title-content">
+      <h1
+        style="
+          font-size: 8rem;
+          font-family: 'Nunito', sans-serif;
+          font-weight: bold;
+          color: rgb(255, 225, 0);
+          text-shadow: 4px 4px 20px rgba(255, 162, 0, 0.8);
+          margin: 0;
+        "
+      >
+        ESE124
+      </h1>
+      <h2
+        style="
+          font-size: 3rem;
+          font-family: 'Nunito', sans-serif;
+          font-weight: 400;
+          margin-top: 10px;
+          text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+        "
+      >
+        Programming Fundamentals - Spring 2025
+      </h2>
+    </div>
+  </div>
+
+  <!-- Lecture Notes Section -->
+  <div class="container py-4">
+    <h2 class="heading">Lecture Notes</h2>
+    <hr style="border-color: #444;" />
+    <ul style="list-style-type: none; padding-left: 0;">
+      <li>
+        <a href="files/lecture1.pdf" target="_blank">Lecture 1: Introduction (PDF)</a>
+      </li>
+      <li>
+        <a href="files/lecture2.pdf" target="_blank">Lecture 2: Boolean Algebra (PDF)</a>
+      </li>
+      <!-- Add more lectures as needed -->
+    </ul>
+  </div>
+
+  <!-- Homework Assignments Section -->
+  <div class="container pb-4">
+    <h2 class="heading">Homework Assignments</h2>
+    <hr style="border-color: #444;" />
+    <ul style="list-style-type: none; padding-left: 0;">
+      <li>
+        <a href="files/hw1.pdf" target="_blank">HW 1: Boolean Algebra Basics (PDF)</a>
+      </li>
+      <li>
+        <a href="files/hw2.pdf" target="_blank">HW 2: Gate-level Minimization (PDF)</a>
+      </li>
+      <!-- etc. -->
+    </ul>
+  </div>
+
+  <!-- Lab Reports Section -->
+  <div class="container pb-4">
+    <h2 class="heading">Lab Reports</h2>
+    <hr style="border-color: #444;" />
+    <ul style="list-style-type: none; padding-left: 0;">
+      <li>
+        <a href="files/lab1_report.pdf" target="_blank">Lab 1 Report: Breadboard Basics (PDF)</a>
+      </li>
+      <li>
+        <a href="files/lab2_report.pdf" target="_blank">Lab 2 Report: Simple Gate Circuits (PDF)</a>
+      </li>
+      <!-- etc. -->
+    </ul>
+  </div>
+
+  <!-- Professor's Presentations Section -->
+  <div class="container pb-4">
+    <h2 class="heading">Professor’s Presentations</h2>
+    <hr style="border-color: #444;" />
+    <ul style="list-style-type: none; padding-left: 0;">
+      <li>
+        <a href="files/topic1_slides.pdf" target="_blank">
+          Topic 1 Slides: Introduction to Digital Circuits (PDF)
+        </a>
+      </li>
+      <li>
+        <a href="files/topic2_slides.pdf" target="_blank">
+          Topic 2 Slides: Boolean Algebra and Gates (PDF)
+        </a>
+      </li>
+      <!-- etc. -->
+    </ul>
+  </div>
+
+  <!-- Schedule Section (Tentative) -->
+  <div class="container pb-4">
+    <h2 class="heading">Schedule (Tentative)</h2>
+    <hr style="border-color: #444;" />
+    <p style="color: #ddd;">
+      This schedule will be updated as needed during the semester. Please check Brightspace for
+      all updates. Homework 5 and Homework 9 will be ungraded assignments issued with solutions to help
+      you prepare for the midterm exams.
+    </p>
+    <div class="table-responsive">
+      <table class="table table-bordered table-dark">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Topics</th>
+            <th>Slides</th>
+            <th>Text</th>
+            <th>Lab</th>
+            <th>HW</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tue 1/28</td>
+            <td>Welcome! Introduction to digital circuits</td>
+            <td>Topic 1</td>
+            <td>1.1, 1.9</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Thu 1/30</td>
+            <td>Boolean algebra and gates</td>
+            <td>Topic 2</td>
+            <td>2.1–2.5, 2.8</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <!-- Continue adding rows for your schedule -->
+          <tr>
+            <td>Thu 5/15</td>
+            <td>Final Exam (comprehensive), 5:30–8:00pm</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Syllabus Section (Collapsible Example) -->
+  <div class="container pb-4">
+    <h2 class="heading">Syllabus</h2>
+    <hr style="border-color: #444;" />
+
+    <!-- Collapsible Cards - Each card can hold one major section of the syllabus -->
+    <div id="syllabusAccordion" role="tablist">
+      <!-- Card 1: Basic Info -->
+      <div class="card">
+        <div class="card-header" role="tab" id="headingBasic">
+          <h5 class="mb-0">
+            <a
+              data-toggle="collapse"
+              href="#collapseBasic"
+              aria-expanded="true"
+              aria-controls="collapseBasic"
+              style="text-decoration: none; color: #ffcc66;"
+            >
+              1) Course Basics
+            </a>
+          </h5>
+        </div>
+        <div
+          id="collapseBasic"
+          class="collapse show"
+          role="tabpanel"
+          aria-labelledby="headingBasic"
+          data-parent="#syllabusAccordion"
+        >
+          <div class="card-body">
+            <p><strong>Course:</strong> ESE 124 &mdash; Programming Fundamentals (4 credits)</p>
+            <p><strong>Coordinator:</strong> Dr. Alex Doboli</p>
+            <p>
+              <strong>Description:</strong><br />
+              The course presents fundamental and more advanced C programming concepts...
+            </p>
+            <p>
+              <strong>Prerequisite:</strong> Major or AOI
+            </p>
+            <p>
+              <strong>Course Outcomes:</strong><br />
+              • An ability to develop algorithmic solutions for fundamental computing problems<br />
+              • An ability to develop C programs for fundamental algorithms<br />
+              • An ability to debug, test, and validate C programs<br />
+              • An ability to effectively document C programs
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Textbook & Major Topics -->
+      <div class="card">
+        <div class="card-header" role="tab" id="headingTextbooks">
+          <h5 class="mb-0">
+            <a
+              class="collapsed"
+              data-toggle="collapse"
+              href="#collapseTextbooks"
+              aria-expanded="false"
+              aria-controls="collapseTextbooks"
+              style="text-decoration: none; color: #ffcc66;"
+            >
+              2) Textbooks & Major Topics
+            </a>
+          </h5>
+        </div>
+        <div
+          id="collapseTextbooks"
+          class="collapse"
+          role="tabpanel"
+          aria-labelledby="headingTextbooks"
+          data-parent="#syllabusAccordion"
+        >
+          <div class="card-body">
+            <p>
+              <strong>Textbook:</strong><br/>
+              1. zybooks: “Programming in C” (<a href="https://www.zybooks.com/catalog/programming-in-c/" target="_blank">Link</a>)<br/>
+              2. A. Hilton, A. Bracy, “All of Programming,” 2015, ISBN: 9780996718202
+            </p>
+            <p>
+              <strong>Major Topics Covered:</strong>
+            </p>
+            <ul>
+              <li>Demo C program for simple calculator</li>
+              <li>Basic types, operators, bitwise ops</li>
+              <li>Conditionals (if, switch), loops (for, while, do)</li>
+              <li>Arrays, strings, pointers, pointer arithmetic</li>
+              <li>Structured types (struct, union), type definitions (typedef)</li>
+              <li>Abstract data types (*.h, *.c)</li>
+              <li>Dynamic memory allocation</li>
+              <li>Linked lists, hash tables</li>
+              <li>FSM implementation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Labs, Projects, and Grading -->
+      <div class="card">
+        <div class="card-header" role="tab" id="headingLabs">
+          <h5 class="mb-0">
+            <a
+              class="collapsed"
+              data-toggle="collapse"
+              href="#collapseLabs"
+              aria-expanded="false"
+              aria-controls="collapseLabs"
+              style="text-decoration: none; color: #ffcc66;"
+            >
+              3) Labs, Projects, and Grading
+            </a>
+          </h5>
+        </div>
+        <div
+          id="collapseLabs"
+          class="collapse"
+          role="tabpanel"
+          aria-labelledby="headingLabs"
+          data-parent="#syllabusAccordion"
+        >
+          <div class="card-body">
+            <p>
+              <strong>Laboratory &amp; Design Projects:</strong><br />
+              - Weeks 1-2: Bitwise operations<br />
+              - Weeks 3-4: Loops &amp; conditionals (scanner)<br />
+              - Weeks 5-6: Number sorting<br />
+              - Weeks 7-8: Stack ADT<br />
+              - Weeks 9-10: Table-based FSM<br />
+              - Weeks 11-12: Linked lists, hash table<br />
+              - Week 13: Completing the course project
+            </p>
+            <p>
+              <strong>Grading:</strong><br/>
+              Midterm exam (25%), Final exam (25%), weekly homework (15%), Lab assignments (20%), 
+              Course project (15%), plus up to 5% extra credit based on in-class participation.
+            </p>
+            <p>
+              <strong>Grading Policy:</strong><br />
+              - Must score &ge; 45 points in final exam (out of 100) to pass the course.<br />
+              - A: 90—100, A-: 85—89.99, B+: 80—84.99, B: 75—79.99, B-: 70—74.99,<br />
+                C+: 65—69.99, C: 60—64.99, C-: 55—59.99, D+: 52—54.99, D: 48—51.99, F: 0—47.99.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Exam & Schedule Details -->
+      <div class="card">
+        <div class="card-header" role="tab" id="headingExams">
+          <h5 class="mb-0">
+            <a
+              class="collapsed"
+              data-toggle="collapse"
+              href="#collapseExams"
+              aria-expanded="false"
+              aria-controls="collapseExams"
+              style="text-decoration: none; color: #ffcc66;"
+            >
+              4) Exam &amp; Schedule Details
+            </a>
+          </h5>
+        </div>
+        <div
+          id="collapseExams"
+          class="collapse"
+          role="tabpanel"
+          aria-labelledby="headingExams"
+          data-parent="#syllabusAccordion"
+        >
+          <div class="card-body">
+            <p>
+              <strong>Lecture Delivery:</strong> In-person at scheduled times<br/>
+              <strong>Lab Delivery:</strong> In-person in room 281, Light Engineering Building<br/>
+              <strong>Office Hours:</strong> Mon &amp; Wed: 1:00-2:00 PM (Light Engr. 241)<br/>
+            </p>
+            <p>
+              <strong>Exams:</strong><br/>
+              - Midterm Exam: Thursday, Week 8 (during lecture)<br/>
+              - Final Exam: Officially scheduled by the university
+            </p>
+            <p>
+              <strong>First Day of Lectures:</strong> Tuesday, January 27th, 2025<br/>
+              <strong>Lab Activities Start:</strong> Week 2
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer
+    class="text-center p-4"
+    style="color: white;"
+  >
+    <p>
+      <small>
+        © <script>document.write(new Date().getFullYear())</script>
+        <a
+          href="mailto:lucas.rhode@stonybrook.edu"
+          style="text-decoration: none; color: #fff;"
+          >Lucas Rhode</a>
+        |
+        <a
+          href="../index.html"
+          style="text-decoration: none; color: #fff;"
+          >Back to Main Site</a>
+      </small>
+    </p>
+  </footer>
+
+  <!-- JS Scripts -->
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+  ></script>
+</body>
+</html>

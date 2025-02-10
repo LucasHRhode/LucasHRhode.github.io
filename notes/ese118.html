@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ESE118 Digital Logic Design</title>
+
+  <link rel="icon" type="image/png" href="../img/favicon-yellow.png">
+
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+  />
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Raleway|Rubik:400,900|Nunito&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Your main app.css -->
+  <!-- Adjust the path if `ese118.html` is inside a "notes" folder, 
+       or move it accordingly. Example: "../app.css" -->
+  <link rel="stylesheet" href="../app.css" />
+
+</head>
+<body style="background-color: #212322;">
+  <!-- NavBar (similar style to ssp205.html) -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-yellow-gradient">
+    <a class="navbar-brand" href="../index.html">
+      <!-- Adjust the path to your main site if needed -->
+      <img
+        src="../img/stonybrooklogo.png"
+        alt="Logo"
+        style="width: 250px; height: auto;"
+      />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <!-- Link back to main site or other pages if you like -->
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html">Back to Main Site</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Title Section with Background Image -->
+  <div
+    class="title-container text-center"
+    style="
+      position: relative;
+      /* Replace this image with a relevant ESE118 or generic circuit background image */
+      background: url('../img/ese118_banner.png') center center / cover no-repeat;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgb(0, 0, 0);
+      text-shadow: 4px 4px 16px rgba(255, 183, 0, 0.7);
+    "
+  >
+    <div class="title-content">
+      <h1
+        style="
+          font-size: 8rem;
+          font-family: 'Nunito', sans-serif;
+          font-weight: bold;
+          color: rgb(255, 225, 0);
+          text-shadow: 4px 4px 20px rgba(255, 162, 0, 0.8);
+          margin: 0;
+        "
+      >
+        ESE118
+      </h1>
+      <h2
+        style="
+          font-size: 3rem;
+          font-family: 'Nunito', sans-serif;
+          font-weight: 400;
+          margin-top: 10px;
+          text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+        "
+      >
+        Digital Logic Design - Spring 2025
+      </h2>
+    </div>
+  </div>
+
+  <!-- Lecture Notes Section -->
+  <div class="container" style="padding-bottom: 3rem; padding-top: 2rem;">
+    <h2 class="heading" style="color: white;">Lecture Notes</h2>
+    <hr style="border-color: #444;" />
+    <ul style="list-style-type: none; padding-left: 0;">
+      <!-- Replace with your actual lecture note PDFs -->
+      <li style="margin: 0.5rem 0;">
+        <a
+          href="files/lecture1.pdf"
+          style="color: #ff9900; font-size: 1.1rem; text-decoration: none;"
+          target="_blank"
+        >
+          Lecture 1: Introduction (PDF)
+        </a>
+      </li>
+      <li style="margin: 0.5rem 0;">
+        <a
+          href="files/lecture2.pdf"
+          style="color: #ff9900; font-size: 1.1rem; text-decoration: none;"
+          target="_blank"
+        >
+          Lecture 2: Boolean Algebra (PDF)
+        </a>
+      </li>
+      <!-- Add more lectures as needed -->
+    </ul>
+  </div>
+
+  <!-- Homework Assignments Section -->
+  <div class="container" style="padding-bottom: 3rem;">
+    <h2 class="heading" style="color: white;">Homework Assignments</h2>
+    <hr style="border-color: #444;" />
+    <ul style="list-style-type: none; padding-left: 0;">
+      <!-- Replace with your actual homework PDFs -->
+      <li style="margin: 0.5rem 0;">
+        <a
+          href="files/hw1.pdf"
+          style="color: #ff9900; font-size: 1.1rem; text-decoration: none;"
+          target="_blank"
+        >
+          HW 1: Boolean Algebra Basics (PDF)
+        </a>
+      </li>
+      <li style="margin: 0.5rem 0;">
+        <a
+          href="files/hw2.pdf"
+          style="color: #ff9900; font-size: 1.1rem; text-decoration: none;"
+          target="_blank"
+        >
+          HW 2: Gate-level Minimization (PDF)
+        </a>
+      </li>
+      <!-- etc. -->
+    </ul>
+  </div>
+
+  <!-- Lab Reports Section -->
+  <div class="container" style="padding-bottom: 3rem;">
+    <h2 class="heading" style="color: white;">Lab Reports</h2>
+    <hr style="border-color: #444;" />
+    <ul style="list-style-type: none; padding-left: 0;">
+      <!-- Replace with your actual lab PDFs -->
+      <li style="margin: 0.5rem 0;">
+        <a
+          href="files/lab1_report.pdf"
+          style="color: #ff9900; font-size: 1.1rem; text-decoration: none;"
+          target="_blank"
+        >
+          Lab 1 Report: Breadboard Basics (PDF)
+        </a>
+      </li>
+      <li style="margin: 0.5rem 0;">
+        <a
+          href="files/lab2_report.pdf"
+          style="color: #ff9900; font-size: 1.1rem; text-decoration: none;"
+          target="_blank"
+        >
+          Lab 2 Report: Simple Gate Circuits (PDF)
+        </a>
+      </li>
+      <!-- etc. -->
+    </ul>
+  </div>
+
+  <!-- Professor's Presentations Section -->
+  <div class="container" style="padding-bottom: 3rem;">
+    <h2 class="heading" style="color: white;">Professor’s Presentations</h2>
+    <hr style="border-color: #444;" />
+    <ul style="list-style-type: none; padding-left: 0;">
+      <!-- Replace with your actual PPT or PDF files -->
+      <li style="margin: 0.5rem 0;">
+        <a
+          href="files/topic1_slides.pdf"
+          style="color: #ff9900; font-size: 1.1rem; text-decoration: none;"
+          target="_blank"
+        >
+          Topic 1 Slides: Introduction to Digital Circuits (PDF)
+        </a>
+      </li>
+      <li style="margin: 0.5rem 0;">
+        <a
+          href="files/topic2_slides.pdf"
+          style="color: #ff9900; font-size: 1.1rem; text-decoration: none;"
+          target="_blank"
+        >
+          Topic 2 Slides: Boolean Algebra and Gates (PDF)
+        </a>
+      </li>
+      <!-- etc. -->
+    </ul>
+  </div>
+
+  <!-- Schedule Section (Tentative) -->
+  <div class="container" style="padding-bottom: 3rem;">
+    <h2 class="heading" style="color: white;">Schedule (Tentative)</h2>
+    <hr style="border-color: #444;" />
+    <p style="color: #ddd;">
+      This schedule will be updated as needed during the semester. Please check Brightspace for
+      all updates. Homework 5 and Homework 9 will be ungraded assignments issued with solutions to help
+      you prepare for the midterm exams.
+    </p>
+    <div class="table-responsive">
+      <table class="table table-bordered table-dark">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Topics</th>
+            <th>Slides</th>
+            <th>Text</th>
+            <th>Lab</th>
+            <th>HW</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tue 1/28</td>
+            <td>Welcome! Introduction to digital circuits</td>
+            <td>Topic 1</td>
+            <td>1.1, 1.9</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Thu 1/30</td>
+            <td>Boolean algebra and gates</td>
+            <td>Topic 2</td>
+            <td>2.1–2.5, 2.8</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <!-- Continue adding rows from your provided schedule -->
+          <!-- ... -->
+          <tr>
+            <td>Thu 5/15</td>
+            <td>Final Exam (comprehensive), 5:30–8:00pm</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Syllabus Section -->
+  <div class="container" style="padding-bottom: 3rem;">
+    <h2 class="heading" style="color: white;">Syllabus</h2>
+    <hr style="border-color: #444;" />
+    <!-- Syllabus text here -->
+    <div style="color: #ddd;">
+      <p>
+        <strong>Instructor:</strong> 
+        Peter Milder (he/him) 
+        <a href="mailto:peter.milder@stonybrook.edu" style="color: #ff9900;">(peter.milder@stonybrook.edu)</a><br>
+        Office Hours: Tuesday 2:30pm–4:30pm, Thursday 10:00am–12:00pm, Light Engineering 231
+      </p>
+      <p>
+        <strong>Course Description:</strong><br>
+        Develops methods of analysis and design of both combinational and sequential systems...
+      </p>
+      <p>
+        <strong>Textbook:</strong><br>
+        "Digital Design," M. Morris Mano and Michael D. Ciletti (5th or 6th Edition).<br>
+        <a 
+          href="https://3rd.fcis2023.me/material/Books/DD.pdf" 
+          target="_blank" 
+          style="color: #ff9900; text-decoration: none;"
+        >
+          View/Download Textbook (PDF)
+        </a>
+      </p>
+      <p>
+        <strong>Grading:</strong><br>
+        Labs 25%<br>
+        Homework 20%<br>
+        Midterm #1 15%<br>
+        Midterm #2 15%<br>
+        Final Exam 25%
+      </p>
+      <!-- Continue adding the full text of your syllabus here -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer
+    class="text-center"
+    style="padding: 2rem 0; color: white; font-family: 'Nunito', sans-serif;"
+  >
+    <p>
+      <small>
+        © <script>document.write(new Date().getFullYear())</script> 
+        <a 
+          href="mailto:lucas.rhode@stonybrook.edu"
+          style="text-decoration: none; color: #fff;"
+          >Lucas Rhode</a>
+        |
+        <a
+          href="../index.html"
+          style="text-decoration: none; color: #fff;"
+          >Back to Main Site</a>
+      </small>
+    </p>
+  </footer>
+
+  <!-- JS Scripts -->
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+  ></script>
+</body>
+</html>

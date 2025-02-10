@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MAT308: Differential Equations with Linear Algebra</title>
+
+  <link rel="icon" type="image/png" href="../img/blue-favicon.png">
+
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+  />
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Raleway|Rubik:400,900|Nunito&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Your main app.css -->
+  <link rel="stylesheet" href="../app.css" />
+  <!-- ^ Adjust the path to app.css if needed. 
+       If mat308.html is inside "notes" folder, you might need "../app.css" or similar. -->
+
+</head>
+<body style="background-color: #0e142b;">
+  <!-- NavBar with Blue Gradient -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-blue-gradient">
+    <a class="navbar-brand" href="../index.html">
+      <!-- Adjust the path back to your main site if needed -->
+      <img
+        src="../img/stonybrooklogo.png"
+        alt="Logo"
+        style="width: 250px; height: auto;"
+      />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <!-- Link back to main site or other pages if you like -->
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html">Back to Main Site</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Title Section with Background Image -->
+  <div
+    class="title-container text-center"
+    style="
+      position: relative;
+      background: url('../img/mat308_background.jpg') center center / cover no-repeat;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 4px 4px 16px rgba(0, 0, 0, 0.7);
+    "
+  >
+    <!-- Blue Filter Overlay -->
+    <div
+      style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 255, 0.15); /* Blue filter with 30% opacity */
+        z-index: 1;
+      "
+    ></div>
+
+
+    <!-- Title Content -->
+    <div class="title-content" style="z-index: 2;">
+      <h1
+        style="
+          font-size: 6rem;
+          font-family: 'Nunito', sans-serif;
+          font-weight: bold;
+          color: white;
+          text-shadow: 4px 4px 20px rgba(0, 0, 0, 0.9);
+          margin: 0;
+        "
+      >
+        <a
+          href="https://www.jojhelfer.com/math308-2025spring/"
+          target="_blank"
+          style="color: white; text-decoration: none;"
+        >
+        MAT308
+      </a>
+      </h1>
+      <h2
+        style="
+          font-size: 2rem;
+          font-family: 'Nunito', sans-serif;
+          font-weight: 400;
+          margin-top: 10px;
+          text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+        "
+      >
+        Differential Equations with Linear Algebra
+      </h2>
+      <p style="margin-top: 10px; font-size: 1.2rem;">Spring 2025</p>
+    </div>
+  </div>
+
+  <!-- Course Info Section -->
+  <div class="container py-4" style="color: white;">
+    <h2 class="heading" style="color: white;">Course Information</h2>
+    <hr style="border-color: #444;"/>
+
+    <div class="row">
+      <!-- Course description, prerequisites, credits -->
+      <div class="col-md-8">
+        <h4>Course Description</h4>
+        <p style="font-family: 'Nunito', sans-serif;">
+          Linear algebra: determinants, eigenvalues and eigenvectors, diagonalization. 
+          Differential equations; existence and uniqueness of solutions. First- and 
+          second-order equations; linear versus nonlinear equations. Systems of 
+          linear equations. Laplace transform. Applications to physics.
+          More theoretical and intensive than MAT 303, this course is primarily intended 
+          for math majors. Together with MAT 307, it forms a 2-semester sequence covering 
+          the same material as the 3-semester sequence of MAT 205, MAT 211 and MAT 305.
+          May not be taken for credit in addition to MAT 303, MAT 305 or AMS 361.
+        </p>
+        <p><strong>Credits:</strong> 4</p>
+        <p><strong>Prerequisites:</strong> MAT 307 or (MAT 205 and MAT 211)</p>
+      </div>
+
+      <!-- Teaching Staff and meeting info -->
+      <div class="col-md-4">
+        <h4>Class Meetings</h4>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li><strong>Lecture:</strong> MW 3:30-4:50pm in Earth&amp;Space 069</li>
+          <li><strong>Recitation:</strong> Thu 3:30-4:25pm in Frey Hall 217</li>
+        </ul>
+
+        <h4>Teaching Staff</h4>
+        <p style="margin-bottom: 0;">
+          <strong>Instructor:</strong> 
+          <a
+            href="https://www.jojhelfer.com/"
+            target="_blank"
+            style="color: #ff9900; text-decoration: none;"
+          >
+            Joseph Helfer
+          </a>
+          <br>
+          <em>Email:</em> 
+          <a 
+            style="color: #ff9900;" 
+            href="mailto:joseph.helfer@stonybrook.edu"
+          >
+            joseph.helfer@stonybrook.edu
+          </a>
+          <br>
+          Office Hours: 
+          <a style="color: #ff9900;" href="#">See here</a>
+        </p>
+        <hr style="border-color: #444;">
+        <p style="margin-bottom: 0;">
+          <strong>TA:</strong> Nick Chakraborty <br>
+          <em>Email:</em> 
+          <a 
+            style="color: #ff9900;" 
+            href="mailto:nikhil.chakraborty@stonybrook.edu"
+          >
+            nikhil.chakraborty@stonybrook.edu
+          </a>
+          <br>
+          Office Hours: TBA
+        </p>
+      </div>
+    </div>
+
+    <!-- Textbook -->
+    <div style="margin-top: 2rem;">
+      <h4>Textbook</h4>
+      <p>
+        <em>
+          Williamson and Trotter, 
+          <strong>Multivariable Mathematics, Fourth edition</strong>
+        </em>
+        <br>
+        <a 
+          href="https://drive.google.com/file/d/1e10AU7AuN417cPaK06YwwXWOKufOP4iA/view"
+          style="color: #ff9900;"
+        >
+          Link to Textbook
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Homework Assignments Section -->
+  <div class="container py-4" style="color: white;">
+    <h2 class="heading" style="color: white;">Homework Assignments</h2>
+    <hr style="border-color: #444;"/>
+    <p style="font-family: 'Nunito', sans-serif;">
+      Biweekly homework assignments will be posted here. All will be in LaTeX PDF format.
+      Please submit by the due date listed on each assignment.
+    </p>
+    <ul style="list-style-type: none; padding-left: 0;">
+      <!-- Example placeholders -->
+      <li style="margin: 0.5rem 0;">
+        <a
+          href="files/hw1.pdf"
+          style="color: #ff9900; font-size: 1.1rem; text-decoration: none;"
+          target="_blank"
+        >
+          Homework 1 (Due Feb 10)
+        </a>
+      </li>
+      <li style="margin: 0.5rem 0;">
+        <a
+          href="files/hw2.pdf"
+          style="color: #ff9900; font-size: 1.1rem; text-decoration: none;"
+          target="_blank"
+        >
+          Homework 2 (Due Feb 24)
+        </a>
+      </li>
+      <!-- Add more assignments as needed -->
+    </ul>
+  </div>
+
+  <!-- Lecture Plan Section -->
+  <div class="container py-4" style="color: white;">
+    <h2 class="heading" style="color: white;">Lecture Plan</h2>
+    <hr style="border-color: #444;"/>
+    <p style="font-family: 'Nunito', sans-serif;">
+      <em>
+        Note: this lecture plan is tentative and will be continuously updated to adapt to 
+        the pace of the course.
+      </em>
+    </p>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-dark table-hover">
+        <thead>
+          <tr>
+            <th>Week</th>
+            <th>Date</th>
+            <th>Material</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Example row -->
+          <tr>
+            <td>1</td>
+            <td>Mon, Jan 27</td>
+            <td>Introduction to course; Calculus review</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Wed, Jan 29</td>
+            <td>10.1 1st order DE, direction fields</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Mon, Feb 3</td>
+            <td>10.2 Separation of variables</td>
+            <td>First quiz</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Wed, Feb 5</td>
+            <td>10.3 Linear equations, integrating factors</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Mon, Feb 10</td>
+            <td>Linear algebra review: vector spaces and linear maps</td>
+            <td>Homework 1 due</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Wed, Feb 12</td>
+            <td>More linear algebra review</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Mon, Feb 17</td>
+            <td>3.7 Inner products</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Wed, Feb 19</td>
+            <td>11.1 Differential Operators</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Mon, Feb 24</td>
+            <td>11.2 Complex Solutions, Higher Order equations</td>
+            <td>Homework 2 due</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Wed, Feb 26</td>
+            <td>11.3 Non-homogeneous equations</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Mon, Mar 3</td>
+            <td>11.4 Oscillations</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Wed, Mar 5</td>
+            <td>11.5 Laplace Transform</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Mon, Mar 10</td>
+            <td>11.6 Convolution</td>
+            <td>Homework 3 due</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Wed, Mar 12</td>
+            <td>Midterm</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Mon, Mar 17</td>
+            <td>Spring Break - no class</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Wed, Mar 19</td>
+            <td>Spring Break - no class</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>Mon, Mar 24</td>
+            <td>12.1 Vector Fields</td>
+            <td>Homework 4 due</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>Wed, Mar 26</td>
+            <td>12.2 Linear Systems</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Mon, Mar 31</td>
+            <td>3.6 Eigenvalues and eigenvectors</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Wed, Apr 2</td>
+            <td>13.1 More eigenvalues and eigenvectors</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>Mon, Apr 7</td>
+            <td>13.2 Matrix exponentials</td>
+            <td>Homework 5 due</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>Wed, Apr 9</td>
+            <td>More matrix exponentials</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>Mon, Apr 14</td>
+            <td>13.3 Non-homogeneous systems</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>Wed, Apr 16</td>
+            <td>13.4 Equilibrium and Stability</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>Mon, Apr 21</td>
+            <td>13.5 Nonlinear systems</td>
+            <td>Homework 6 due</td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>Wed, Apr 23</td>
+            <td>14.6 Power series solutions</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>Mon, Apr 28</td>
+            <td>14.7 More power series solutions</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>Wed, Apr 30</td>
+            <td>14.8 Fourier series</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>Mon, May 5</td>
+            <td>14.10 Heat and wave equations</td>
+            <td>Homework 7 due</td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>Mon, May 7</td>
+            <td>Review</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>Mon, May 19</td>
+            <td>Final Exam at 5:30-8pm in Earth&amp;Space 069</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer
+    class="text-center"
+    style="padding: 2rem 0; color: white; font-family: 'Nunito', sans-serif;"
+  >
+    <p>
+      <small
+        >© <script>document.write(new Date().getFullYear())</script>
+        <a
+          href="mailto:lucas.rhode@stonybrook.edu"
+          style="text-decoration: none; color: #fff;"
+          >Lucas Rhode</a
+        >
+        | 
+        <a
+          href="../index.html"
+          style="text-decoration: none; color: #fff;"
+          >Back to Main Site</a
+        >
+      </small>
+    </p>
+  </footer>
+
+  <!-- JS Scripts -->
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+  ></script>
+</body>
+</html>

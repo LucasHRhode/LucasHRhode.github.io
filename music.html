@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>My Music</title>
+
+  <link rel="icon" type="image/png" href="img/music-favicon.png">
+
+  
+  <!-- Bootstrap 4 CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #f8f9fa; /* Default Light Mode */
+      min-height: 100vh;
+    }
+
+    body[data-theme="dark"] {
+      background: #121212 !important; /* Ensure solid dark background */
+      color: #ffffff !important;
+    }
+
+    body[data-theme="dark"] .video-title {
+      color: #ffffff !important;
+    }
+
+    body[data-theme="dark"] .video-grid h2 {
+      color: #ffffff !important;
+    }
+
+
+    body[data-theme="dark"] .spotify-section h2 {
+      color: #fff !important;
+    }
+
+    h1, h2 {
+      font-weight: 700;
+      text-align: center;
+      color: #2c3e50;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin: 2rem 0;
+    }
+
+    h2 {
+      margin: 2rem 0;
+      font-size: 2rem;
+    }
+
+    /* Slideshow */
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      background: #e9ecef;
+    }
+
+    .slideshow {
+      display: flex;
+      width: calc(100% * 15); /* Assuming 7 images */
+      animation: scrollSlideshow 20s linear infinite;
+    }
+
+    .slideshow img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    @keyframes scrollSlideshow {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Video Grid */
+    .video-grid {
+      margin: 2rem auto;
+    }
+
+    .video-card {
+      text-align: center;
+      background: white;
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .video-card iframe {
+      border-radius: 10px;
+      width: 100%;
+      height: 200px;
+    }
+
+    .video-title {
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
+
+    /* Spotify Section */
+    .spotify-section {
+      padding: 3rem 1rem;
+      background: #1DB954;
+    }
+
+    .spotify-section h2 {
+      color: #fff;
+    }
+
+    .spotify-section iframe {
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .slideshow-container {
+        height: 200px;
+      }
+
+      .video-card iframe {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  
+
+  <!-- Header -->
+  <div class="container-fluid my-header" style="position: relative;">
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle">
+      <label class="dark-mode-btn" id="darkModeToggle">
+        <span class="dark-mode-slider"></span>
+      </label>
+      <span class="toggle-label">Dark Mode</span>
+    </div>
+  
+    <h1 class="text-center">
+      My Music <span role="img" aria-label="musical-notes">🎻🎶</span>
+    </h1>
+    <a 
+      href="index.html"
+      class="back-to-site"
+      style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);"
+    >
+      ← Back to Main Site
+    </a>
+  </div>
+
+
+
+  
+
+
+  <!-- Slideshow Section -->
+  <div class="slideshow-container">
+    <div class="slideshow">
+      <img src="img/violin1.jpg" alt="Violin Photo 1">
+      <img src="img/violin2.jpg" alt="Violin Photo 2">
+      <img src="img/violin3.jpg" alt="Violin Photo 3">
+      <img src="img/violin4.jpg" alt="Violin Photo 4">
+      <img src="img/violin5.jpg" alt="Violin Photo 5">
+      <img src="img/violin6.jpg" alt="Violin Photo 6">
+      <img src="img/violin7.jpg" alt="Violin Photo 7">
+      <img src="img/violin8.jpg" alt="Violin Photo 8">
+      <img src="img/violin9.jpg" alt="Violin Photo 9">
+      <img src="img/violin10.jpg" alt="Violin Photo 10">
+      <img src="img/violin11.jpg" alt="Violin Photo 11">
+      <img src="img/violin12.jpg" alt="Violin Photo 12">
+      <img src="img/violin13.jpg" alt="Violin Photo 13">
+      <img src="img/violin14.jpg" alt="Violin Photo 14">
+      <img src="img/violin15.jpg" alt="Violin Photo 15">
+    </div>
+  </div>
+
+  <style>
+
+    /* Header Styling */
+    .my-header {
+    margin: 2rem 0;
+  }
+
+    .my-header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    .back-to-site {
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #2c3e50;
+      border: 2px solid #2c3e50;
+      padding: 5px 10px;
+      border-radius: 5px;
+      background-color: #f8f9fa;
+      transition: all 0.3s ease;
+    }
+
+    .back-to-site:hover {
+      color: #ffffff;
+      background-color: #2c3e50;
+    }
+
+
+
+
+
+
+    /* Slideshow */
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      background: #e9ecef;
+    }
+
+    .slideshow {
+      display: flex;
+      gap: 10px; /* Add spacing between images */
+      animation: scrollSlideshow 20s linear infinite;
+    }
+
+    .slideshow img {
+      height: 300px; /* Ensure consistent image height */
+      width: auto; /* Maintain original width */
+      object-fit: contain; /* Preserve the original aspect ratio */
+    }
+
+    @keyframes scrollSlideshow {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-2000px);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .slideshow-container {
+        height: 200px; /* Adjust height for smaller screens */
+      }
+
+      .slideshow img {
+        height: 150px; /* Slightly smaller on mobile */
+      }
+    }
+
+    /* Dark Mode Toggle Styles */
+    .dark-mode-toggle {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 1000;
+    }
+
+    .toggle-label {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      color: #2c3e50;
+      font-weight: 700;
+    }
+
+    .dark-mode-btn {
+      position: relative;
+      width: 60px;
+      height: 34px;
+      background: #f8f9fa;
+      border: 2px solid #2c3e50;
+      border-radius: 34px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 3px;
+      transition: background 0.3s ease, border 0.3s ease;
+    }
+
+    .dark-mode-slider {
+      width: 26px;
+      height: 26px;
+      background: #980606;
+      border-radius: 50%;
+      position: absolute;
+      left: 4px;
+      transition: transform 0.3s ease;
+    }
+
+    .dark-mode-btn.dark-mode-active .dark-mode-slider {
+      transform: translateX(26px);
+    }
+
+    /* Dark mode colors */
+    body[data-theme="dark"] .dark-mode-btn {
+      background: #121212;
+      border-color: #fff;
+    }
+
+    body[data-theme="dark"] .dark-mode-slider {
+      background: #fff;
+    }
+
+    body[data-theme="dark"] .toggle-label {
+      color: #fff;
+    }
+
+
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #ffffff;
+      --card-bg: #1a1a1a;
+      --header-bg: #191919;
+      --spotify-bg: #144c2d;
+    }
+
+    body[data-theme="dark"] {
+      background-color: var(--bg-color) !important;
+      color: var(--text-color) !important;
+    }
+
+    /* Make sure other elements also follow dark mode */
+    body[data-theme="dark"] .slideshow-container {
+      background: var(--bg-color) !important;
+    }
+
+    body[data-theme="dark"] .video-card {
+      background: var(--card-bg) !important;
+      box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important;
+    }
+
+    body[data-theme="dark"] .spotify-section {
+      background: var(--spotify-bg) !important;
+    }
+
+    /* Ensure header changes */
+    body[data-theme="dark"] .my-header h1 {
+      color: var(--text-color) !important;
+    }
+
+    body[data-theme="dark"] .back-to-site {
+      background: var(--header-bg) !important;
+      color: white !important;
+      border-color: white !important;
+    }
+
+    body[data-theme="dark"] .back-to-site:hover {
+      background: white !important;
+      color: black !important;
+    }
+
+
+  </style>
+
+
+  <!-- Video Grid Section -->
+  <div class="container video-grid">
+    <h2>Video Performances</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="video-card">
+          <iframe src="https://youtube.com/embed/AS0Ztl_2B8w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="video-title">Bruch: Violin Concerto No. 1 in G Minor, Op. 26 - III. Finale (Allegro energico)</div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="video-card">
+          <iframe src="https://youtube.com/embed/f8gCP4pkXys" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="video-title">Tchaikovsky: Violin Concerto in D Major, Op. 35, TH. 59 - II. Canzonetta (Andante)</div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="video-card">
+          <iframe src="https://youtube.com/embed/24iZ-ntP0dc?si=z4t6imeZPtvr_uh2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="video-title">Claude Debussy Trio in G Major - Scherzo Intermezzo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spotify Section -->
+  <div class="spotify-section">
+    <h2>My Spotify Playlists</h2>
+    <div class="container">
+      <div class="row justify-content-center">
+        <!-- Spotify Playlist Embed 1 -->
+        <div class="col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
+          <iframe 
+            src="https://open.spotify.com/embed/playlist/2sREgpAVh7ocvS0tdMOgNC?utm_source=generator"
+            width="300" height="380" frameborder="0" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+          </iframe>
+        </div>
+      
+        <!-- Spotify Playlist Embed 2 -->
+        <div class="col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
+          <iframe 
+            src="https://open.spotify.com/embed/playlist/16G0KHonTA1Q69ORnbBP4V?utm_source=generator"
+            width="300" height="380" frameborder="0" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+          </iframe>
+        </div>
+      
+        <!-- Spotify Playlist Embed 3 -->
+        <div class="col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
+          <iframe 
+            src="https://open.spotify.com/embed/playlist/07z1OV4MxofAyyOkDkDWa1?utm_source=generator"
+            width="300" height="380" frameborder="0" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    const body = document.body;
+
+    // Apply saved theme
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme === "dark") {
+      body.setAttribute("data-theme", "dark");
+      darkModeToggle.classList.add("dark-mode-active");
+    }
+
+    // Toggle theme
+    darkModeToggle.addEventListener("click", function () {
+      if (body.getAttribute("data-theme") === "dark") {
+        body.removeAttribute("data-theme");
+        localStorage.setItem("theme", "light");
+        darkModeToggle.classList.remove("dark-mode-active");
+      } else {
+        body.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
+        darkModeToggle.classList.add("dark-mode-active");
+      }
+    });
+  });
+  </script>
+    
+
+  
+</body>
+</html>
