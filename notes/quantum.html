@@ -71,11 +71,28 @@
       background: linear-gradient(45deg, #4a00e0, #8e2de2);
       box-shadow: 0 0 15px rgba(142, 45, 226, 0.8);
       z-index: 999;
+      
     }
 
-    .navbar-brand img {
-      width: 200px;
+    
+
+    .back-to-site {
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #8e2de2;
+      border: 2px solid #8e2de2;
+      padding: 5px 10px;
+      border-radius: 5px;
+      background-color: #e4e4e4;
+      transition: all 0.3s ease;
     }
+
+    .back-to-site:hover {
+      color: #ffcc00;
+      background-color: #1e1e1e;
+    }
+
 
     /* 
     =================================================================
@@ -355,10 +372,11 @@
     =================================================================
   -->
   <nav class="navbar navbar-expand-md navbar-dark">
-    <a class="navbar-brand" href="../index.html">
-      <img src="../img/quantum_logo.png" alt="Quantum Logo" />
-    </a>
+    <div class="container-fluid">
+      <a href="../index.html" class="back-to-site">← Back to Main Site</a>
+    </div>
   </nav>
+  
 
   <!-- 
     =================================================================
@@ -366,7 +384,7 @@
     =================================================================
   -->
   <div class="title-container">
-    <h1>Quantum Notes</h1>
+    <img src="../img/quantum_logo.png" alt="Quantum Logo" style="max-width: 300px; height: auto;">
   </div>
 
   <!-- 

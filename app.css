@@ -536,9 +536,9 @@ footer a, footer a:visited{
 .bg-green-gradient {
   background: linear-gradient(
     to right,
-    #A5E4AD,
-    #C3EB96,
-    #DBF390
+    #97eb8e,
+    #07b224,
+    #066a2c
   );
   backdrop-filter: blur(10px); /* Adds a subtle blur effect */
   -webkit-backdrop-filter: blur(10px); /* For Safari */
