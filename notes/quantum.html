@@ -15,7 +15,7 @@
     =                  FAVICON & BOOTSTRAP                   =
     =========================================================
   -->
-  <link rel="icon" type="image/png" href="../img/favicon-purple.png">
+  <link rel="icon" type="image/png" href="../img/favicon-quantum.png">
   <link
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -32,17 +32,12 @@
     rel="stylesheet"
   />
 
-  
-
   <!-- 
     =========================================================
     =                   CUSTOM STYLES START                  =
     =========================================================
     Below is a large set of custom CSS to create an aesthetic 
     design, advanced animations, and a futuristic vibe.
-    We keep adding lines for style, commentary, and expansions 
-    to ensure a truly epic look and to fulfill the requested 
-    line count.
   -->
   <style>
     /* 
@@ -71,10 +66,7 @@
       background: linear-gradient(45deg, #4a00e0, #8e2de2);
       box-shadow: 0 0 15px rgba(142, 45, 226, 0.8);
       z-index: 999;
-      
     }
-
-    
 
     .back-to-site {
       font-size: 1.2rem;
@@ -92,7 +84,6 @@
       color: #ffcc00;
       background-color: #1e1e1e;
     }
-
 
     /* 
     =================================================================
@@ -292,48 +283,7 @@
       z-index: -1;
     }
 
-    
-
-    
-   
-    
-    /* 
-    =================================================================
-    =               QUANTUM RESEARCH UPDATES STYLING                =
-    =================================================================
-    */
-    #researchUpdatesSection {
-      margin-top: 2rem;
-      margin-bottom: 2rem;
-      border: 1px solid rgba(142, 45, 226, 0.5);
-      border-radius: 5px;
-      padding: 1rem;
-      box-shadow: 0 0 8px rgba(142, 45, 226, 0.3);
-      background-color: #1e1e1e;
-    }
-    #researchUpdatesSection h4 {
-      color: #ffcc00;
-      font-family: 'Orbitron', sans-serif;
-      text-transform: uppercase;
-      text-align: center;
-      text-shadow: 2px 2px 10px rgba(255, 204, 0, 0.6);
-      margin-bottom: 1rem;
-    }
-    #researchUpdates p a {
-      color: #8e2de2;
-      text-shadow: none;
-      font-weight: bold;
-    }
-    #researchUpdates p a:hover {
-      color: #4a00e0;
-      text-decoration: underline;
-    }
-
-    /* 
-    =================================================================
-    =               ADDITIONAL DECORATIVE ELEMENTS                  =
-    =================================================================
-    */
+    /* Extra glow boxes or styling if needed */
     .glow-box {
       border: 1px solid rgba(255, 255, 255, 0.2);
       box-shadow: 0 0 20px rgba(142, 45, 226, 0.5), 
@@ -349,12 +299,6 @@
       color: #ffcc00;
       text-shadow: 0 0 10px rgba(255, 204, 0, 0.6);
     }
-
-    /* 
-    =================================================================
-    =            END OF MASSIVE STYLES (approx. ~200 lines)          =
-    =================================================================
-    */
   </style>
 
 </head>
@@ -377,7 +321,6 @@
     </div>
   </nav>
   
-
   <!-- 
     =================================================================
     =                        TITLE BANNER                            =
@@ -404,63 +347,426 @@
       type="text" 
       id="searchBar" 
       class="form-control my-3" 
-      placeholder="Search Notes..."
+      placeholder="Search Notes... (e.g. 'entanglement', 'perturbation')"
       />
 
-    <!-- 
-      ===============================================================
-      =                          NOTES SECTION                       =
-      ===============================================================
-      We label each card with class="note-card" so the JS can filter
-      them by text.
-    -->
-    <h2 class="section-title">Notes</h2>
+    <!-- =================== Fundamentals of QM ==================== -->
+    <h2 class="section-title">Fundamentals of Quantum Mechanics</h2>
     <hr />
 
     <div class="row">
+      <!-- 1) Introduction to Quantum Mechanics -->
       <div class="col-md-6">
         <div class="card p-3 mb-3 note-card">
-          <h4>Note 1</h4>
+          <h4>#1</h4>
           <p>Introduction to Quantum Mechanics</p>
-          <a href="files/lecture1.pdf" target="_blank" class="btn btn-quantum">View PDF</a>
+          <a 
+            href="quantum_notes/introduction_to_quantum_mechanics.html" 
+            class="btn btn-quantum">
+            Open
+          </a>
         </div>
       </div>
+
+      <!-- 2) Mathematical Foundations -->
       <div class="col-md-6">
         <div class="card p-3 mb-3 note-card">
-          <h4>Note 2</h4>
-          <p>Coming Soon</p>
-          <a href="files/lecture2.pdf" target="_blank" class="btn btn-quantum">View PDF</a>
+          <h4>#2</h4>
+          <p>
+            Mathematical Foundations <br/>
+            <small>
+              (Linear algebra, complex numbers, Hilbert spaces, Dirac notation)
+            </small>
+          </p>
+          <a 
+            href="quantum_notes/mathematical_foundations.html"
+            class="btn btn-quantum">
+            Open
+          </a>
         </div>
       </div>
     </div>
 
-    <!-- 
-      ===============================================================
-      =       EXAMPLE: ADDING MORE NOTES (Just to test Search)       =
-      ===============================================================
-    -->
     <div class="row">
+      <!-- 3) Quantum States and Operators -->
       <div class="col-md-6">
         <div class="card p-3 mb-3 note-card">
-          <h4>Coming Soon</h4>
-          <p>Coming Soon</p>
-          <a href="#" target="_blank" class="btn btn-quantum">Coming Soon</a>
+          <h4>#3</h4>
+          <p>Quantum States and Operators</p>
+          <a 
+            href="quantum_notes/quantum_states_and_operators.html"
+            class="btn btn-quantum">
+            Open
+          </a>
         </div>
       </div>
+
+      <!-- 4) The Schrödinger Equation -->
       <div class="col-md-6">
         <div class="card p-3 mb-3 note-card">
-          <h4>Coming Soon</h4>
-          <p>Coming Soon</p>
-          <a href="#" target="_blank" class="btn btn-quantum">Coming Soon</a>
+          <h4>#4</h4>
+          <p>The Schrödinger Equation</p>
+          <a 
+            href="quantum_notes/the_schrodinger_equation.html"
+            class="btn btn-quantum">
+            Open
+          </a>
         </div>
       </div>
     </div>
 
-    <!-- 
-      ===============================================================
-      =                   QUANTUM DEVELOPMENT KITS SECTION                  =
-      ===============================================================
-    -->
+    <div class="row">
+      <!-- 5) Quantum Harmonic Oscillator -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#5</h4>
+          <p>Quantum Harmonic Oscillator</p>
+          <a 
+            href="quantum_notes/quantum_harmonic_oscillator.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+
+      <!-- 6) Angular Momentum in QM -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#6</h4>
+          <p>Angular Momentum in Quantum Mechanics</p>
+          <a 
+            href="quantum_notes/angular_momentum_in_quantum_mechanics.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- 7) The Hydrogen Atom -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#7</h4>
+          <p>The Hydrogen Atom</p>
+          <a 
+            href="quantum_notes/the_hydrogen_atom.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+
+      <!-- 8) Perturbation Theory -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#8</h4>
+          <p>Perturbation Theory</p>
+          <a 
+            href="quantum_notes/perturbation_theory.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- =================== Core Concepts in QM =================== -->
+    <h2 class="section-title">Core Concepts in Quantum Mechanics</h2>
+    <hr />
+
+    <div class="row">
+      <!-- 9) Quantum Measurement and von Neumann -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#9</h4>
+          <p>Quantum Measurement and the von Neumann Formalism</p>
+          <a 
+            href="quantum_notes/quantum_measurement_von_neumann.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+
+      <!-- 10) Quantum Entanglement and Bell's Theorem -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#10</h4>
+          <p>Quantum Entanglement and Bell’s Theorem</p>
+          <a 
+            href="quantum_notes/quantum_entanglement_and_bells_theorem.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- 11) Density Matrices and Mixed States -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#11</h4>
+          <p>Density Matrices and Mixed States</p>
+          <a 
+            href="quantum_notes/density_matrices_and_mixed_states.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+
+      <!-- 12) Interpretations of Quantum Mechanics -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#12</h4>
+          <p>Interpretations of Quantum Mechanics</p>
+          <a 
+            href="quantum_notes/interpretations_of_quantum_mechanics.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- 13) Path Integrals and Quantum Field Theory -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#13</h4>
+          <p>Path Integrals and Quantum Field Theory</p>
+          <a 
+            href="quantum_notes/path_integrals_and_qft.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ Quantum Computing and Information ============ -->
+    <h2 class="section-title">Quantum Computing and Information</h2>
+    <hr />
+
+    <div class="row">
+      <!-- 14) Quantum Computing: Qubits and Quantum Gates -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#14</h4>
+          <p>Quantum Computing: Qubits and Quantum Gates</p>
+          <a 
+            href="quantum_notes/quantum_computing_qubits_and_gates.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+
+      <!-- 15) Quantum Algorithms -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#15</h4>
+          <p>Quantum Algorithms</p>
+          <a 
+            href="quantum_notes/quantum_algorithms.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- 16) Quantum Error Correction -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#16</h4>
+          <p>Quantum Error Correction</p>
+          <a 
+            href="quantum_notes/quantum_error_correction.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+
+      <!-- 17) Topological Quantum Computing -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#17</h4>
+          <p>Topological Quantum Computing</p>
+          <a 
+            href="quantum_notes/topological_quantum_computing.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- 18) Quantum Cryptography and Secure Communication -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#18</h4>
+          <p>Quantum Cryptography &amp; Secure Communication</p>
+          <a 
+            href="quantum_notes/quantum_cryptography_and_secure_communication.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========== Advanced and Applied Quantum Mechanics =========== -->
+    <h2 class="section-title">Advanced and Applied Quantum Mechanics</h2>
+    <hr />
+
+    <div class="row">
+      <!-- 19) Quantum Optics and Photonics -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#19</h4>
+          <p>Quantum Optics and Photonics</p>
+          <a 
+            href="quantum_notes/quantum_optics_and_photonics.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+
+      <!-- 20) Quantum Optics and Cavity QED -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#20</h4>
+          <p>Quantum Optics and Cavity QED</p>
+          <a 
+            href="quantum_notes/quantum_optics_cavity_qed.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- 21) Quantum Materials and Topological Insulators -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#21</h4>
+          <p>Quantum Materials and Topological Insulators</p>
+          <a 
+            href="quantum_notes/quantum_materials_topological_insulators.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+
+      <!-- 22) Quantum Machine Learning -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#22</h4>
+          <p>Quantum Machine Learning</p>
+          <a 
+            href="quantum_notes/quantum_machine_learning.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- 23) Quantum Thermodynamics -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#23</h4>
+          <p>Quantum Thermodynamics</p>
+          <a 
+            href="quantum_notes/quantum_thermodynamics.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+
+      <!-- 24) Quantum Simulation and Many-Body Physics -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#24</h4>
+          <p>Quantum Simulation and Many-Body Physics</p>
+          <a 
+            href="quantum_notes/quantum_simulation_many_body_physics.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- 25) Quantum Metrology and Sensing -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#25</h4>
+          <p>Quantum Metrology and Sensing</p>
+          <a 
+            href="quantum_notes/quantum_metrology_and_sensing.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+
+      <!-- 26) Quantum Networks and Distributed Quantum Computing -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#26</h4>
+          <p>Quantum Networks and Distributed Quantum Computing</p>
+          <a 
+            href="quantum_notes/quantum_networks_distributed_computing.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- 27) Quantum Gravity and the Holographic Principle -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#27</h4>
+          <p>Quantum Gravity and the Holographic Principle</p>
+          <a 
+            href="quantum_notes/quantum_gravity_and_holographic_principle.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+
+      <!-- 28) Looking Forward -->
+      <div class="col-md-6">
+        <div class="card p-3 mb-3 note-card">
+          <h4>#28</h4>
+          <p>Looking Forward</p>
+          <a 
+            href="quantum_notes/looking_forward.html"
+            class="btn btn-quantum">
+            Open
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- You can keep or remove this section as needed -->
     <h2 class="section-title">Quantum Development Kits</h2>
     <hr />
     <ul>
@@ -471,14 +777,6 @@
       <li><a href="https://qcs.rigetti.com/sdk-downloads/" target="_blank">Rigetti Forest</a></li>
       <li><a href="https://strawberryfields.ai/" target="_blank">Xanadu Strawberry Fields</a></li>
     </ul>
-
-    
-    
-    
-
-   
-
-    
 
   </div> 
   <!-- End of main .container -->
@@ -498,7 +796,6 @@
     =================================================================
     We place our JS at the bottom for best performance.
   -->
-
   <!-- jQuery & Bootstrap JS -->
   <script
     src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -517,14 +814,19 @@
 
   <!-- Plotly.js -->
   <script src="https://cdn.plot.ly/plotly-2.26.3.min.js"></script>
+  
   <!-- Math.js-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.2.1/math.js" integrity="sha512-47N5yVdAeXJ+9qstVMTH2Z0EpX618sjYZcswRwhpldSTD0IbW6yQPtzg4RLrPp/2+TIgEF1elT68/ZBu82nqJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script 
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.2.1/math.js" 
+    integrity="sha512-47N5yVdAeXJ+9qstVMTH2Z0EpX618sjYZcswRwhpldSTD0IbW6yQPtzg4RLrPp/2+TIgEF1elT68/ZBu82nqJA==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer">
+  </script>
+
   <!-- 
     =========================================================
     =        CUSTOM JAVASCRIPT (Search, Particles, etc.)     =
     =========================================================
-    We'll add it all in one place for clarity. 
-    We'll include some extra comments and lines for length.
   -->
   <script>
     /***************************************************************
@@ -563,11 +865,6 @@
         card.style.display = text.includes(input) ? "" : "none";
       });
     });
-
-
-    
-
-    
   </script>
 
 </body>
