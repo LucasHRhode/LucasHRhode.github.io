@@ -711,3 +711,57 @@ body[data-theme="dark"] .dark-mode-slider {
 body[data-theme="dark"] #particles-js {
   background: transparent !important; /* Prevents white background in dark mode */
 }
+
+
+/* Default Light Mode Project Card */
+.project-card {
+  background-color: #03377f; /* Light mode background */
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.project-card-body {
+  background-color: #ffffffe6; /* White background for card */
+  color: black;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.project-card-title {
+  color: black;
+  transition: color 0.3s ease;
+}
+
+/* Dark Mode Project Card */
+body[data-theme="dark"] .project-card {
+  background-color: #1a1a1a !important; /* Dark mode background */
+}
+
+body[data-theme="dark"] .project-card-body {
+  background-color: #292929 !important; /* Dark gray for contrast */
+  color: white !important;
+}
+
+body[data-theme="dark"] .project-card-title {
+  color: white !important;
+}
+
+body[data-theme="dark"] .btn-outline-primary {
+  color: white !important;
+  border-color: white !important;
+}
+
+body[data-theme="dark"] .btn-outline-primary:hover {
+  background-color: white !important;
+  color: black !important;
+}
+
+body[data-theme="dark"] .btn-outline-success {
+  color: white !important;
+  border-color: white !important;
+}
+
+body[data-theme="dark"] .btn-outline-success:hover {
+  background-color: white !important;
+  color: black !important;
+}
