@@ -1,20 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- 
-    =========================================================
-    =                     META TAGS & TITLE                  =
-    =========================================================
-  -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Quantum Notes</title>
 
-  <!-- 
-    =========================================================
-    =                  FAVICON & BOOTSTRAP                   =
-    =========================================================
-  -->
   <link rel="icon" type="image/png" href="../img/favicon-quantum.png">
   <link
     rel="stylesheet"
@@ -22,33 +12,37 @@
     crossorigin="anonymous"
   />
 
-  <!-- 
-    =========================================================
-    =                      GOOGLE FONTS                      =
-    =========================================================
-  -->
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" crossorigin="anonymous" />
+
   <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Nunito&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Nunito:wght@300;400;600;700&family=Space+Mono&display=swap"
     rel="stylesheet"
   />
 
-  <!-- 
-    =========================================================
-    =                   CUSTOM STYLES START                  =
-    =========================================================
-    Below is a large set of custom CSS to create an aesthetic 
-    design, advanced animations, and a futuristic vibe.
-  -->
   <style>
-    /* 
-    =================================================================
-    =                           BODY STYLING                         =
-    =================================================================
-    */
+    :root {
+      --primary-color: #8e2de2;
+      --primary-dark: #4a00e0;
+      --secondary-color: #ffcc00;
+      --secondary-light: #ffd633;
+      --accent-color: #00e5ff;
+      --background-dark: #0d0d0d;
+      --background-card: #1e1e1e;
+      --text-light: #e0e0e0;
+      --text-bright: #ffffff;
+      --glow-shadow: 0 0 15px rgba(142, 45, 226, 0.8);
+      --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      
+      /* Difficulty colors */
+      --beginner-color: #4caf50;
+      --intermediate-color: #ffc107;
+      --advanced-color: #f44336;
+    }
+
     body {
-      /* Subtle vertical gradient background */
-      background: linear-gradient(#0d0d0d, #161616);
-      color: #e0e0e0;
+      background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+      color: var(--text-light);
       font-family: 'Nunito', sans-serif;
       position: relative;
       overflow-x: hidden;
@@ -57,15 +51,11 @@
       padding: 0;
     }
 
-    /* 
-    =================================================================
-    =                           NAVBAR                               =
-    =================================================================
-    */
     .navbar {
-      background: linear-gradient(45deg, #4a00e0, #8e2de2);
-      box-shadow: 0 0 15px rgba(142, 45, 226, 0.8);
+      background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
+      box-shadow: var(--glow-shadow);
       z-index: 999;
+      padding: 0.8rem 1rem;
     }
 
     .back-to-site {
@@ -78,27 +68,38 @@
       border-radius: 5px;
       background-color: #e4e4e4;
       transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .back-to-site:hover {
       color: #ffcc00;
       background-color: #1e1e1e;
+      text-shadow: 0 0 15px rgba(255, 204, 0, 1);
     }
 
-    /* 
-    =================================================================
-    =                     TITLE BANNER ANIMATION                     =
-    =================================================================
-    */
     .title-container {
       position: relative;
       background: url('../img/quantum_banner.jpg') center / cover no-repeat;
-      height: 350px;
+      height: 380px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       text-align: center;
+      border-bottom: 2px solid var(--primary-color);
+    }
+
+    .title-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
     }
 
     .title-container::after {
@@ -109,7 +110,25 @@
       background: radial-gradient(circle, rgba(142, 45, 226, 0.3) 20%, transparent 70%);
       top: -50%;
       left: -50%;
-      animation: pulse 3s infinite linear alternate;
+      animation: pulse 8s infinite ease-in-out alternate;
+    }
+
+    .logo-container {
+      position: relative;
+      z-index: 10;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
     }
 
     @keyframes pulse {
@@ -134,148 +153,452 @@
       margin: 0;
     }
 
-    /* 
-    =================================================================
-    =                     SECTION TITLES                             =
-    =================================================================
-    */
     .section-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: 2rem;
+      font-size: 2.2rem;
       text-transform: uppercase;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
       text-shadow: 2px 2px 10px rgba(255, 204, 0, 0.6);
-      color: #ffcc00;
+      color: var(--secondary-color);
       position: relative;
       text-align: center;
+      letter-spacing: 2px;
     }
+
     .section-title::after {
       content: "";
       display: block;
-      width: 60px;
-      height: 3px;
-      background: #ffcc00;
-      margin: 0.5rem auto;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+      margin: 0.8rem auto;
       border-radius: 2px;
     }
 
-    /* 
-    =================================================================
-    =                     CARD STYLING                               =
-    =================================================================
-    */
+    .section-description {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      font-size: 1.1rem;
+      color: rgba(224, 224, 224, 0.8);
+      font-weight: 300;
+    }
+
     .card {
-      background-color: #1e1e1e;
-      color: #e0e0e0;
-      border: 1px solid rgba(142, 45, 226, 0.5);
-      box-shadow: 0 0 10px rgba(142, 45, 226, 0.4);
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s;
-      border-radius: 8px;
+      background-color: rgba(30, 30, 30, 0.7);
+      background-image: 
+        radial-gradient(circle at 100% 100%, rgba(142, 45, 226, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 0% 0%, rgba(74, 0, 224, 0.1) 0%, transparent 50%);
+      color: var(--text-light);
+      border: 1px solid rgba(142, 45, 226, 0.3);
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border-radius: 12px;
+      backdrop-filter: blur(5px);
+      overflow: hidden;
+      position: relative;
+      height: 100%;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-dark), var(--primary-color), var(--primary-dark));
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(142, 45, 226, 0.8);
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(142, 45, 226, 0.5);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .note-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 1.5rem;
+      position: relative;
     }
 
     .note-card h4 {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       margin-bottom: 0.5rem;
-      color: #ffcc00;
+      color: var(--secondary-color);
+      font-family: 'Orbitron', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    /* 
-    =================================================================
-    =                     CUSTOM QUANTUM BUTTONS                     =
-    =================================================================
-    */
+    .note-card h4::after {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 2px;
+      background: var(--secondary-color);
+      margin-left: 10px;
+    }
+
+    .note-card-title {
+      font-size: 1.4rem;
+      color: var(--secondary-color);
+      font-weight: bold;
+      margin-bottom: 1rem;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .note-card p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .note-card small {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      display: block;
+      margin-top: 5px;
+    }
+
+    .difficulty-tag {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      z-index: 1;
+    }
+
+    .beginner {
+      background-color: rgba(76, 175, 80, 0.2);
+      border: 1px solid rgba(76, 175, 80, 0.6);
+      color: var(--beginner-color);
+    }
+
+    .intermediate {
+      background-color: rgba(255, 193, 7, 0.2);
+      border: 1px solid rgba(255, 193, 7, 0.6);
+      color: var(--intermediate-color);
+    }
+
+    .advanced {
+      background-color: rgba(244, 67, 54, 0.2);
+      border: 1px solid rgba(244, 67, 54, 0.6);
+      color: var(--advanced-color);
+    }
+
+    .tag {
+      display: inline-block;
+      background-color: rgba(142, 45, 226, 0.2);
+      border: 1px solid rgba(142, 45, 226, 0.5);
+      color: var(--text-light);
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-right: 5px;
+      margin-bottom: 5px;
+    }
+
+    .difficulty {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+      color: rgba(224, 224, 224, 0.7);
+    }
+
+    .difficulty-dots {
+      display: inline-flex;
+      margin-left: 8px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 3px;
+      background-color: rgba(142, 45, 226, 0.3);
+    }
+
+    .dot.active {
+      background-color: var(--primary-color);
+    }
+
+    .dot.active-2 {
+      background-color: var(--secondary-color);
+    }
+
+    .dot.active-3 {
+      background-color: var(--accent-color);
+    }
+
+    .reading-time {
+      display: flex;
+      align-items: center;
+      font-size: 0.85rem;
+      color: rgba(224, 224, 224, 0.7);
+      margin-bottom: 15px;
+    }
+
+    .reading-time i {
+      margin-right: 5px;
+      color: var(--secondary-color);
+    }
+
     .btn-quantum {
-      background-color: #8e2de2;
+      background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
       border: none;
-      box-shadow: 0 0 8px rgba(142, 45, 226, 0.7);
+      box-shadow: 0 0 8px rgba(142, 45, 226, 0.4);
       color: #fff;
-      transition: background-color 0.3s, box-shadow 0.3s;
-      padding: 0.6rem 1.2rem;
-      border-radius: 5px;
-      margin-top: 0.5rem;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      padding: 0.7rem 1.5rem;
+      border-radius: 30px;
+      margin-top: 0.8rem;
       font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      align-self: flex-start;
     }
 
     .btn-quantum:hover {
-      background-color: #4a00e0;
-      box-shadow: 0 0 15px rgba(142, 45, 226, 1);
+      background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
+      box-shadow: 0 0 15px rgba(142, 45, 226, 0.8);
       color: #fff;
+      transform: translateY(-2px);
     }
 
-    /* 
-    =================================================================
-    =                        LINK GLOW EFFECT                        =
-    =================================================================
-    */
-    a {
-      color: #ffcc00;
-      text-shadow: 0 0 8px rgba(255, 204, 0, 0.7);
-      transition: text-shadow 0.3s ease-in-out, color 0.3s;
+    .search-container {
+      position: sticky;
+      top: 0;
+      background: rgba(13, 13, 13, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-bottom: 1px solid rgba(142, 45, 226, 0.3);
+      z-index: 100;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
     }
 
-    a:hover {
-      color: #ffd633;
-      text-shadow: 0 0 15px rgba(255, 204, 0, 1);
-      text-decoration: none;
+    .filter-controls {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      flex-wrap: wrap;
     }
 
-    /* 
-    =================================================================
-    =                           SEARCH BAR                           =
-    =================================================================
-    */
+    .filter-btn {
+      background-color: rgba(30, 30, 30, 0.7);
+      border: 1px solid rgba(142, 45, 226, 0.3);
+      color: var(--text-light);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
     #searchBar {
-      background-color: #1e1e1e;
-      border: 1px solid rgba(255, 204, 0, 0.6);
-      color: #ffcc00;
-      box-shadow: 0 0 8px rgba(255, 204, 0, 0.3);
-      transition: box-shadow 0.3s ease-in-out;
+      background-color: rgba(30, 30, 30, 0.7);
+      border: 1px solid rgba(255, 204, 0, 0.4);
+      color: var(--text-light);
+      box-shadow: 0 0 8px rgba(255, 204, 0, 0.2);
+      transition: all 0.3s ease-in-out;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-size: 1.1rem;
     }
 
     #searchBar:focus {
-      box-shadow: 0 0 15px rgba(255, 204, 0, 0.7);
+      box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
       outline: none;
+      border-color: rgba(255, 204, 0, 0.8);
     }
 
-    /* 
-    =================================================================
-    =                     FOOTER STYLING                             =
-    =================================================================
-    */
+    .search-icon {
+      position: absolute;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--secondary-color);
+      pointer-events: none;
+    }
+
+    .search-wrapper {
+      position: relative;
+    }
+
+    a {
+      color: var(--secondary-color);
+      transition: all 0.2s ease-in-out;
+      position: relative;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--secondary-light);
+      text-decoration: none;
+    }
+
+    a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: var(--secondary-color);
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.3s ease-out;
+    }
+
+    a:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    .dev-kit-container {
+      background: rgba(30, 30, 30, 0.7);
+      border: 1px solid rgba(142, 45, 226, 0.3);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 3rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    .dev-kit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .dev-kit-item {
+      background: rgba(13, 13, 13, 0.7);
+      border: 1px solid rgba(142, 45, 226, 0.2);
+      border-radius: 8px;
+      padding: 1.2rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .dev-kit-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 10px rgba(142, 45, 226, 0.3);
+      border-color: rgba(142, 45, 226, 0.5);
+    }
+
+    .dev-kit-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
+      border-radius: 8px;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .dev-kit-text {
+      flex-grow: 1;
+    }
+
+    .dev-kit-text h5 {
+      margin: 0 0 5px 0;
+      font-size: 1.1rem;
+      color: var(--text-light);
+    }
+
+    .dev-kit-text p {
+      margin: 0;
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+
     footer {
-      background: linear-gradient(45deg, #4a00e0, #8e2de2);
-      padding: 20px;
+      background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
+      padding: 2rem;
       text-align: center;
       font-size: 1.1rem;
       color: white;
-      box-shadow: 0 0 15px rgba(142, 45, 226, 0.8);
+      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
       position: relative;
-      margin-top: 2rem;
+      margin-top: 4rem;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: linear-gradient(90deg, var(--primary-dark), var(--accent-color), var(--primary-dark));
     }
 
     footer p {
-      text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
       margin: 0;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     }
 
-    footer p:hover {
-      text-shadow: 0 0 20px rgba(255, 255, 255, 1);
-      transition: 0.3s ease-in-out;
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 15px;
     }
 
-    /* 
-    =================================================================
-    =           FLOATING QUANTUM PARTICLE EFFECT (particles.js)      =
-    =================================================================
-    */
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: var(--secondary-color);
+      color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    .social-link:hover::after {
+      transform: scaleX(0);
+    }
+
     #particles-js {
-      position: absolute;
+      position: fixed;
       width: 100%;
       height: 100%;
       top: 0;
@@ -283,589 +606,1170 @@
       z-index: -1;
     }
 
-    /* Extra glow boxes or styling if needed */
-    .glow-box {
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 0 20px rgba(142, 45, 226, 0.5), 
-                  0 0 40px rgba(142, 45, 226, 0.2) inset;
-      border-radius: 8px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      background-color: rgba(0, 0, 0, 0.3);
+    .progress-label {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      opacity: 0.7;
+      margin-bottom: 5px;
     }
 
-    .glow-box h5 {
-      margin-top: 0;
-      color: #ffcc00;
-      text-shadow: 0 0 10px rgba(255, 204, 0, 0.6);
+    .progress {
+      height: 4px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    .progress-bar {
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      height: 100%;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .title-container {
+        height: 300px;
+      }
+      
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .search-container {
+        padding: 15px;
+      }
+      
+      #searchBar {
+        padding: 10px 15px;
+        font-size: 1rem;
+      }
+      
+      .filter-controls {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Animations */
+    .fade-in {
+      animation: fadeIn 0.5s ease-in both;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .slide-in {
+      animation: slideIn 0.5s ease-out both;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(30, 30, 30, 0.7);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(var(--primary-color), var(--primary-dark));
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(var(--primary-dark), var(--primary-color));
     }
   </style>
-
 </head>
 <body>
-  <!-- 
-    =================================================================
-    =               PARTICLES BACKGROUND DIV                        =
-    =================================================================
-  -->
   <div id="particles-js"></div>
 
-  <!-- 
-    =================================================================
-    =                         NAVBAR START                          =
-    =================================================================
-  -->
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container-fluid">
-      <a href="../index.html" class="back-to-site">← Back to Main Site</a>
+      <a href="../index.html" class="back-to-site">
+        <i class="fas fa-arrow-left"></i> Back to Main Site
+      </a>
     </div>
   </nav>
   
-  <!-- 
-    =================================================================
-    =                        TITLE BANNER                            =
-    =================================================================
-  -->
   <div class="title-container">
-    <img src="../img/quantum_logo.png" alt="Quantum Logo" style="max-width: 300px; height: auto;">
+    <div class="logo-container">
+      <img src="../img/quantum_logo.png" alt="Quantum Logo" style="max-width: 300px; height: auto;">
+    </div>
   </div>
 
-  <!-- 
-    =================================================================
-    =                   MAIN CONTAINER START                        =
-    =================================================================
-  -->
   <div class="container py-4">
+    <div class="search-container">
+      <div class="search-wrapper">
+        <input 
+          type="text" 
+          id="searchBar" 
+          class="form-control" 
+          placeholder="Search Notes... (e.g. 'entanglement', 'perturbation')"
+        />
+        <i class="fas fa-search search-icon"></i>
+      </div>
+      
+      <div class="filter-controls">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="fundamentals">Fundamentals</button>
+        <button class="filter-btn" data-filter="core">Core Concepts</button>
+        <button class="filter-btn" data-filter="computing">Computing</button>
+        <button class="filter-btn" data-filter="applied">Applied</button>
+        <button class="filter-btn" data-filter="beginner">Beginner</button>
+        <button class="filter-btn" data-filter="intermediate">Intermediate</button>
+        <button class="filter-btn" data-filter="advanced">Advanced</button>
+      </div>
+    </div>
 
-    <!-- 
-      ===============================================================
-      =                    SEARCH BAR FOR NOTES                      =
-      ===============================================================
-      Allows the user to filter the notes by keyword.
-    -->
-    <input 
-      type="text" 
-      id="searchBar" 
-      class="form-control my-3" 
-      placeholder="Search Notes... (e.g. 'entanglement', 'perturbation')"
-      />
-
-    <!-- =================== Fundamentals of QM ==================== -->
-    <h2 class="section-title">Fundamentals of Quantum Mechanics</h2>
-    <hr />
+    <!-- Fundamentals of QM -->
+    <h2 class="section-title slide-in">Fundamentals of Quantum Mechanics</h2>
+    <p class="section-description fade-in">Notes on the essential principles and math that form the foundation of quantum mechanics.</p>
 
     <div class="row">
       <!-- 1) Introduction to Quantum Mechanics -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#1</h4>
-          <p>Introduction to Quantum Mechanics</p>
-          <a 
-            href="quantum_notes/introduction_to_quantum_mechanics.html" 
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="fundamentals beginner">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag beginner">Beginner</span>
+            <h4><i class="fas fa-atom" style="color: var(--accent-color);"></i> #1</h4>
+            <div class="note-card-title">Introduction to Quantum Mechanics</div>
+            <div class="tags">
+              <span class="tag">Fundamentals</span>
+              <span class="tag">History</span>
+            </div>
+            <p>An overview of quantum mechanics history, key experiments, and basic principles.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/introduction_to_quantum_mechanics.html" 
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- 2) Mathematical Foundations -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#2</h4>
-          <p>
-            Mathematical Foundations <br/>
-            <small>
-              (Linear algebra, complex numbers, Hilbert spaces, Dirac notation)
-            </small>
-          </p>
-          <a 
-            href="quantum_notes/mathematical_foundations.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="fundamentals intermediate">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag intermediate">Intermediate</span>
+            <h4><i class="fas fa-square-root-alt" style="color: var(--accent-color);"></i> #2</h4>
+            <div class="note-card-title">Mathematical Foundations</div>
+            <div class="tags">
+              <span class="tag">Mathematics</span>
+              <span class="tag">Linear Algebra</span>
+            </div>
+            <p>
+              Linear algebra, complex numbers, Hilbert spaces, Dirac notation, and other essential mathematical tools.
+            </p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/mathematical_foundations.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
       <!-- 3) Quantum States and Operators -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#3</h4>
-          <p>Quantum States and Operators</p>
-          <a 
-            href="quantum_notes/quantum_states_and_operators.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="fundamentals intermediate">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag intermediate">Intermediate</span>
+            <h4><i class="fas fa-project-diagram" style="color: var(--accent-color);"></i> #3</h4>
+            <div class="note-card-title">Quantum States and Operators</div>
+            <div class="tags">
+              <span class="tag">States</span>
+              <span class="tag">Operators</span>
+            </div>
+            <p>Understanding quantum states, superposition, operators, and observables.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/quantum_states_and_operators.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- 4) The Schrödinger Equation -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#4</h4>
-          <p>The Schrödinger Equation</p>
-          <a 
-            href="quantum_notes/the_schrodinger_equation.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="fundamentals intermediate">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag intermediate">Intermediate</span>
+            <h4><i class="fas fa-wave-square" style="color: var(--accent-color);"></i> #4</h4>
+            <div class="note-card-title">The Schrödinger Equation</div>
+            <div class="tags">
+              <span class="tag">Wave Equation</span>
+              <span class="tag">Time Evolution</span>
+            </div>
+            <p>The fundamental equation of quantum mechanics, including time-dependent and time-independent forms.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/the_schrodinger_equation.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
       <!-- 5) Quantum Harmonic Oscillator -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#5</h4>
-          <p>Quantum Harmonic Oscillator</p>
-          <a 
-            href="quantum_notes/quantum_harmonic_oscillator.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="fundamentals intermediate">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag intermediate">Intermediate</span>
+            <h4><i class="fas fa-sync-alt" style="color: var(--accent-color);"></i> #5</h4>
+            <div class="note-card-title">Quantum Harmonic Oscillator</div>
+            <div class="tags">
+              <span class="tag">Energy Levels</span>
+              <span class="tag">Wave Functions</span>
+            </div>
+            <p>Analysis of the quantum version of the harmonic oscillator, energy levels, and applications.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/quantum_harmonic_oscillator.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- 6) Angular Momentum in QM -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#6</h4>
-          <p>Angular Momentum in Quantum Mechanics</p>
-          <a 
-            href="quantum_notes/angular_momentum_in_quantum_mechanics.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="fundamentals intermediate">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag intermediate">Intermediate</span>
+            <h4><i class="fas fa-sync" style="color: var(--accent-color);"></i> #6</h4>
+            <div class="note-card-title">Angular Momentum in Quantum Mechanics</div>
+            <div class="tags">
+              <span class="tag">Spin</span>
+              <span class="tag">Orbital Momentum</span>
+            </div>
+            <p>Quantum treatment of angular momentum, orbital and spin angular momentum, and spherical harmonics.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/angular_momentum_in_quantum_mechanics.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
       <!-- 7) The Hydrogen Atom -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#7</h4>
-          <p>The Hydrogen Atom</p>
-          <a 
-            href="quantum_notes/the_hydrogen_atom.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="fundamentals intermediate">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag intermediate">Intermediate</span>
+            <h4><i class="fas fa-dot-circle" style="color: var(--accent-color);"></i> #7</h4>
+            <div class="note-card-title">The Hydrogen Atom</div>
+            <div class="tags">
+              <span class="tag">Atomic Physics</span>
+              <span class="tag">Energy Levels</span>
+            </div>
+            <p>Quantum mechanical treatment of the hydrogen atom, energy levels, and atomic orbitals.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/the_hydrogen_atom.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- 8) Perturbation Theory -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#8</h4>
-          <p>Perturbation Theory</p>
-          <a 
-            href="quantum_notes/perturbation_theory.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="fundamentals advanced-level">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag advanced">Advanced</span>
+            <h4><i class="fas fa-balance-scale" style="color: var(--accent-color);"></i> #8</h4>
+            <div class="note-card-title">Perturbation Theory</div>
+            <div class="tags">
+              <span class="tag">Approximation</span>
+              <span class="tag">Time-Dependent</span>
+            </div>
+            <p>Time-independent and time-dependent perturbation methods for solving complex quantum systems.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/perturbation_theory.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- =================== Core Concepts in QM =================== -->
-    <h2 class="section-title">Core Concepts in Quantum Mechanics</h2>
-    <hr />
+    <!-- Core Concepts in QM -->
+    <h2 class="section-title slide-in">Core Concepts in Quantum Mechanics</h2>
+    <p class="section-description fade-in">Key ideas that define quantum behavior, with some thoughts on their implications.</p>
 
     <div class="row">
       <!-- 9) Quantum Measurement and von Neumann -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#9</h4>
-          <p>Quantum Measurement and the von Neumann Formalism</p>
-          <a 
-            href="quantum_notes/quantum_measurement_von_neumann.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="core intermediate">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag intermediate">Intermediate</span>
+            <h4><i class="fas fa-microscope" style="color: var(--accent-color);"></i> #9</h4>
+            <div class="note-card-title">Quantum Measurement and the von Neumann Formalism</div>
+            <div class="tags">
+              <span class="tag">Measurement</span>
+              <span class="tag">Formalism</span>
+            </div>
+            <p>The measurement problem, von Neumann's formalism, and wavefunction collapse.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/quantum_measurement_von_neumann.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- 10) Quantum Entanglement and Bell's Theorem -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#10</h4>
-          <p>Quantum Entanglement and Bell’s Theorem</p>
-          <a 
-            href="quantum_notes/quantum_entanglement_and_bells_theorem.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="core intermediate">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag intermediate">Intermediate</span>
+            <h4><i class="fas fa-link" style="color: var(--accent-color);"></i> #10</h4>
+            <div class="note-card-title">Quantum Entanglement and Bell's Theorem</div>
+            <div class="tags">
+              <span class="tag">Entanglement</span>
+              <span class="tag">Non-locality</span>
+            </div>
+            <p>Quantum entanglement, EPR paradox, Bell's inequalities, and experimental tests.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/quantum_entanglement_and_bells_theorem.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
       <!-- 11) Density Matrices and Mixed States -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#11</h4>
-          <p>Density Matrices and Mixed States</p>
-          <a 
-            href="quantum_notes/density_matrices_and_mixed_states.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="core advanced-level">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag advanced">Advanced</span>
+            <h4><i class="fas fa-th" style="color: var(--accent-color);"></i> #11</h4>
+            <div class="note-card-title">Density Matrices and Mixed States</div>
+            <div class="tags">
+              <span class="tag">Mixed States</span>
+              <span class="tag">Quantum Statistics</span>
+            </div>
+            <p>Density operator formalism, pure and mixed states, partial trace, and quantum statistics.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/density_matrices_and_mixed_states.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- 12) Interpretations of Quantum Mechanics -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#12</h4>
-          <p>Interpretations of Quantum Mechanics</p>
-          <a 
-            href="quantum_notes/interpretations_of_quantum_mechanics.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="core intermediate">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag intermediate">Intermediate</span>
+            <h4><i class="fas fa-glasses" style="color: var(--accent-color);"></i> #12</h4>
+            <div class="note-card-title">Interpretations of Quantum Mechanics</div>
+            <div class="tags">
+              <span class="tag">Philosophy</span>
+              <span class="tag">Copenhagen</span>
+              <span class="tag">Many-Worlds</span>
+            </div>
+            <p>Major interpretations including Copenhagen, Many-Worlds, Pilot Wave, and more.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/interpretations_of_quantum_mechanics.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
       <!-- 13) Path Integrals and Quantum Field Theory -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#13</h4>
-          <p>Path Integrals and Quantum Field Theory</p>
-          <a 
-            href="quantum_notes/path_integrals_and_qft.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="core advanced-level">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag advanced">Advanced</span>
+            <h4><i class="fas fa-road" style="color: var(--accent-color);"></i> #13</h4>
+            <div class="note-card-title">Path Integrals and Quantum Field Theory</div>
+            <div class="tags">
+              <span class="tag">Path Integrals</span>
+              <span class="tag">QFT</span>
+            </div>
+            <p>Feynman's path integral formulation and introduction to quantum field theory concepts.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/path_integrals_and_qft.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- ============ Quantum Computing and Information ============ -->
-    <h2 class="section-title">Quantum Computing and Information</h2>
-    <hr />
+    <!-- Quantum Computing and Information -->
+    <h2 class="section-title slide-in">Quantum Computing and Information</h2>
+    <p class="section-description fade-in">An overview of how quantum mechanics is used in computing and information processing.</p>
 
     <div class="row">
       <!-- 14) Quantum Computing: Qubits and Quantum Gates -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#14</h4>
-          <p>Quantum Computing: Qubits and Quantum Gates</p>
-          <a 
-            href="quantum_notes/quantum_computing_qubits_and_gates.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="computing intermediate">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag intermediate">Intermediate</span>
+            <h4><i class="fas fa-microchip" style="color: var(--accent-color);"></i> #14</h4>
+            <div class="note-card-title">Quantum Computing: Qubits and Quantum Gates</div>
+            <div class="tags">
+              <span class="tag">Qubits</span>
+              <span class="tag">Gates</span>
+            </div>
+            <p>Fundamentals of quantum computing, qubits, quantum gates, and circuit model.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/quantum_computing_qubits_and_gates.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- 15) Quantum Algorithms -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#15</h4>
-          <p>Quantum Algorithms</p>
-          <a 
-            href="quantum_notes/quantum_algorithms.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="computing advanced-level">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag advanced">Advanced</span>
+            <h4><i class="fas fa-code-branch" style="color: var(--accent-color);"></i> #15</h4>
+            <div class="note-card-title">Quantum Algorithms</div>
+            <div class="tags">
+              <span class="tag">Algorithms</span>
+              <span class="tag">Shor</span>
+              <span class="tag">Grover</span>
+            </div>
+            <p>Quantum algorithms including Deutsch-Jozsa, Grover's search, Shor's factoring, and quantum phase estimation.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/quantum_algorithms.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
       <!-- 16) Quantum Error Correction -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#16</h4>
-          <p>Quantum Error Correction</p>
-          <a 
-            href="quantum_notes/quantum_error_correction.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="computing advanced-level">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag advanced">Advanced</span>
+            <h4><i class="fas fa-shield-alt" style="color: var(--accent-color);"></i> #16</h4>
+            <div class="note-card-title">Quantum Error Correction</div>
+            <div class="tags">
+              <span class="tag">Error Correction</span>
+              <span class="tag">Fault Tolerance</span>
+            </div>
+            <p>Quantum error correction codes, stabilizer formalism, and fault-tolerant quantum computing.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/quantum_error_correction.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- 17) Topological Quantum Computing -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#17</h4>
-          <p>Topological Quantum Computing</p>
-          <a 
-            href="quantum_notes/topological_quantum_computing.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="computing advanced-level">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag advanced">Advanced</span>
+            <h4><i class="fas fa-network-wired" style="color: var(--accent-color);"></i> #17</h4>
+            <div class="note-card-title">Topological Quantum Computing</div>
+            <div class="tags">
+              <span class="tag">Topology</span>
+              <span class="tag">Anyons</span>
+            </div>
+            <p>Topological quantum computation, anyons, braiding, and fault-tolerance through topology.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/topological_quantum_computing.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
       <!-- 18) Quantum Cryptography and Secure Communication -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#18</h4>
-          <p>Quantum Cryptography &amp; Secure Communication</p>
-          <a 
-            href="quantum_notes/quantum_cryptography_and_secure_communication.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="computing intermediate">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag intermediate">Intermediate</span>
+            <h4><i class="fas fa-lock" style="color: var(--accent-color);"></i> #18</h4>
+            <div class="note-card-title">Quantum Cryptography &amp; Secure Communication</div>
+            <div class="tags">
+              <span class="tag">Cryptography</span>
+              <span class="tag">QKD</span>
+            </div>
+            <p>Quantum key distribution, BB84 protocol, quantum cryptography, and security proofs.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/quantum_cryptography_and_secure_communication.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- =========== Advanced and Applied Quantum Mechanics =========== -->
-    <h2 class="section-title">Advanced and Applied Quantum Mechanics</h2>
-    <hr />
+    <!-- Advanced and Applied Quantum Mechanics -->
+    <h2 class="section-title slide-in">Advanced and Applied Quantum Mechanics</h2>
+    <p class="section-description fade-in">Exploring how quantum mechanics is applied in different areas of science and technology.</p>
 
     <div class="row">
       <!-- 19) Quantum Optics and Photonics -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#19</h4>
-          <p>Quantum Optics and Photonics</p>
-          <a 
-            href="quantum_notes/quantum_optics_and_photonics.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="applied advanced-level">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag advanced">Advanced</span>
+            <h4><i class="fas fa-lightbulb" style="color: var(--accent-color);"></i> #19</h4>
+            <div class="note-card-title">Quantum Optics and Photonics</div>
+            <div class="tags">
+              <span class="tag">Optics</span>
+              <span class="tag">Photonics</span>
+            </div>
+            <p>Quantum states of light, coherent states, squeezed states, and optical quantum technologies.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/quantum_optics_and_photonics.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- 20) Quantum Optics and Cavity QED -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#20</h4>
-          <p>Quantum Optics and Cavity QED</p>
-          <a 
-            href="quantum_notes/quantum_optics_cavity_qed.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="applied advanced-level">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag advanced">Advanced</span>
+            <h4><i class="fas fa-broadcast-tower" style="color: var(--accent-color);"></i> #20</h4>
+            <div class="note-card-title">Quantum Optics and Cavity QED</div>
+            <div class="tags">
+              <span class="tag">Cavity QED</span>
+              <span class="tag">Light-Matter</span>
+            </div>
+            <p>Cavity quantum electrodynamics, light-matter interactions, and quantum optical systems.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/quantum_optics_cavity_qed.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
       <!-- 21) Quantum Materials and Topological Insulators -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#21</h4>
-          <p>Quantum Materials and Topological Insulators</p>
-          <a 
-            href="quantum_notes/quantum_materials_topological_insulators.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="applied advanced-level">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag advanced">Advanced</span>
+            <h4><i class="fas fa-layer-group" style="color: var(--accent-color);"></i> #21</h4>
+            <div class="note-card-title">Quantum Materials and Topological Insulators</div>
+            <div class="tags">
+              <span class="tag">Materials</span>
+              <span class="tag">Topology</span>
+            </div>
+            <p>Quantum materials, topological insulators, Majorana fermions, and exotic quantum phases.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/quantum_materials_topological_insulators.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- 22) Quantum Machine Learning -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#22</h4>
-          <p>Quantum Machine Learning</p>
-          <a 
-            href="quantum_notes/quantum_machine_learning.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="applied advanced-level">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag advanced">Advanced</span>
+            <h4><i class="fas fa-brain" style="color: var(--accent-color);"></i> #22</h4>
+            <div class="note-card-title">Quantum Machine Learning</div>
+            <div class="tags">
+              <span class="tag">Machine Learning</span>
+              <span class="tag">AI</span>
+            </div>
+            <p>Quantum machine learning algorithms, quantum neural networks, and quantum data analysis.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/quantum_machine_learning.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
       <!-- 23) Quantum Thermodynamics -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#23</h4>
-          <p>Quantum Thermodynamics</p>
-          <a 
-            href="quantum_notes/quantum_thermodynamics.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="applied advanced-level">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag advanced">Advanced</span>
+            <h4><i class="fas fa-temperature-high" style="color: var(--accent-color);"></i> #23</h4>
+            <div class="note-card-title">Quantum Thermodynamics</div>
+            <div class="tags">
+              <span class="tag">Thermodynamics</span>
+              <span class="tag">Entropy</span>
+            </div>
+            <p>Quantum thermodynamics, quantum heat engines, and information thermodynamics.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/quantum_thermodynamics.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- 24) Quantum Simulation and Many-Body Physics -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#24</h4>
-          <p>Quantum Simulation and Many-Body Physics</p>
-          <a 
-            href="quantum_notes/quantum_simulation_many_body_physics.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="applied advanced-level">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag advanced">Advanced</span>
+            <h4><i class="fas fa-cubes" style="color: var(--accent-color);"></i> #24</h4>
+            <div class="note-card-title">Quantum Simulation and Many-Body Physics</div>
+            <div class="tags">
+              <span class="tag">Simulation</span>
+              <span class="tag">Many-Body</span>
+            </div>
+            <p>Quantum simulation of many-body systems, quantum phase transitions, and condensed matter physics.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/quantum_simulation_many_body_physics.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
       <!-- 25) Quantum Metrology and Sensing -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#25</h4>
-          <p>Quantum Metrology and Sensing</p>
-          <a 
-            href="quantum_notes/quantum_metrology_and_sensing.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="applied intermediate">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag intermediate">Intermediate</span>
+            <h4><i class="fas fa-search" style="color: var(--accent-color);"></i> #25</h4>
+            <div class="note-card-title">Quantum Metrology and Sensing</div>
+            <div class="tags">
+              <span class="tag">Metrology</span>
+              <span class="tag">Sensing</span>
+            </div>
+            <p>Quantum enhanced measurements, quantum sensors, and the quantum limits of precision.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/quantum_metrology_and_sensing.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- 26) Quantum Networks and Distributed Quantum Computing -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#26</h4>
-          <p>Quantum Networks and Distributed Quantum Computing</p>
-          <a 
-            href="quantum_notes/quantum_networks_distributed_computing.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="applied advanced-level">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag advanced">Advanced</span>
+            <h4><i class="fas fa-network-wired" style="color: var(--accent-color);"></i> #26</h4>
+            <div class="note-card-title">Quantum Networks and Distributed Quantum Computing</div>
+            <div class="tags">
+              <span class="tag">Networks</span>
+              <span class="tag">Distributed</span>
+            </div>
+            <p>Quantum networks, distributed quantum computing, and quantum internet architecture.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/quantum_networks_distributed_computing.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
       <!-- 27) Quantum Gravity and the Holographic Principle -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#27</h4>
-          <p>Quantum Gravity and the Holographic Principle</p>
-          <a 
-            href="quantum_notes/quantum_gravity_and_holographic_principle.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="applied advanced-level">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag advanced">Advanced</span>
+            <h4><i class="fas fa-satellite" style="color: var(--accent-color);"></i> #27</h4>
+            <div class="note-card-title">Quantum Gravity and the Holographic Principle</div>
+            <div class="tags">
+              <span class="tag">Gravity</span>
+              <span class="tag">Holography</span>
+            </div>
+            <p>Approaches to quantum gravity, AdS/CFT correspondence, and the holographic principle.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/quantum_gravity_and_holographic_principle.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- 28) Looking Forward -->
-      <div class="col-md-6">
-        <div class="card p-3 mb-3 note-card">
-          <h4>#28</h4>
-          <p>Looking Forward</p>
-          <a 
-            href="quantum_notes/looking_forward.html"
-            class="btn btn-quantum">
-            Open
-          </a>
+      <div class="col-md-6 col-lg-4 mb-4 fade-in" data-category="applied beginner">
+        <div class="card h-100">
+          <div class="note-card">
+            <span class="difficulty-tag beginner">Beginner</span>
+            <h4><i class="fas fa-rocket" style="color: var(--accent-color);"></i> #28</h4>
+            <div class="note-card-title">Looking Forward</div>
+            <div class="tags">
+              <span class="tag">Future</span>
+              <span class="tag">Overview</span>
+            </div>
+            <p>The future of quantum physics, emerging technologies, and open questions in the field.</p>
+            <div class="reading-time">
+              <i class="far fa-clock"></i> 0 min read
+            </div>
+            <div class="progress-label">Progress: 0%</div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <a 
+              href="quantum_notes/looking_forward.html"
+              class="btn btn-quantum">
+              <i class="fas fa-book-open"></i> Read Note
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
 
-    <!-- You can keep or remove this section as needed -->
-    <h2 class="section-title">Quantum Development Kits</h2>
-    <hr />
-    <ul>
-      <li><a href="https://www.ibm.com/quantum/qiskit" target="_blank">IBM Qiskit</a></li>
-      <li><a href="https://www.dwavesys.com/take-leap/" target="_blank">D-Wave Leap</a></li>
-      <li><a href="https://www.microsoft.com/en-us/quantum/development-kit/" target="_blank">Microsoft QDK</a></li>
-      <li><a href="https://quantumai.google/cirq/" target="_blank">Google Cirq</a></li>
-      <li><a href="https://qcs.rigetti.com/sdk-downloads/" target="_blank">Rigetti Forest</a></li>
-      <li><a href="https://strawberryfields.ai/" target="_blank">Xanadu Strawberry Fields</a></li>
-    </ul>
+    <!-- Quantum Development Kits -->
+    <div class="dev-kit-container fade-in">
+      <h2 class="section-title mb-4">Quantum Development Kits</h2>
+      <p class="section-description">Here are some cool tools to start building your own quantum applications.</p>
+      
+      <div class="dev-kit-grid">
+        <a href="https://www.ibm.com/quantum/qiskit" target="_blank" class="dev-kit-item">
+          <div class="dev-kit-icon">
+            <i class="fab fa-python"></i>
+          </div>
+          <div class="dev-kit-text">
+            <h5>IBM Qiskit</h5>
+            <p>Python-based quantum SDK</p>
+          </div>
+        </a>
+        
+        <a href="https://www.dwavesys.com/take-leap/" target="_blank" class="dev-kit-item">
+          <div class="dev-kit-icon">
+            <i class="fas fa-cubes"></i>
+          </div>
+          <div class="dev-kit-text">
+            <h5>D-Wave Leap</h5>
+            <p>Quantum annealing systems</p>
+          </div>
+        </a>
+        
+        <a href="https://www.microsoft.com/en-us/quantum/development-kit/" target="_blank" class="dev-kit-item">
+          <div class="dev-kit-icon">
+            <i class="fab fa-microsoft"></i>
+          </div>
+          <div class="dev-kit-text">
+            <h5>Microsoft QDK</h5>
+            <p>Q# programming language</p>
+          </div>
+        </a>
+        
+        <a href="https://quantumai.google/cirq/" target="_blank" class="dev-kit-item">
+          <div class="dev-kit-icon">
+            <i class="fab fa-google"></i>
+          </div>
+          <div class="dev-kit-text">
+            <h5>Google Cirq</h5>
+            <p>Python library for NISQ circuits</p>
+          </div>
+        </a>
+        
+        <a href="https://qcs.rigetti.com/sdk-downloads/" target="_blank" class="dev-kit-item">
+          <div class="dev-kit-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <div class="dev-kit-text">
+            <h5>Rigetti Forest</h5>
+            <p>Quantum programming toolkit</p>
+          </div>
+        </a>
+        
+        <a href="https://strawberryfields.ai/" target="_blank" class="dev-kit-item">
+          <div class="dev-kit-icon">
+            <i class="fas fa-radiation"></i>
+          </div>
+          <div class="dev-kit-text">
+            <h5>Xanadu Strawberry Fields</h5>
+            <p>Photonic quantum computing</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 
-  </div> 
-  <!-- End of main .container -->
-
-  <!-- 
-    =================================================================
-    =                           FOOTER                               =
-    =================================================================
-  -->
-  <footer class="text-center p-4">
+  <footer>
     <p>© <script>document.write(new Date().getFullYear())</script> Quantum Notes</p>
+    <div class="social-links">
+      <a href="#https://github.com/LucasHRhode" class="social-link"><i class="fab fa-github"></i></a>
+      <a href="#https://www.linkedin.com/in/lucasrhode/" class="social-link"><i class="fab fa-linkedin"></i></a>
+      <a href="#https://www.instagram.com/bubble_tea_theory" class="social-link"><i class="fab fa-instagram"></i></a>
+    </div>
   </footer>
 
-  <!-- 
-    =================================================================
-    =                  SCRIPT INCLUSIONS / SETUP                     =
-    =================================================================
-    We place our JS at the bottom for best performance.
-  -->
-  <!-- jQuery & Bootstrap JS -->
-  <script
-    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    crossorigin="anonymous">
-  </script>
-  <script
-    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    crossorigin="anonymous">
-  </script>
-
-  <!-- Particles.js -->
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
-  <!-- Marked.js (for Markdown rendering) -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-  <!-- Plotly.js -->
   <script src="https://cdn.plot.ly/plotly-2.26.3.min.js"></script>
-  
-  <!-- Math.js-->
-  <script 
-    src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.2.1/math.js" 
-    integrity="sha512-47N5yVdAeXJ+9qstVMTH2Z0EpX618sjYZcswRwhpldSTD0IbW6yQPtzg4RLrPp/2+TIgEF1elT68/ZBu82nqJA==" 
-    crossorigin="anonymous" 
-    referrerpolicy="no-referrer">
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.2.1/math.js"></script>
 
-  <!-- 
-    =========================================================
-    =        CUSTOM JAVASCRIPT (Search, Particles, etc.)     =
-    =========================================================
-  -->
   <script>
-    /***************************************************************
-     *                          PARTICLES.JS INIT                  *
-     ***************************************************************/
+    // Particles.js initialization with improved settings
     particlesJS("particles-js", {
       particles: {
         number: { 
-          value: 100, 
+          value: 80, 
           density: { enable: true, value_area: 800 } 
         },
-        color: { value: "#ffffff" },
-        shape: { type: "circle" },
-        opacity: { value: 0.8, random: true },
-        size: { value: 2, random: true },
-        move: { enable: true, speed: 1, out_mode: "out" }
+        color: { value: ["#8e2de2", "#4a00e0", "#00e5ff", "#ffcc00"] },
+        shape: { 
+          type: "circle",
+          stroke: { width: 0, color: "#000000" }
+        },
+        opacity: { 
+          value: 0.5, 
+          random: true,
+          anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+        },
+        size: { 
+          value: 3, 
+          random: true,
+          anim: { enable: true, speed: 2, size_min: 0.1, sync: false }
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#8e2de2",
+          opacity: 0.4,
+          width: 1
+        },
+        move: { 
+          enable: true, 
+          speed: 1,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "out",
+          bounce: false,
+          attract: { enable: false, rotateX: 600, rotateY: 1200 }
+        }
       },
       interactivity: {
-        events: { onhover: { enable: true, mode: "repulse" } },
-        modes: { repulse: { distance: 100 } }
+        detect_on: "canvas",
+        events: { 
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" },
+          resize: true
+        },
+        modes: {
+          grab: { distance: 140, line_linked: { opacity: 1 } },
+          bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+          repulse: { distance: 200, duration: 0.4 },
+          push: { particles_nb: 4 },
+          remove: { particles_nb: 2 }
+        }
       },
       retina_detect: true
     });
 
-    /***************************************************************
-     *                       SEARCH BAR LOGIC                       *
-     ***************************************************************
-     *   Filters .note-card elements by text. 
-     *   Each .note-card is displayed if the search matches.
-     */
+    // Enhanced search functionality
     document.getElementById("searchBar").addEventListener("keyup", function() {
       let input = this.value.toLowerCase();
-      document.querySelectorAll(".note-card").forEach(card => {
+      document.querySelectorAll("[data-category]").forEach(card => {
         let text = card.innerText.toLowerCase();
-        // Show if it includes the search text, otherwise hide
         card.style.display = text.includes(input) ? "" : "none";
       });
     });
-  </script>
 
+    // Category filtering
+    document.querySelectorAll('.filter-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const filter = this.getAttribute('data-filter');
+        
+        // Toggle active state for buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        this.classList.add('active');
+        
+        // Filter the cards
+        document.querySelectorAll('[data-category]').forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+    
+    // Scroll animations
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const slideElements = document.querySelectorAll('.slide-in');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    fadeElements.forEach(element => {
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(20px)';
+      element.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+      observer.observe(element);
+    });
+    
+    slideElements.forEach(element => {
+      element.style.opacity = '0';
+      element.style.transform = 'translateX(-30px)';
+      element.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+      observer.observe(element);
+    });
+    
+    // Make search container sticky on scroll
+    window.addEventListener('scroll', function() {
+      const searchContainer = document.querySelector('.search-container');
+      if (window.scrollY > 380) {
+        searchContainer.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+      } else {
+        searchContainer.style.boxShadow = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
