@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>My Academic Schedule | Lucas Rhode</title>
+
+<link rel="icon" type="image/png" href="img/favicon.png">
+
+<!-- Bootstrap CSS -->
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+  crossorigin="anonymous"
+/>
+
+<!-- Font Awesome -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
+
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css?family=Raleway|Rubik:400,900&display=swap"
+  rel="stylesheet"
+/>
+<link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Rancho&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Crimson+Text&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway:300&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+<style>
+  :root {
+    --year1-color: #e74c3c;
+    --year2-color: #3498db;
+    --year3-color: #2ecc71;
+    --year4-color: #9b59b6;
+    --fall-secondary: #8b1313;  
+    --fall-gradient-end: #D2691E; 
+    --winter-secondary: #3498db;
+    --spring-secondary: #2ecc71; 
+    --spring-gradient-end: #9c359f8b; 
+    --summer-secondary: #FF8C00; 
+    --summer-gradient-end: #FFD700; 
+    --dark-bg: #264653;
+    --darker-bg: #1f3323;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --text-light: #ffffff;
+    --text-dark: #2c3e50;
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --bg-light: #f8f9fa;
+    --bg-dark: #121212;
+    --card-bg-light: #ffffff;
+    --card-bg-dark: #1a1a1a;
+    --border-light: rgba(0, 0, 0, 0.1);
+    --border-dark: rgba(255, 255, 255, 0.1);
+  }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  body.dark-mode {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+  }
+
+
+  .back-to-site {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text-dark);
+    border: 2px solid var(--text-dark);
+    padding: 8px 15px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  body.dark-mode .back-to-site {
+    color: var(--text-light);
+    border-color: var(--text-light);
+    background-color: rgba(30, 30, 30, 0.8);
+  }
+
+  .back-to-site:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #2c3e50;
+  }
+
+  body.dark-mode .back-to-site:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    background-color: #922828;
+  }
+
+  .schedule-container {
+    padding: 7rem 1rem 2rem 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .page-title {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    color: var(--text-dark);
+    font-weight: 700;
+  }
+  
+  body.dark-mode .page-title {
+    color: var(--text-light);
+  }
+
+  .page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--year1-color), var(--year4-color));
+    border-radius: 2px;
+  }
+
+  .mode-toggle-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+  }
+
+  .mode-label {
+    margin-right: 10px;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+
+  body.dark-mode .mode-label {
+    color: var(--text-light);
+  }
+
+  .mode-toggle {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+  }
+
+  .mode-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .mode-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ab0b0b;
+    transition: .4s;
+    border-radius: 30px;
+  }
+
+  .mode-slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+  }
+
+  input:checked + .mode-slider {
+    background-color: #2c3e50;
+  }
+
+  input:checked + .mode-slider:before {
+    transform: translateX(30px);
+  }
+
+  .schedule-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .schedule-tab {
+    padding: 0.8rem 1.5rem;
+    margin: 0 0.5rem 0.5rem;
+    background-color: #fff;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    border: none;
+    outline: none;
+    color: var(--text-dark);
+  }
+  
+  body.dark-mode .schedule-tab {
+    background-color: #1e1e1e;
+    color: var(--text-light);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .schedule-tab:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  body.dark-mode .schedule-tab:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .schedule-tab.active {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  body.dark-mode .schedule-tab.active {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  }
+
+  .year-tab.active {
+    background: linear-gradient(45deg, var(--year1-color), #ff7675) !important;
+    color: white !important;
+  }
+
+  .year-tab.year-1 {
+    background: linear-gradient(45deg, rgba(231, 76, 60, 0.1), rgba(255, 118, 117, 0.1));
+    color: var(--year1-color);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+  }
+  
+  .year-tab.year-1.active {
+    background: linear-gradient(45deg, var(--year1-color), #ff7675) !important;
+    color: white !important;
+  }
+
+  .year-tab.year-2 {
+    background: linear-gradient(45deg, rgba(52, 152, 219, 0.1), rgba(116, 185, 255, 0.1));
+    color: var(--year2-color);
+    border: 1px solid rgba(52, 152, 219, 0.3);
+  }
+  
+  .year-tab.year-2.active {
+    background: linear-gradient(45deg, var(--year2-color), #74b9ff) !important;
+    color: white !important;
+  }
+
+  .year-tab.year-3 {
+    background: linear-gradient(45deg, rgba(46, 204, 113, 0.1), rgba(123, 237, 159, 0.1));
+    color: var(--year3-color);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+  }
+  
+  .year-tab.year-3.active {
+    background: linear-gradient(45deg, var(--year3-color), #7bed9f) !important;
+    color: white !important;
+  }
+
+  .year-tab.year-4 {
+    background: linear-gradient(45deg, rgba(155, 89, 182, 0.1), rgba(187, 143, 206, 0.1));
+    color: var(--year4-color);
+    border: 1px solid rgba(155, 89, 182, 0.3);
+  }
+  
+  .year-tab.year-4.active {
+    background: linear-gradient(45deg, var(--year4-color), #bb8fce) !important;
+    color: white !important;
+  }
+
+  .semester-tab {
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    color: #7f8c8d;
+    border: 1px solid rgba(127, 140, 141, 0.2);
+  }
+  
+  body.dark-mode .semester-tab {
+    background: linear-gradient(45deg, rgba(30, 30, 30, 0.1), rgba(20, 20, 20, 0.05));
+    color: #ecf0f1;
+    border: 1px solid rgba(200, 200, 200, 0.2);
+  }
+
+  .semester-tab.active {
+    background: linear-gradient(45deg, #7f8c8d, #95a5a6) !important;
+    color: white !important;
+  }
+
+  .semester-tab.summer.active {
+    background: linear-gradient(45deg, var(--summer-secondary), var(--summer-gradient-end)) !important;
+    color: #2c3e50 !important;
+  }
+
+  .semester-tab.fall.active {
+    background: linear-gradient(45deg, var(--fall-secondary), var(--fall-gradient-end)) !important;
+    color: white !important;
+  }
+
+  .semester-tab.winter.active {
+    background: linear-gradient(45deg, var(--winter-secondary), #90cdf4) !important;
+    color: #2c3e50 !important;
+  }
+
+  .semester-tab.spring.active {
+    background: linear-gradient(45deg, var(--spring-secondary), var(--spring-gradient-end)) !important;
+    color: #2c3e50 !important;
+  }
+
+  .schedule-content {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .schedule-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .semester-section {
+    margin-bottom: 2rem;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg-light);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  body.dark-mode .semester-section {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    background-color: var(--card-bg-dark);
+  }
+
+  .semester-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.3s ease;
+  }
+  
+  body.dark-mode .semester-header {
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .summer-header {
+    background: linear-gradient(45deg, var(--summer-secondary), var(--summer-gradient-end));
+    color: #2c3e50;
+  }
+
+  .fall-header {
+    background: linear-gradient(45deg, var(--fall-secondary), var(--fall-gradient-end));
+    color: white;
+  }
+
+  .winter-header {
+    background: linear-gradient(45deg, #3498db, #90cdf4);
+    color: #2c3e50;
+  }
+
+  .spring-header {
+    background: linear-gradient(45deg, var(--spring-secondary), var(--spring-gradient-end));
+    color: #2c3e50;
+  }
+
+  .semester-title {
+    font-weight: 700;
+    margin: 0;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    color: var(--text-light);
+  }
+
+
+
+  .semester-title i {
+    margin-right: 10px;
+  }
+
+  .semester-credits {
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: var(--text-dark);
+  }
+
+  .courses-container {
+    padding: 1.5rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .course-row {
+    display: flex;
+    border-bottom: 1px solid var(--border-light);
+    padding: 1rem 0;
+    transition: var(--transition), border-color 0.3s ease;
+  }
+  
+  body.dark-mode .course-row {
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .course-row:last-child {
+    border-bottom: none;
+  }
+
+  .course-row:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+    transform: translateX(5px);
+  }
+  
+  body.dark-mode .course-row:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+  }
+
+  .course-code {
+    width: 120px;
+    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
+    color: var(--text-dark);
+    transition: color 0.3s ease;
+  }
+  
+  body.dark-mode .course-code {
+    color: var(--text-light);
+  }
+
+  .course-title {
+    flex-grow: 1;
+    font-weight: 600;
+    color: var(--text-dark);
+    transition: color 0.3s ease;
+  }
+  
+  body.dark-mode .course-title {
+    color: var(--text-light);
+  }
+
+  .course-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .course-title a:hover {
+    color: var(--year1-color);
+    text-decoration: none;
+  }
+
+  body.dark-mode .course-title a:hover {
+    color: var(--primary-light);
+  }
+
+  .course-credits {
+    width: 80px;
+    text-align: center;
+    font-weight: 700;
+    color: #7f8c8d;
+    transition: color 0.3s ease;
+  }
+  
+  body.dark-mode .course-credits {
+    color: #bdc3c7;
+  }
+
+  .course-type {
+    width: 130px;
+    text-align: center;
+  }
+
+  .course-tag {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .core-tag {
+    background: linear-gradient(45deg, #e74c3c, #ff7675);
+  }
+
+  .elective-tag {
+    background: linear-gradient(45deg, #3498db, #74b9ff);
+  }
+
+  .major-tag {
+    background: linear-gradient(45deg, #2ecc71, #7bed9f);
+  }
+
+  .minor-tag {
+    background: linear-gradient(45deg, #9b59b6, #bb8fce);
+  }
+
+  .gen-ed-tag {
+    background: linear-gradient(45deg, #f1c40f, #ffeaa7);
+    color: #2c3e50;
+  }
+
+  .year-summary {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    background: var(--card-bg-light);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  body.dark-mode .year-summary {
+    background: var(--card-bg-dark);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .year-summary-header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .year-1-header {
+    background: linear-gradient(45deg, var(--year1-color), #ff7675);
+    color: white;
+  }
+
+  .year-2-header {
+    background: linear-gradient(45deg, var(--year2-color), #74b9ff);
+    color: white;
+  }
+
+  .year-3-header {
+    background: linear-gradient(45deg, var(--year3-color), #7bed9f);
+    color: white;
+  }
+
+  .year-4-header {
+    background: linear-gradient(45deg, var(--year4-color), #bb8fce);
+    color: white;
+  }
+
+  .year-summary-title {
+    font-weight: 700;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .summary-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .summary-box {
+    flex: 1;
+    min-width: 200px;
+    padding: 1.5rem;
+    border-radius: 10px;
+    background-color: var(--bg-light);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: var(--transition), background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  body.dark-mode .summary-box {
+    background-color: #242424;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .summary-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  body.dark-mode .summary-box:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .summary-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .year-1-value {
+    color: var(--year1-color);
+  }
+
+  .year-2-value {
+    color: var(--year2-color);
+  }
+
+  .year-3-value {
+    color: var(--year3-color);
+  }
+
+  .year-4-value {
+    color: var(--year4-color);
+  }
+
+  .summary-label {
+    color: #7f8c8d;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  
+  body.dark-mode .summary-label {
+    color: #bdc3c7;
+  }
+
+  .schedule-footer {
+    text-align: center;
+    margin-top: 3rem;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+  
+  body.dark-mode .schedule-footer {
+    color: #bdc3c7;
+  }
+
+  .schedule-footer p {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .back-to-site, .mode-toggle-container {
+      position: relative;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin-bottom: 15px;
+    }
+    
+    .schedule-container {
+      padding-top: 2rem;
+    }
+    
+    .course-row {
+      flex-direction: column;
+      padding: 1rem;
+    }
+
+    .course-code {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    .course-title {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    .course-credits {
+      width: 100%;
+      text-align: left;
+      margin-bottom: 0.5rem;
+    }
+
+    .course-type {
+      width: 100%;
+      text-align: left;
+    }
+
+    .summary-box {
+      min-width: 140px;
+    }
+    
+    .top-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+  }
+
+  /* Animation for content */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease forwards;
+  }
+
+  /* Animated progress bar */
+  .progress-container {
+    width: 100%;
+    height: 12px;
+    background-color: #f0f0f0;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  body.dark-mode .progress-container {
+    background-color: #303030;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .progress-bar {
+    height: 100%;
+    width: 0;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--year1-color), var(--year2-color), var(--year3-color), var(--year4-color));
+    transition: width 2s ease;
+    background-size: 300% 100%;
+    animation: gradient-shift 5s infinite linear;
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100% 0;
+    }
+  }
+
+  .progress-label {
+    text-align: center;
+    font-weight: 600;
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+    transition: color 0.3s ease;
+  }
+  
+  body.dark-mode .progress-label {
+    color: #bdc3c7;
+  }
+
+  /* Top controls container */
+  .top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  /* Rainbow Footer Line */
+  .rainbow-line {
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to right, rgb(235, 10, 10), rgb(247, 144, 1), rgb(255, 234, 0), rgb(13, 175, 13), rgb(12, 118, 217), rgb(9, 37, 178), rgb(125, 5, 152));
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="top-controls">
+  <a href="index.html" class="back-to-site">
+    <i class="fas fa-arrow-left mr-2"></i> Back to Main Site
+  </a>
+  
+  <div class="mode-toggle-container">
+    <span class="mode-label">Dark Mode</span>
+    <label class="mode-toggle">
+      <input type="checkbox" id="darkModeToggle">
+      <span class="mode-slider"></span>
+    </label>
+  </div>
+</div>
+
+<div class="schedule-container container">
+  <h1 class="page-title mb-5">My Four-Year Academic Plan</h1>
+
+  <!-- Tabs for Years -->
+  <div class="schedule-tabs">
+    <button class="schedule-tab year-tab year-1 active" data-year="1">Freshman Year (2024-2025)</button>
+    <button class="schedule-tab year-tab year-2" data-year="2">Sophomore Year (2025-2026)</button>
+    <button class="schedule-tab year-tab year-3" data-year="3">Junior Year (2026-2027)</button>
+    <button class="schedule-tab year-tab year-4" data-year="4">Senior Year (2027-2028)</button>
+  </div>
+
+  <!-- Tabs for Semesters -->
+  <div class="schedule-tabs">
+    <button class="schedule-tab semester-tab summer" data-semester="summer">Summer</button>
+    <button class="schedule-tab semester-tab fall active" data-semester="fall">Fall</button>
+    <button class="schedule-tab semester-tab winter" data-semester="winter">Winter</button>
+    <button class="schedule-tab semester-tab spring" data-semester="spring">Spring</button>
+  </div>
+
+  <!-- Year 1 Content -->
+  <div class="schedule-content year-1-content active">
+    <!-- Summer 2024 Semester -->
+    <div class="semester-content summer-content">
+      <div class="semester-section">
+        <div class="semester-header summer-header">
+          <h2 class="semester-title"><i class="fas fa-sun"></i> Summer 2024 - Bridge Program</h2>
+          <span class="semester-credits">7 Credits</span>
+        </div>
+        <div class="courses-container">
+          <div class="course-row">
+            <div class="course-code">AMS 161</div>
+            <div class="course-title"><a href="https://www.stonybrook.edu/commcms/ams/undergraduate/_courses/ams161.php">Applied Calculus II</a></div>
+            <div class="course-credits">3</div>
+            <div class="course-type"><span class="course-tag core-tag">Core</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">SSP 101</div>
+            <div class="course-title"><a href="https://www.stonybrook.edu/sb/bulletin/current/courses/ssp/">Intro to Stony Brook</a></div>
+            <div class="course-credits">1</div>
+            <div class="course-type"><span class="course-tag core-tag">Core</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">PSY 103</div>
+            <div class="course-title"><a href="https://www.stonybrook.edu/sb/bulletin/current/courses/psy/">Introduction to Psychology</a></div>
+            <div class="course-credits">3</div>
+            <div class="course-type"><span class="course-tag gen-ed-tag">Gen Ed</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fall Semester -->
+    <div class="semester-content fall-content active">
+      <div class="semester-section">
+        <div class="semester-header fall-header">
+          <h2 class="semester-title"><i class="fas fa-leaf"></i> Fall 2024</h2>
+          <span class="semester-credits">18 Credits</span>
+        </div>
+        <div class="courses-container">
+          <div class="course-row">
+            <div class="course-code">ESE 123</div>
+            <div class="course-title"><a href="https://www.stonybrook.edu/commcms/electrical/undergraduate/courses/_syllabi/2023-fall/f23-ese123.pdf">Introduction to Electrical and Computer Engineering</a></div>
+            <div class="course-credits">4</div>
+            <div class="course-type"><span class="course-tag major-tag">Major</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">ESE 188</div>
+            <div class="course-title"><a href="https://www.stonybrook.edu/sb/bulletin/current/courses/ese/">Understanding Machine Learning</a></div>
+            <div class="course-credits">3</div>
+            <div class="course-type"><span class="course-tag major-tag">Major</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">MAT 307</div>
+            <div class="course-title"><a href="#https://www.math.stonybrook.edu/MAT307">Multivariable Calculus with Linear Algebra</a></div>
+            <div class="course-credits">4</div>
+            <div class="course-type"><span class="course-tag core-tag">Core</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">MUS 262</div>
+            <div class="course-title"><a href="https://www.stonybrook.edu/commcms/music/ensembles/university_orchestra">University Orchestra</a></div>
+            <div class="course-credits">1</div>
+            <div class="course-type"><span class="course-tag elective-tag">Elective</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">PHY 133</div>
+            <div class="course-title"><a href="http://phylabs1.physics.sunysb.edu/introlabs/Fall2024/PHY133.html">Classical Physics Laboratory I</a></div>
+            <div class="course-credits">1</div>
+            <div class="course-type"><span class="course-tag core-tag">Core</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">PHY 141</div>
+            <div class="course-title"><a href="https://www.stonybrook.edu/commcms/physics/undergrad/_syllabi/2022FallSyllabi/PHY%20141%20rev.pdf">Classical Physics I: Honors</a></div>
+            <div class="course-credits">3</div>
+            <div class="course-type"><span class="course-tag core-tag">Core</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">SSP 105</div>
+            <div class="course-title"><a href="https://www.stonybrook.edu/sb/bulletin/current/courses/ssp/">Opportunities in STEM & Beyond</a></div>
+            <div class="course-credits">1</div>
+            <div class="course-type"><span class="course-tag elective-tag">Elective</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">VIP 295</div>
+            <div class="course-title"><a href="https://www.stonybrook.edu/sb/bulletin/current/courses/vip/">Introductory Multidisciplinary Project</a></div>
+            <div class="course-credits">1</div>
+            <div class="course-type"><span class="course-tag elective-tag">Elective</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Winter Semester -->
+    <div class="semester-content winter-content">
+      <div class="semester-section">
+        <div class="semester-header winter-header">
+          <h2 class="semester-title"><i class="fas fa-snowflake"></i> Winter 2025</h2>
+          <span class="semester-credits">3 Credits</span>
+        </div>
+        <div class="courses-container">
+          <div class="course-row">
+            <div class="course-code">WRT 102</div>
+            <div class="course-title"><a href="#">Intermediate Writing Workshop</a></div>
+            <div class="course-credits">3</div>
+            <div class="course-type"><span class="course-tag gen-ed-tag">Gen Ed</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spring Semester -->
+    <div class="semester-content spring-content">
+      <div class="semester-section">
+        <div class="semester-header spring-header">
+          <h2 class="semester-title"><i class="fas fa-seedling"></i> Spring 2025</h2>
+          <span class="semester-credits">19 Credits</span>
+        </div>
+        <div class="courses-container">
+          <div class="course-row">
+            <div class="course-code">ESE 118</div>
+            <div class="course-title"><a href="#">Digital Logic Design</a></div>
+            <div class="course-credits">4</div>
+            <div class="course-type"><span class="course-tag major-tag">Major</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">ESE 124</div>
+            <div class="course-title"><a href="#">Programming Fundamentals</a></div>
+            <div class="course-credits">4</div>
+            <div class="course-type"><span class="course-tag major-tag">Major</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">MAT 308</div>
+            <div class="course-title"><a href="#">Differential Equations with Linear Algebra</a></div>
+            <div class="course-credits">4</div>
+            <div class="course-type"><span class="course-tag core-tag">Core</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">PHY 132</div>
+            <div class="course-title"><a href="#">Classical Physics II</a></div>
+            <div class="course-credits">3</div>
+            <div class="course-type"><span class="course-tag core-tag">Core</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">PHY 134</div>
+            <div class="course-title"><a href="#">Classical Physics Lab II</a></div>
+            <div class="course-credits">1</div>
+            <div class="course-type"><span class="course-tag core-tag">Core</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">SSP 205</div>
+            <div class="course-title"><a href="#">Pathway to STEM PhD</a></div>
+            <div class="course-credits">1</div>
+            <div class="course-type"><span class="course-tag elective-tag">Elective</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">VIP 102</div>
+            <div class="course-title"><a href="#">VIP Exploration</a></div>
+            <div class="course-credits">1</div>
+            <div class="course-type"><span class="course-tag elective-tag">Elective</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">VIP 395</div>
+            <div class="course-title"><a href="#">Intermediate Multidisciplinary Project</a></div>
+            <div class="course-credits">1</div>
+            <div class="course-type"><span class="course-tag elective-tag">Elective</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Year 1 Summary -->
+    <div class="year-summary">
+      <div class="year-summary-header year-1-header">
+        <h2 class="year-summary-title">Freshman Year Overview</h2>
+        <span>2024-2025</span>
+      </div>
+      <div class="summary-content">
+        <div class="summary-box">
+          <div class="summary-value year-1-value">47</div>
+          <div class="summary-label">Total Credits</div>
+        </div>
+        <div class="summary-box">
+          <div class="summary-value year-1-value">15</div>
+          <div class="summary-label">Major Credits</div>
+        </div>
+        <div class="summary-box">
+          <div class="summary-value year-1-value">20</div>
+          <div class="summary-label">Core Credits</div>
+        </div>
+        <div class="summary-box">
+          <div class="summary-value year-1-value">19</div>
+          <div class="summary-label">Courses Completed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Year 2 Content -->
+    <div class="schedule-content year-2-content">
+    <!-- Summer Semester -->
+    <div class="semester-content summer-content">
+      <div class="semester-section">
+        <div class="semester-header summer-header">
+          <h2 class="semester-title"><i class="fas fa-sun"></i> Summer 2025</h2>
+          <span class="semester-credits">0 Credits</span>
+        </div>
+        <div class="courses-container">
+          <div class="course-row" style="justify-content: center; text-align: center; padding: 2rem 0;">
+            <p style="font-style: italic;">No courses planned for Summer 2025.</p>
+            <p>Time for research, internships, or a well-deserved break!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Fall Semester -->
+    <div class="semester-content fall-content active">
+      <div class="semester-section">
+        <div class="semester-header fall-header">
+          <h2 class="semester-title"><i class="fas fa-leaf"></i> Fall 2025</h2>
+          <span class="semester-credits">22 Credits</span>
+        </div>
+        <div class="courses-container">
+          <div class="course-row">
+            <div class="course-code">ESE 271</div>
+            <div class="course-title"><a href="#">Electrical Circuit Analysis</a></div>
+            <div class="course-credits">3</div>
+            <div class="course-type"><span class="course-tag major-tag">Major</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">ESE 280</div>
+            <div class="course-title"><a href="#">Embedded Microcontroller Systems Design I</a></div>
+            <div class="course-credits">4</div>
+            <div class="course-type"><span class="course-tag major-tag">Major</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">ESE 305</div>
+            <div class="course-title"><a href="#">Deterministic Signals and Systems</a></div>
+            <div class="course-credits">3</div>
+            <div class="course-type"><span class="course-tag major-tag">Major</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">ESE 332</div>
+            <div class="course-title"><a href="#">Quantum Mechanics for Engineers</a></div>
+            <div class="course-credits">3</div>
+            <div class="course-type"><span class="course-tag major-tag">Major</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">ARS 281</div>
+            <div class="course-title"><a href="#">Introductory Photography</a></div>
+            <div class="course-credits">3</div>
+            <div class="course-type"><span class="course-tag elective-tag">Elective</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">VIP 495</div>
+            <div class="course-title"><a href="#">Advanced Multidisciplinary Project</a></div>
+            <div class="course-credits">3</div>
+            <div class="course-type"><span class="course-tag elective-tag">Elective</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">SSP 305</div>
+            <div class="course-title"><a href="#">Pathway to STEM PhD II</a></div>
+            <div class="course-credits">1</div>
+            <div class="course-type"><span class="course-tag elective-tag">Elective</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">PHY251</div>
+            <div class="course-title"><a href="#">Modern Physics</a></div>
+            <div class="course-credits">3</div>
+            <div class="course-type"><span class="course-tag major-tag">Major</span></div>
+          </div>
+          <div class="course-row">
+            <div class="course-code">PHY252</div>
+            <div class="course-title"><a href="#">Modern Physics Laboratory</a></div>
+            <div class="course-credits">1</div>
+            <div class="course-type"><span class="course-tag major-tag">Major</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Winter Semester -->
+    <div class="semester-content winter-content">
+      <div class="semester-section">
+        <div class="semester-header winter-header">
+          <h2 class="semester-title"><i class="fas fa-snowflake"></i> Winter 2026</h2>
+          <span class="semester-credits">0 Credits</span>
+        </div>
+        <div class="courses-container">
+          <div class="course-row" style="justify-content: center; text-align: center; padding: 2rem 0;">
+            <p style="font-style: italic;">No courses planned for Winter 2026.</p>
+            <p>Winter break!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spring Semester -->
+    <div class="semester-content spring-content">
+      <div class="semester-section">
+        <div class="semester-header spring-header">
+          <h2 class="semester-title"><i class="fas fa-seedling"></i> Spring 2027</h2>
+          <span class="semester-credits">TBD</span>
+        </div>
+        <div class="courses-container">
+          <div class="course-row" style="justify-content: center; text-align: center; padding: 2rem 0;">
+            <p style="font-style: italic;">Course schedule to be determined.</p>
+            <p>Spring semester courses will be planned closer to the academic year.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <!-- Year 2 Summary -->
+    <div class="year-summary">
+      <div class="year-summary-header year-2-header">
+        <h2 class="year-summary-title">Sophomore Year Overview</h2>
+        <span>2025-2026</span>
+      </div>
+      <div class="summary-content">
+        <div class="summary-box">
+          <div class="summary-value year-2-value">TBD</div>
+          <div class="summary-label">Total Credits</div>
+        </div>
+        <div class="summary-box">
+          <div class="summary-value year-2-value">TBD</div>
+          <div class="summary-label">Major Credits</div>
+        </div>
+        <div class="summary-box">
+          <div class="summary-value year-2-value">TBD</div>
+          <div class="summary-label">Core Credits</div>
+        </div>
+        <div class="summary-box">
+          <div class="summary-value year-2-value">TBD</div>
+          <div class="summary-label">Courses Completed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Year 3 Content -->
+  <div class="schedule-content year-3-content">
+    <!-- Summer Semester -->
+    <div class="semester-content summer-content">
+      <div class="semester-section">
+        <div class="semester-header summer-header">
+          <h2 class="semester-title"><i class="fas fa-sun"></i> Summer 2026</h2>
+          <span class="semester-credits">TBD</span>
+        </div>
+        <div class="courses-container">
+          <div class="course-row" style="justify-content: center; text-align: center; padding: 2rem 0;">
+            <p style="font-style: italic;">Schedule not yet determined.</p>
+            <p>Potential for summer research or internship.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fall Semester -->
+    <div class="semester-content fall-content active">
+      <div class="semester-section">
+        <div class="semester-header fall-header">
+          <h2 class="semester-title"><i class="fas fa-leaf"></i> Fall 2026</h2>
+          <span class="semester-credits">TBD</span>
+        </div>
+        <div class="courses-container">
+          <div class="course-row" style="justify-content: center; text-align: center; padding: 2rem 0;">
+            <p style="font-style: italic;">Course schedule to be determined.</p>
+            <p>Junior year courses will be planned closer to the academic year.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Winter Semester -->
+    <div class="semester-content winter-content">
+      <div class="semester-section">
+        <div class="semester-header winter-header">
+          <h2 class="semester-title"><i class="fas fa-snowflake"></i> Winter 2027</h2>
+          <span class="semester-credits">TBD</span>
+        </div>
+        <div class="courses-container">
+          <div class="course-row" style="justify-content: center; text-align: center; padding: 2rem 0;">
+            <p style="font-style: italic;">Course schedule to be determined.</p>
+            <p>Winter courses will be planned closer to the academic year.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spring Semester -->
+    <div class="semester-content spring-content">
+      <div class="semester-section">
+        <div class="semester-header spring-header">
+          <h2 class="semester-title"><i class="fas fa-seedling"></i> Spring 2027</h2>
+          <span class="semester-credits">TBD</span>
+        </div>
+        <div class="courses-container">
+          <div class="course-row" style="justify-content: center; text-align: center; padding: 2rem 0;">
+            <p style="font-style: italic;">Course schedule to be determined.</p>
+            <p>Spring semester courses will be planned closer to the academic year.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Year 3 Summary -->
+    <div class="year-summary">
+      <div class="year-summary-header year-3-header">
+        <h2 class="year-summary-title">Junior Year Overview</h2>
+        <span>2026-2027</span>
+      </div>
+      <div class="summary-content">
+        <div class="summary-box">
+          <div class="summary-value year-3-value">TBD</div>
+          <div class="summary-label">Total Credits</div>
+        </div>
+        <div class="summary-box">
+          <div class="summary-value year-3-value">TBD</div>
+          <div class="summary-label">Major Credits</div>
+        </div>
+        <div class="summary-box">
+          <div class="summary-value year-3-value">TBD</div>
+          <div class="summary-label">Core Credits</div>
+        </div>
+        <div class="summary-box">
+          <div class="summary-value year-3-value">TBD</div>
+          <div class="summary-label">Courses Planned</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Year 4 Content -->
+  <div class="schedule-content year-4-content">
+    <!-- Summer Semester -->
+    <div class="semester-content summer-content">
+      <div class="semester-section">
+        <div class="semester-header summer-header">
+          <h2 class="semester-title"><i class="fas fa-sun"></i> Summer 2027</h2>
+          <span class="semester-credits">TBD</span>
+        </div>
+        <div class="courses-container">
+          <div class="course-row" style="justify-content: center; text-align: center; padding: 2rem 0;">
+            <p style="font-style: italic;">Schedule not yet determined.</p>
+            <p>Potential for summer research or internship.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fall Semester -->
+    <div class="semester-content fall-content active">
+      <div class="semester-section">
+        <div class="semester-header fall-header">
+          <h2 class="semester-title"><i class="fas fa-leaf"></i> Fall 2027</h2>
+          <span class="semester-credits">TBD</span>
+        </div>
+        <div class="courses-container">
+          <div class="course-row" style="justify-content: center; text-align: center; padding: 2rem 0;">
+            <p style="font-style: italic;">Course schedule to be determined.</p>
+            <p>Senior year courses will be planned closer to the academic year.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Winter Semester -->
+    <div class="semester-content winter-content">
+      <div class="semester-section">
+        <div class="semester-header winter-header">
+          <h2 class="semester-title"><i class="fas fa-snowflake"></i> Winter 2028</h2>
+          <span class="semester-credits">TBD</span>
+        </div>
+        <div class="courses-container">
+          <div class="course-row" style="justify-content: center; text-align: center; padding: 2rem 0;">
+            <p style="font-style: italic;">Course schedule to be determined.</p>
+            <p>Winter courses will be planned closer to the academic year.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spring Semester -->
+    <div class="semester-content spring-content">
+      <div class="semester-section">
+        <div class="semester-header spring-header">
+          <h2 class="semester-title"><i class="fas fa-seedling"></i> Spring 2028</h2>
+          <span class="semester-credits">TBD</span>
+        </div>
+        <div class="courses-container">
+          <div class="course-row" style="justify-content: center; text-align: center; padding: 2rem 0;">
+            <p style="font-style: italic;">Course schedule to be determined.</p>
+            <p>Final semester courses will be planned closer to graduation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Year 4 Summary -->
+    <div class="year-summary">
+      <div class="year-summary-header year-4-header">
+        <h2 class="year-summary-title">Senior Year Overview</h2>
+        <span>2027-2028</span>
+      </div>
+      <div class="summary-content">
+        <div class="summary-box">
+          <div class="summary-value year-4-value">TBD</div>
+          <div class="summary-label">Total Credits</div>
+        </div>
+        <div class="summary-box">
+          <div class="summary-value year-4-value">TBD</div>
+          <div class="summary-label">Major Credits</div>
+        </div>
+        <div class="summary-box">
+          <div class="summary-value year-4-value">TBD</div>
+          <div class="summary-label">Core Credits</div>
+        </div>
+        <div class="summary-box">
+          <div class="summary-value year-4-value">TBD</div>
+          <div class="summary-label">Courses Planned</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Degree Progress -->
+  <div class="progress-container">
+    <div class="progress-bar" style="width: 25%;"></div>
+  </div>
+  <div class="progress-label">Current Progress: 25% Complete (Freshman Year)</div>
+
+  <!-- Footer -->
+  <div class="schedule-footer">
+    <p>This schedule is tentative and subject to change based on course availability and academic requirements.</p>
+    <p>Last Updated: March 2, 2025</p>
+  </div>
+</div>
+
+<!-- Rainbow Line -->
+<div class="rainbow-line"></div>
+
+<!-- JavaScript Dependencies -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    // Check for saved theme preference or respect OS theme
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+      body.classList.add('dark-mode');
+      darkModeToggle.checked = true;
+    }
+
+    // Handle toggle change
+    darkModeToggle.addEventListener('change', function() {
+      if (this.checked) {
+        body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+    
+    // Year tab functionality
+    const yearTabs = document.querySelectorAll('.year-tab');
+    const yearContents = document.querySelectorAll('[class^="schedule-content year-"]');
+    
+    yearTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs
+        yearTabs.forEach(t => t.classList.remove('active'));
+        
+        // Add active class to clicked tab
+        tab.classList.add('active');
+        
+        // Hide all content sections
+        yearContents.forEach(content => content.classList.remove('active'));
+        
+        // Show the relevant content
+        const yearNum = tab.getAttribute('data-year');
+        document.querySelector(`.year-${yearNum}-content`).classList.add('active');
+        
+        // Update progress bar
+        updateProgressBar(yearNum);
+      });
+    });
+    
+    // Semester tab functionality
+    const semesterTabs = document.querySelectorAll('.semester-tab');
+    
+    semesterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs
+        semesterTabs.forEach(t => t.classList.remove('active'));
+        
+        // Add active class to clicked tab
+        tab.classList.add('active');
+        
+        // Get the currently active year content
+        const activeYearContent = document.querySelector('.schedule-content.active');
+        
+        // Hide all semester contents in active year
+        activeYearContent.querySelectorAll('[class^="semester-content"]').forEach(content => {
+          content.classList.remove('active');
+        });
+        
+        // Show the relevant semester content
+        const semesterType = tab.getAttribute('data-semester');
+        activeYearContent.querySelector(`.${semesterType}-content`).classList.add('active');
+      });
+    });
+    
+    // Function to update progress bar
+    function updateProgressBar(yearNum) {
+      const progressBar = document.querySelector('.progress-bar');
+      const progressLabel = document.querySelector('.progress-label');
+      let percentage = 0;
+      let yearText = "";
+      
+      switch(yearNum) {
+        case "1":
+          percentage = 25;
+          yearText = "Freshman Year";
+          break;
+        case "2":
+          percentage = 50;
+          yearText = "Sophomore Year";
+          break;
+        case "3":
+          percentage = 75;
+          yearText = "Junior Year";
+          break;
+        case "4":
+          percentage = 100;
+          yearText = "Senior Year";
+          break;
+      }
+      
+      progressBar.style.width = `${percentage}%`;
+      progressLabel.textContent = `Current Progress: ${percentage}% Complete (${yearText})`;
+    }
+    
+    // Apply animations to elements
+    document.querySelectorAll('.semester-section, .year-summary').forEach((el, index) => {
+      el.classList.add('fade-in');
+      el.style.animationDelay = `${0.1 * index}s`;
+    });
+  });
+</script>
+</body>
+</html>

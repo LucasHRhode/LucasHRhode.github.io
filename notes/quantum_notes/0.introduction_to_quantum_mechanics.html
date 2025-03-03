@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Introduction to Quantum Mechanics | Quantum Notes</title>
+
+  <link rel="icon" type="image/png" href="../../img/favicon-quantum.png">
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    crossorigin="anonymous"
+  />
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" crossorigin="anonymous" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Nunito:wght@300;400;600;700&family=Space+Mono&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- KaTeX for LaTeX support -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      /* Main colors - can be customized for each topic */
+      --primary-color: #8e2de2;
+      --primary-dark: #4a00e0;
+      --secondary-color: #ffcc00;
+      --secondary-light: #ffd633;
+      --accent-color: #00e5ff;
+      --background-dark: #0d0d0d;
+      --background-card: #1e1e1e;
+      --text-light: #e0e0e0;
+      --text-bright: #ffffff;
+      --glow-shadow: 0 0 15px rgba(142, 45, 226, 0.8);
+      --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      
+      /* Difficulty colors */
+      --beginner-color: #4caf50;
+      --intermediate-color: #ffc107;
+      --advanced-color: #f44336;
+    }
+
+    body {
+      background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+      color: var(--text-light);
+      font-family: 'Nunito', sans-serif;
+      position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .navbar {
+      background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
+      box-shadow: var(--glow-shadow);
+      z-index: 999;
+      padding: 0.8rem 1rem;
+    }
+
+    .back-to-site {
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #8e2de2;
+      border: 2px solid #8e2de2;
+      padding: 5px 10px;
+      border-radius: 5px;
+      background-color: #e4e4e4;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-to-site:hover {
+      color: #ffcc00;
+      background-color: #1e1e1e;
+      text-shadow: 0 0 15px rgba(255, 204, 0, 1);
+    }
+
+    .title-container {
+      position: relative;
+      background: url('../../img/quantum_banner.jpg') center / cover no-repeat;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+      border-bottom: 2px solid var(--primary-color);
+    }
+
+    .title-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .title-container::after {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 150%;
+      background: radial-gradient(circle, rgba(142, 45, 226, 0.3) 20%, transparent 70%);
+      top: -50%;
+      left: -50%;
+      animation: pulse 8s infinite ease-in-out alternate;
+    }
+
+    .logo-container {
+      position: relative;
+      z-index: 10;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(1.3);
+        opacity: 0.1;
+      }
+    }
+
+    .topic-title {
+      font-size: 3rem;
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      text-shadow:
+        0 0 10px rgba(142, 45, 226, 1),
+        0 0 20px rgba(142, 45, 226, 0.7);
+      z-index: 2;
+      margin: 0;
+      position: relative;
+    }
+
+    .content-wrapper {
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    /* Table of Contents Styles */
+    .toc-container {
+      background-color: rgba(30, 30, 30, 0.7);
+      background-image: 
+        radial-gradient(circle at 100% 100%, rgba(142, 45, 226, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 0% 0%, rgba(74, 0, 224, 0.1) 0%, transparent 50%);
+      border: 1px solid rgba(142, 45, 226, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: sticky;
+      top: 2rem;
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(5px);
+      margin-bottom: 2rem;
+    }
+
+    .toc-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      color: var(--secondary-color);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toc-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .toc-list li {
+      margin-bottom: 0.8rem;
+      transition: all 0.2s ease;
+    }
+
+    .toc-list li:hover {
+      transform: translateX(5px);
+    }
+
+    .toc-list a {
+      color: var(--text-light);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .toc-list a:hover {
+      color: var(--secondary-color);
+    }
+
+    .toc-list a i {
+      font-size: 0.8rem;
+      color: var(--accent-color);
+    }
+
+    .toc-list .sub-section {
+      padding-left: 1.5rem;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Main Content Styles */
+    .main-content {
+      background-color: rgba(30, 30, 30, 0.7);
+      background-image: 
+        radial-gradient(circle at 100% 100%, rgba(142, 45, 226, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 0% 0%, rgba(74, 0, 224, 0.1) 0%, transparent 50%);
+      border: 1px solid rgba(142, 45, 226, 0.3);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(5px);
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: var(--secondary-color);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid rgba(142, 45, 226, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title i {
+      color: var(--accent-color);
+    }
+
+    .sub-section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
+      color: var(--accent-color);
+      margin: 1.5rem 0 1rem;
+    }
+
+    /* Content Styling */
+    .main-content p {
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
+    }
+
+    .note-box {
+      background-color: rgba(0, 229, 255, 0.1);
+      border-left: 4px solid var(--accent-color);
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .note-box-title {
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .warning-box {
+      background-color: rgba(255, 204, 0, 0.1);
+      border-left: 4px solid var(--secondary-color);
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .warning-box-title {
+      font-weight: 700;
+      color: var(--secondary-color);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .theorem-box {
+      background-color: rgba(142, 45, 226, 0.1);
+      border: 1px solid rgba(142, 45, 226, 0.3);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .theorem-box::before {
+      content: 'Theorem';
+      position: absolute;
+      top: -12px;
+      left: 15px;
+      background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
+      padding: 3px 15px;
+      border-radius: 15px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: var(--glow-shadow);
+    }
+
+    .equation-box {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+      padding: 1rem;
+      background-color: rgba(30, 30, 30, 0.5);
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    .equation-number {
+      margin-left: 1rem;
+      color: var(--secondary-color);
+      font-family: 'Space Mono', monospace;
+    }
+
+    /* Figure/Image Styling */
+    .figure-container {
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .figure-image {
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .figure-caption {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      opacity: 0.8;
+    }
+
+    /* Code Block Styling */
+    pre.code-block {
+      background-color: rgba(13, 13, 13, 0.7);
+      border: 1px solid rgba(142, 45, 226, 0.3);
+      border-radius: 8px;
+      padding: 1rem;
+      overflow-x: auto;
+      font-family: 'Space Mono', monospace;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+
+    pre.code-block::before {
+      content: attr(data-language);
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--primary-color);
+      color: white;
+      padding: 2px 10px;
+      font-size: 0.8rem;
+      border-radius: 0 8px 0 8px;
+    }
+
+    /* Reference Styling */
+    .reference-section {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 2px solid rgba(142, 45, 226, 0.3);
+    }
+
+    .reference-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .reference-list li {
+      margin-bottom: 1rem;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .reference-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--accent-color);
+    }
+
+    /* Interactive Elements */
+    .quiz-container {
+      background-color: rgba(142, 45, 226, 0.1);
+      border: 1px solid rgba(142, 45, 226, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .quiz-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      color: var(--secondary-color);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .quiz-question {
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .quiz-options {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .quiz-options li {
+      background-color: rgba(30, 30, 30, 0.7);
+      border: 1px solid rgba(142, 45, 226, 0.3);
+      border-radius: 8px;
+      padding: 0.8rem;
+      margin-bottom: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .quiz-options li:hover {
+      background-color: rgba(142, 45, 226, 0.2);
+      transform: translateX(5px);
+    }
+
+    .btn-quantum {
+      background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
+      border: none;
+      box-shadow: 0 0 8px rgba(142, 45, 226, 0.4);
+      color: #fff;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      padding: 0.7rem 1.5rem;
+      border-radius: 30px;
+      margin-top: 0.8rem;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-quantum:hover {
+      background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
+      box-shadow: 0 0 15px rgba(142, 45, 226, 0.8);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* Progress Tracking */
+    .progress-container {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background-color: rgba(30, 30, 30, 0.7);
+      border: 1px solid rgba(142, 45, 226, 0.3);
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .progress-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      color: var(--secondary-color);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .progress-track {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .progress-label {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      opacity: 0.7;
+      margin-bottom: 5px;
+    }
+
+    .progress {
+      height: 8px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      flex-grow: 1;
+    }
+
+    .progress-bar {
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      height: 100%;
+      border-radius: 4px;
+    }
+
+    .progress-percentage {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.2rem;
+      color: var(--accent-color);
+    }
+
+    .navigation-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(142, 45, 226, 0.3);
+    }
+
+    .nav-previous, .nav-next {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-light);
+      transition: all 0.2s ease;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+
+    .nav-previous:hover, .nav-next:hover {
+      color: var(--secondary-color);
+      text-decoration: none;
+    }
+
+    .nav-previous i, .nav-next i {
+      font-size: 1.4rem;
+    }
+
+    footer {
+      background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
+      padding: 2rem;
+      text-align: center;
+      font-size: 1.1rem;
+      color: white;
+      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+      position: relative;
+      margin-top: 4rem;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: linear-gradient(90deg, var(--primary-dark), var(--accent-color), var(--primary-dark));
+    }
+
+    footer p {
+      margin: 0;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: var(--secondary-color);
+      color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    @media (max-width: 768px) {
+      .topic-title {
+        font-size: 2rem;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
+      
+      .sub-section-title {
+        font-size: 1.2rem;
+      }
+      
+      .toc-container {
+        position: relative;
+        top: 0;
+        margin-bottom: 2rem;
+      }
+
+      .progress-track {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .progress-percentage {
+        font-size: 1rem;
+      }
+    }
+
+    /* LaTeX and Equation Styling */
+    .katex-display {
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 0.5rem 0;
+    }
+
+    .katex {
+      font-size: 1.1em;
+    }
+
+    /* Cool Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(30, 30, 30, 0.7);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(var(--primary-color), var(--primary-dark));
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(var(--primary-dark), var(--primary-color));
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <nav class="navbar navbar-expand-md navbar-dark">
+    <div class="container-fluid">
+      <a href="../quantum.html" class="back-to-site">
+        <i class="fas fa-arrow-left"></i> Back to Notes Hub
+      </a>
+    </div>
+  </nav>
+  
+  <div class="title-container">
+    <div class="topic-title-container">
+      <h1 class="topic-title">Introduction to Quantum Mechanics</h1>
+    </div>
+  </div>
+
+  <div class="container content-wrapper">
+    <div class="row">
+      <!-- Sidebar with Table of Contents -->
+      <div class="col-lg-3">
+        <div class="toc-container">
+          <div class="toc-title">
+            <i class="fas fa-list"></i> Contents
+          </div>
+          <ul class="toc-list">
+            <li><a href="#introduction"><i class="fas fa-angle-right"></i> Introduction</a></li>
+            <li><a href="#historical-development"><i class="fas fa-angle-right"></i> Historical Development</a>
+              <ul class="sub-section">
+                <li><a href="#blackbody-radiation"><i class="fas fa-dot-circle"></i> Blackbody Radiation</a></li>
+                <li><a href="#photoelectric-effect"><i class="fas fa-dot-circle"></i> Photoelectric Effect</a></li>
+                <li><a href="#atomic-spectra"><i class="fas fa-dot-circle"></i> Atomic Spectra</a></li>
+              </ul>
+            </li>
+            <li><a href="#wave-particle-duality"><i class="fas fa-angle-right"></i> Wave-Particle Duality</a></li>
+            <li><a href="#core-principles"><i class="fas fa-angle-right"></i> Core Principles</a>
+              <ul class="sub-section">
+                <li><a href="#superposition"><i class="fas fa-dot-circle"></i> Superposition</a></li>
+                <li><a href="#uncertainty"><i class="fas fa-dot-circle"></i> Uncertainty Principle</a></li>
+                <li><a href="#measurement"><i class="fas fa-dot-circle"></i> Measurement</a></li>
+              </ul>
+            </li>
+            <li><a href="#key-experiments"><i class="fas fa-angle-right"></i> Key Experiments</a></li>
+            <li><a href="#thought-experiments"><i class="fas fa-angle-right"></i> Thought Experiments</a></li>
+            <li><a href="#quiz"><i class="fas fa-angle-right"></i> Quiz</a></li>
+            <li><a href="#references"><i class="fas fa-angle-right"></i> References & Further Reading</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main Content Area -->
+      <div class="col-lg-9">
+        <div class="main-content">
+          <section id="introduction">
+            <h2 class="section-title"><i class="fas fa-atom"></i> Introduction</h2>
+            <p>Quantum mechanics is one of the most profound scientific theories ever developed, fundamentally changing our understanding of the physical world. Unlike classical mechanics, which describes the behavior of macroscopic objects, quantum mechanics governs the behavior of particles at the atomic and subatomic scales.</p>
+            
+            <p>This theory emerged in the early 20th century when scientists discovered that classical physics failed to explain certain phenomena observed at very small scales. What makes quantum mechanics particularly fascinating is that it challenges our intuitive understanding of reality - particles can exist in multiple states simultaneously (superposition), can be correlated over vast distances (entanglement), and cannot have their position and momentum precisely determined at the same time (uncertainty principle).</p>
+            
+            <div class="note-box">
+              <div class="note-box-title"><i class="fas fa-lightbulb"></i> Key Point</div>
+              <p>Quantum mechanics isn't just an abstract theory - it forms the foundation for much of our modern technology, including lasers, transistors, and all electronic devices that use semiconductor technology.</p>
+            </div>
+          </section>
+
+          <section id="historical-development">
+            <h2 class="section-title"><i class="fas fa-history"></i> Historical Development</h2>
+            <p>The development of quantum mechanics was driven by several experimental observations that could not be explained by classical physics. These experimental anomalies led to revolutionary new ideas about the nature of matter and energy.</p>
+
+            <div id="blackbody-radiation">
+              <h3 class="sub-section-title">Blackbody Radiation</h3>
+              <p>In the late 19th century, physicists were puzzled by the spectrum of light emitted by heated objects. Classical physics predicted what was called the "ultraviolet catastrophe" - that heated objects should emit infinite energy at short wavelengths. In 1900, Max Planck resolved this by proposing that energy is quantized - it can only be emitted or absorbed in discrete packets called "quanta."</p>
+              
+              <div class="equation-box">
+                <div>
+                  <span class="katex-display" id="planck-equation">E = h\nu</span>
+                </div>
+                <div class="equation-number">(1)</div>
+              </div>
+
+              <p>Where \(E\) is energy, \(h\) is Planck's constant (\(6.626 \times 10^{-34} \, \text{J} \cdot \text{s}\)), and \(\nu\) is the frequency of the radiation. This revolutionary idea that energy comes in discrete packets, not continuous flows, was the first quantum concept.</p>
+            </div>
+
+            <div id="photoelectric-effect">
+              <h3 class="sub-section-title">Photoelectric Effect</h3>
+              <p>In 1905, Albert Einstein extended Planck's quantum hypothesis to explain the photoelectric effect - the emission of electrons from metals when illuminated by light. Einstein proposed that light itself consists of discrete quanta (later called photons), each with energy \(E = h\nu\).</p>
+              
+              <div class="figure-container">
+                <img src="../../img/photoelectric_effect.jpg" alt="Diagram of the photoelectric effect" class="figure-image">
+                <div class="figure-caption">Figure 1: The photoelectric effect demonstrated that light behaves as discrete particles (photons) rather than continuous waves.</div>
+              </div>
+              
+              <p>Einstein's explanation showed that the emission of electrons depends on the frequency (color) of light rather than its intensity, contradicting classical wave theory but consistent with a particle-like behavior of light.</p>
+            </div>
+
+            <div id="atomic-spectra">
+              <h3 class="sub-section-title">Atomic Spectra</h3>
+              <p>Another puzzle was the discrete emission and absorption spectra of elements. In 1913, Niels Bohr proposed a quantum model of the hydrogen atom where electrons could only occupy certain discrete energy levels and not the continuum predicted by classical physics.</p>
+              
+              <div class="equation-box">
+                <div>
+                  <span class="katex-display" id="bohr-equation">E_n = -\frac{13.6 \, \text{eV}}{n^2}</span>
+                </div>
+                <div class="equation-number">(2)</div>
+              </div>
+
+              <p>Where \(E_n\) is the energy of the electron in the \(n\)-th energy level. This explained why hydrogen atoms can only emit or absorb light at specific frequencies corresponding to transitions between these energy levels.</p>
+            </div>
+          </section>
+
+          <section id="wave-particle-duality">
+            <h2 class="section-title"><i class="fas fa-water"></i> Wave-Particle Duality</h2>
+            <p>One of the most remarkable aspects of quantum mechanics is wave-particle duality - the concept that every particle or quantum entity exhibits both wave-like and particle-like properties.</p>
+            
+            <p>Building on Einstein's photon concept, Louis de Broglie proposed in 1924 that if light waves can behave as particles, then perhaps particles of matter can exhibit wave-like properties. He suggested that all matter has an associated wavelength (now called the de Broglie wavelength):</p>
+            
+            <div class="equation-box">
+              <div>
+                <span class="katex-display" id="debroglie-equation">\lambda = \frac{h}{p}</span>
+              </div>
+              <div class="equation-number">(3)</div>
+            </div>
+
+            <p>Where \(\lambda\) is the wavelength, \(h\) is Planck's constant, and \(p\) is the momentum of the particle. This revolutionary idea was experimentally confirmed when electrons were shown to produce diffraction patterns, a characteristic wave phenomenon.</p>
+            
+            <div class="theorem-box">
+              <p>Every particle has both wave and particle properties, with its wave nature described by a wave function. The wave nature becomes more evident for smaller particles, while larger objects appear to follow classical physics due to their extremely small wavelengths.</p>
+            </div>
+            
+            <p>The double-slit experiment provides the most dramatic demonstration of wave-particle duality. When electrons or other particles are fired one by one at a barrier with two slits, they create an interference pattern on the detector screen - just as waves would. However, if we try to observe which slit each particle passes through, the interference pattern disappears, and the particles behave like classical particles.</p>
+          </section>
+
+          <section id="core-principles">
+            <h2 class="section-title"><i class="fas fa-cube"></i> Core Principles</h2>
+            <p>Quantum mechanics is built on several core principles that fundamentally differ from classical physics. These principles form the foundation of our modern understanding of the quantum world.</p>
+
+            <div id="superposition">
+              <h3 class="sub-section-title">Superposition</h3>
+              <p>In quantum mechanics, particles can exist in multiple states simultaneously, a phenomenon known as superposition. This is mathematically represented by the wave function, typically denoted by the Greek letter \(\Psi\) (psi).</p>
+              
+              <div class="equation-box">
+                <div>
+                  <span class="katex-display" id="superposition-equation">|\Psi\rangle = c_1|\phi_1\rangle + c_2|\phi_2\rangle + \ldots + c_n|\phi_n\rangle</span>
+                </div>
+                <div class="equation-number">(4)</div>
+              </div>
+
+              <p>Where \(|\Psi\rangle\) is the quantum state, \(|\phi_i\rangle\) are the possible basis states, and \(c_i\) are complex amplitudes whose squared magnitudes give the probability of finding the system in the corresponding state after measurement.</p>
+              
+              <div class="note-box">
+                <div class="note-box-title"><i class="fas fa-lightbulb"></i> Example</div>
+                <p>A quantum bit (qubit) in quantum computing can exist in a superposition of both 0 and 1 simultaneously, unlike a classical bit which must be either 0 or 1.</p>
+              </div>
+            </div>
+
+            <div id="uncertainty">
+              <h3 class="sub-section-title">Uncertainty Principle</h3>
+              <p>In 1927, Werner Heisenberg formulated his famous uncertainty principle, which states that certain pairs of physical properties, such as position and momentum, cannot both be precisely determined simultaneously.</p>
+              
+              <div class="equation-box">
+                <div>
+                  <span class="katex-display" id="uncertainty-equation">\Delta x \cdot \Delta p \geq \frac{\hbar}{2}</span>
+                </div>
+                <div class="equation-number">(5)</div>
+              </div>
+
+              <p>Where \(\Delta x\) is the uncertainty in position, \(\Delta p\) is the uncertainty in momentum, and \(\hbar\) is the reduced Planck constant (\(h/2\pi\)). This isn't just a limitation of our measuring instruments - it's a fundamental property of nature itself.</p>
+              
+              <div class="warning-box">
+                <div class="warning-box-title"><i class="fas fa-exclamation-triangle"></i> Common Misconception</div>
+                <p>The uncertainty principle is often misinterpreted as "measuring a property disturbs the system." While measurement does cause wavefunction collapse, the uncertainty principle is more fundamental - it states that particles simply don't have precisely defined properties until they're measured.</p>
+              </div>
+            </div>
+
+            <div id="measurement">
+              <h3 class="sub-section-title">Measurement</h3>
+              <p>The process of measurement in quantum mechanics is fundamentally different from classical physics. When we measure a quantum system, the wavefunction "collapses" from a superposition to a definite state. This collapse is probabilistic, with probabilities determined by the squared magnitudes of the wavefunction amplitudes.</p>
+              
+              <div class="equation-box">
+                <div>
+                  <span class="katex-display" id="probability-equation">P(x) = |\Psi(x)|^2</span>
+                </div>
+                <div class="equation-number">(6)</div>
+              </div>
+
+              <p>Where \(P(x)\) is the probability of finding the particle at position \(x\), and \(\Psi(x)\) is the wavefunction at that position. This probabilistic nature of quantum mechanics contrasts sharply with the deterministic nature of classical physics.</p>
+            </div>
+          </section>
+
+          <section id="key-experiments">
+            <h2 class="section-title"><i class="fas fa-flask"></i> Key Experiments</h2>
+            <p>Several pivotal experiments have shaped our understanding of quantum mechanics and verified its predictions:</p>
+            
+            <ul>
+              <li><strong>Double-slit experiment:</strong> Demonstrates wave-particle duality by showing particles creating interference patterns.</li>
+              <li><strong>Stern-Gerlach experiment:</strong> Revealed the quantization of angular momentum and spin through the splitting of a beam of silver atoms in a non-uniform magnetic field.</li>
+              <li><strong>Davisson-Germer experiment:</strong> Confirmed de Broglie's hypothesis by demonstrating electron diffraction, proving electrons have wave-like properties.</li>
+              <li><strong>Bell test experiments:</strong> Verified quantum entanglement and non-locality, showing violations of Bell's inequalities and confirming that quantum mechanics cannot be explained by local hidden variables.</li>
+            </ul>
+            
+            <div class="figure-container">
+              <img src="../../img/double_slit.jpg" alt="Double-slit experiment illustration" class="figure-image">
+              <div class="figure-caption">Figure 2: The double-slit experiment shows particles creating an interference pattern, demonstrating wave-like behavior.</div>
+            </div>
+          </section>
+
+          <section id="thought-experiments">
+            <h2 class="section-title"><i class="fas fa-brain"></i> Thought Experiments</h2>
+            <p>Quantum mechanics has inspired several famous thought experiments that highlight its counterintuitive nature:</p>
+            
+            <ul>
+              <li><strong>Schrödinger's cat:</strong> Erwin Schrödinger proposed a scenario where a cat in a sealed box could be both alive and dead simultaneously, illustrating the paradoxical nature of quantum superposition when extended to macroscopic objects.</li>
+              <li><strong>EPR paradox:</strong> Einstein, Podolsky, and Rosen questioned whether quantum mechanics could be considered a complete theory, given the "spooky action at a distance" implied by entanglement.</li>
+              <li><strong>Quantum eraser:</strong> Demonstrates how quantum information can be "erased" to restore interference patterns, even after which-path information has been recorded.</li>
+            </ul>
+            
+            <div class="note-box">
+              <div class="note-box-title"><i class="fas fa-lightbulb"></i> Insight</div>
+              <p>These thought experiments highlight deeper philosophical questions about reality, measurement, and the nature of observation in quantum mechanics. They've played a crucial role in developing different interpretations of quantum mechanics, from Copenhagen to Many-Worlds.</p>
+            </div>
+          </section>
+
+          <section id="quiz">
+            <h2 class="section-title"><i class="fas fa-question-circle"></i> Test Your Understanding</h2>
+            <div class="quiz-container">
+              <div class="quiz-title"><i class="fas fa-edit"></i> Quick Quiz</div>
+              
+              <div class="quiz-question">1. Which scientist first proposed that energy is quantized?</div>
+              <ul class="quiz-options">
+                <li>Albert Einstein</li>
+                <li>Niels Bohr</li>
+                <li>Max Planck</li>
+                <li>Werner Heisenberg</li>
+              </ul>
+              
+              <div class="quiz-question">2. The uncertainty principle states that:</div>
+              <ul class="quiz-options">
+                <li>It's impossible to make accurate measurements at quantum scales</li>
+                <li>Certain pairs of physical properties cannot both be precisely determined simultaneously</li>
+                <li>Quantum particles are constantly changing their properties</li>
+                <li>The act of measurement always disturbs quantum systems</li>
+              </ul>
+              
+              <div class="quiz-question">3. What does the wave function in quantum mechanics represent?</div>
+              <ul class="quiz-options">
+                <li>The exact position of a particle</li>
+                <li>The energy of a quantum system</li>
+                <li>The mathematical description of a quantum state</li>
+                <li>The path a particle takes through space</li>
+              </ul>
+              
+              <button class="btn btn-quantum" id="checkAnswers">
+                <i class="fas fa-check-circle"></i> Check Answers
+              </button>
+            </div>
+          </section>
+
+          <section id="references">
+            <h2 class="section-title"><i class="fas fa-book"></i> References & Further Reading</h2>
+            <ul class="reference-list">
+              <li>Griffiths, D. J. (2017). Introduction to Quantum Mechanics. Cambridge University Press.</li>
+              <li>Feynman, R. P. (1965). The Feynman Lectures on Physics, Vol. III: Quantum Mechanics. Addison-Wesley.</li>
+              <li>McIntyre, D. H. (2012). Quantum Mechanics: A Paradigms Approach. Pearson.</li>
+              <li>Susskind, L., & Friedman, A. (2014). Quantum Mechanics: The Theoretical Minimum. Basic Books.</li>
+              <li>Al-Khalili, J. (2003). Quantum: A Guide for the Perplexed. Weidenfeld & Nicolson.</li>
+            </ul>
+          </section>
+
+          <!-- Progress Tracking -->
+          <div class="progress-container">
+            <div class="progress-title">
+              <i class="fas fa-chart-line"></i> Your Progress
+            </div>
+            <div class="progress-track">
+              <div class="progress-content" style="flex-grow: 1;">
+                <div class="progress-label">Introduction to Quantum Mechanics</div>
+                <div class="progress">
+                  <div class="progress-bar" style="width: 100%"></div>
+                </div>
+              </div>
+              <div class="progress-percentage">100%</div>
+            </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div class="navigation-buttons">
+            <a href="../quantum.html" class="nav-previous">
+              <i class="fas fa-arrow-circle-left"></i> Back to Notes Hub
+            </a>
+            <a href="1.mathematical_foundations.html" class="nav-next">
+              Next: Mathematical Foundations <i class="fas fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© <script>document.write(new Date().getFullYear())</script> Quantum Notes</p>
+    <div class="social-links">
+      <a href="#https://github.com/LucasHRhode" class="social-link"><i class="fab fa-github"></i></a>
+      <a href="#https://www.linkedin.com/in/lucasrhode/" class="social-link"><i class="fab fa-linkedin"></i></a>
+      <a href="#https://www.instagram.com/bubble_tea_theory" class="social-link"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  
+  <script>
+    // Particles.js initialization
+    particlesJS("particles-js", {
+      particles: {
+        number: { 
+          value: 80, 
+          density: { enable: true, value_area: 800 } 
+        },
+        color: { value: ["#8e2de2", "#4a00e0", "#00e5ff", "#ffcc00"] },
+        shape: { 
+          type: "circle",
+          stroke: { width: 0, color: "#000000" }
+        },
+        opacity: { 
+          value: 0.5, 
+          random: true,
+          anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+        },
+        size: { 
+          value: 3, 
+          random: true,
+          anim: { enable: true, speed: 2, size_min: 0.1, sync: false }
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#8e2de2",
+          opacity: 0.4,
+          width: 1
+        },
+        move: { 
+          enable: true, 
+          speed: 1,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "out",
+          bounce: false,
+          attract: { enable: false, rotateX: 600, rotateY: 1200 }
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: { 
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" },
+          resize: true
+        },
+        modes: {
+          grab: { distance: 140, line_linked: { opacity: 1 } },
+          bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+          repulse: { distance: 200, duration: 0.4 },
+          push: { particles_nb: 4 },
+          remove: { particles_nb: 2 }
+        }
+      },
+      retina_detect: true
+    });
+
+    // Render LaTeX equations
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false},
+          {left: "\\(", right: "\\)", display: false},
+          {left: "\\[", right: "\\]", display: true}
+        ],
+        throwOnError: false
+      });
+    });
+
+    // Quiz functionality
+    document.getElementById('checkAnswers').addEventListener('click', function() {
+      // Correct answers (indices start from 0)
+      const correctAnswers = [2, 1, 2]; // Max Planck, pairs of properties, mathematical description
+      
+      // Get all quiz questions
+      const quizQuestions = document.querySelectorAll('.quiz-question');
+      
+      // Check each question
+      quizQuestions.forEach((question, questionIndex) => {
+        const options = question.nextElementSibling.querySelectorAll('li');
+        
+        // Reset all options styling
+        options.forEach(option => {
+          option.style.backgroundColor = '';
+          option.style.color = '';
+          option.style.borderColor = '';
+        });
+        
+        // Highlight correct answer
+        options[correctAnswers[questionIndex]].style.backgroundColor = 'rgba(76, 175, 80, 0.2)';
+        options[correctAnswers[questionIndex]].style.color = '#4caf50';
+        options[correctAnswers[questionIndex]].style.borderColor = '#4caf50';
+      });
+    });
+
+    // Smooth scrolling for TOC links
+    document.querySelectorAll('.toc-list a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        window.scrollTo({
+          top: targetElement.offsetTop - 20,
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>

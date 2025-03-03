@@ -18,245 +18,1614 @@
   <!-- Font Awesome -->
   <link
     rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
   />
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
   <!-- Google Fonts -->
   <link
-    href="https://fonts.googleapis.com/css?family=Raleway|Rubik:400,900|Nunito&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&family=Roboto+Mono:wght@300;400;500;700&family=Quicksand:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
   />
 
-  <!-- Your main app.css -->
-  <!-- Adjust the path if `ese118.html` is inside a "notes" folder, 
-       or move it accordingly. Example: "../app.css" -->
-  <link rel="stylesheet" href="../app.css" />
+  <style>
+    :root {
+      --primary-color: #ffd000;
+      --primary-dark: #e6b800;
+      --primary-light: #fff176;
+      --primary-glow: rgba(255, 208, 0, 0.5);
+      --secondary-color: #4fc3f7;
+      --secondary-dark: #0288d1;
+      --secondary-light: #81d4fa;
+      --secondary-glow: rgba(79, 195, 247, 0.5);
+      --accent-color: #ff6e40;
+      --accent-glow: rgba(255, 110, 64, 0.5);
+      --metallic: #cfd8dc;
+      --metallic-dark: #90a4ae;
+      --metallic-light: #eceff1;
+      --dark-bg: #1a1f36;
+      --darker-bg: #386483;
+      --card-bg: rgba(26, 31, 54, 0.8);
+      --text-light: #ffffff;
+      --text-muted: #b0bec5;
+      --circuit-lines: #37474f;
+      --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
 
-</head>
-<body style="background-color: #212322;">
-  <!-- NavBar (similar style to ssp205.html) -->
-  <nav class="navbar navbar-expand-md navbar-dark bg-yellow-gradient">
-    <a class="navbar-brand" href="../index.html">
-      <!-- Adjust the path to your main site if needed -->
-      <img
-        src="../img/stonybrooklogo.png"
-        alt="Logo"
-        style="width: 250px; height: auto;"
-      />
-    </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <!-- Link back to main site or other pages if you like -->
-        <li class="nav-item">
-          <a class="nav-link" href="../index.html">Back to Main Site</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Title Section with Background Image -->
-  <div
-    class="title-container text-center"
-    style="
+    body {
+      background-color: var(--darker-bg);
+      color: var(--text-light);
+      font-family: 'Quicksand', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
       position: relative;
-      /* Replace this image with a relevant ESE118 or generic circuit background image */
-      background: url('../img/ese118_banner.jpeg') center center / cover no-repeat;
-      height: 400px;
+    }
+
+    /* Circuit Board Background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(to right, rgba(20, 26, 49, 0.97), rgba(20, 26, 49, 0.97)),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg stroke='%2337474f' stroke-width='0.8'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      z-index: -1;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* Logic Gate nodes */
+    .logic-node {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      box-shadow: 0 0 15px var(--primary-glow);
+      z-index: 1;
+    }
+
+    .logic-node.blue {
+      background: var(--secondary-color);
+      box-shadow: 0 0 15px var(--secondary-glow);
+    }
+
+    .logic-node.orange {
+      background: var(--accent-color);
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    /* Logic Gate connector lines */
+    .logic-line {
+      position: absolute;
+      height: 2px;
+      background: var(--primary-color);
+      transform-origin: left;
+      z-index: 0;
+    }
+
+    .logic-line.blue {
+      background: var(--secondary-color);
+    }
+
+    .logic-line.orange {
+      background: var(--accent-color);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--darker-bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      background: linear-gradient(to right, var(--darker-bg), var(--dark-bg));
+      padding: 12px 0;
+      transition: var(--transition);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      border-bottom: 1px solid var(--primary-color);
+      position: relative;
+      z-index: 100;
+    }
+    
+    .navbar:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color), var(--accent-color));
+    }
+
+    .navbar-brand img {
+      transition: var(--transition);
+    }
+
+    .navbar-brand img:hover {
+      filter: brightness(1.1);
+      transform: scale(1.02);
+    }
+
+    .nav-link {
+      color: var(--text-light) !important;
+      font-weight: 500;
+      margin: 0 10px;
+      position: relative;
+      transition: var(--transition);
+      font-family: 'Share Tech Mono', monospace;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-link:before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover:before {
+      width: 100%;
+    }
+
+    /* Back to site button */
+    .back-to-site {
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text-light);
+      border: 2px solid var(--primary-color);
+      padding: 6px 12px;
+      border-radius: 4px;
+      background-color: rgba(26, 31, 54, 0.6);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    .back-to-site:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 208, 0, 0.3), transparent);
+      transition: 0.5s;
+    }
+
+    .back-to-site:hover:before {
+      left: 100%;
+    }
+
+    .back-to-site:hover {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 15px var(--primary-glow);
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    /* Hero Section */
+    .title-container {
+      position: relative;
+      height: 450px;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgb(170, 211, 240);
-      text-shadow: 4px 4px 16px rgba(0, 162, 255, 0.7);
-    "
-  >
+      border-bottom: 3px solid var(--primary-color);
+    }
+
+    .bg-circuit-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--darker-bg);
+      background-image: 
+        linear-gradient(rgba(20, 26, 49, 0.7), rgba(20, 26, 49, 0.7)), 
+        url('../img/ese118_banner.jpeg');
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.2) contrast(1.1);
+      z-index: 1;
+    }
+
+    .circuit-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(to right, rgba(79, 195, 247, 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(79, 195, 247, 0.1) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.5;
+      z-index: 2;
+    }
+
+    .title-content {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .course-number {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 8rem;
+      margin: 0;
+      background: linear-gradient(to right, var(--primary-color), var(--primary-light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+      position: relative;
+      display: inline-block;
+      text-shadow: 0 0 30px var(--primary-glow);
+    }
+
+    .course-title {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 400;
+      font-size: 2.5rem;
+      margin-top: 1rem;
+      color: var(--secondary-light);
+      position: relative;
+      text-shadow: 0 0 15px var(--secondary-glow);
+    }
+    
+    .course-title:after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    }
+
+    .course-subtitle {
+      font-family: 'Share Tech Mono', monospace;
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      color: var(--text-light);
+      opacity: 0.9;
+    }
+
+    /* Moving pulse effect */
+    .pulse-dot {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      z-index: 3;
+      animation: pulseFade 3s linear infinite;
+    }
+
+    .pulse-dot.blue {
+      background: var(--secondary-color);
+      animation-delay: 1s;
+    }
+
+    .pulse-dot.orange {
+      background: var(--accent-color);
+      animation-delay: 2s;
+    }
+
+    @keyframes pulseFade {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(3);
+        opacity: 0;
+      }
+    }
+
+    /* Content Section Styling */
+    .content-section {
+      padding: 3rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logic-container {
+      position: relative;
+      margin-bottom: 2.5rem;
+      padding: 0 1rem;
+    }
+
+    .logic-border {
+      position: relative;
+      padding: 1.5rem;
+      border-radius: 10px;
+      background-color: var(--card-bg);
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(79, 195, 247, 0.2);
+    }
+
+    .logic-border:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      border-color: rgba(79, 195, 247, 0.4);
+    }
+
+    .logic-border::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+    }
+
+    .section-heading {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+      position: relative;
+      display: inline-block;
+      margin-top: 0;
+      text-shadow: 0 0 10px rgba(255, 208, 0, 0.3);
+    }
+
+    .section-heading::before {
+      content: '';
+      position: absolute;
+      left: -15px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 25px;
+      background: var(--primary-color);
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    /* Resource items styling */
+    .resource-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .resource-item {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: rgba(26, 31, 54, 0.6);
+      border-radius: 8px;
+      border-left: 3px solid var(--primary-color);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .resource-item:hover {
+      background: rgba(26, 31, 54, 0.8);
+      transform: translateX(10px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .resource-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+    }
+
+    .resource-item i {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      margin-right: 1rem;
+      transition: var(--transition);
+    }
+
+    .resource-item:hover i {
+      transform: scale(1.2);
+      color: var(--primary-light);
+    }
+
+    .resource-link {
+      color: var(--text-light);
+      font-family: 'Share Tech Mono', monospace;
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .resource-link:hover {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .resource-badge {
+      margin-left: auto;
+      padding: 4px 8px;
+      background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
+      color: var(--darker-bg);
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      font-family: 'Share Tech Mono', monospace;
+      box-shadow: 0 0 8px rgba(255, 208, 0, 0.3);
+    }
+
+    /* Syllabus Styling */
+    .syllabus-content {
+      padding: 1.5rem;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    .syllabus-content strong {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .syllabus-section {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px dashed rgba(79, 195, 247, 0.3);
+    }
+
+    .syllabus-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .syllabus-link {
+      color: var(--secondary-color);
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .syllabus-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: var(--secondary-color);
+      transition: var(--transition);
+    }
+
+    .syllabus-link:hover {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .syllabus-link:hover::after {
+      width: 100%;
+    }
+
+    /* Logic gate animation */
+    .logic-gate {
+      position: relative;
+      width: 100px;
+      height: 50px;
+      margin: 1.5rem 0;
+      display: inline-block;
+    }
+
+    .gate-and {
+      position: absolute;
+      width: 60px;
+      height: 40px;
+      border: 2px solid var(--primary-color);
+      border-right: none;
+      border-radius: 20px 0 0 20px;
+      left: 10px;
+      top: 5px;
+    }
+
+    .gate-and::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 20px solid var(--primary-color);
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      right: -20px;
+      top: -1px;
+    }
+
+    /* Footer Styling */
+    footer {
+      background: linear-gradient(to right, var(--darker-bg), var(--dark-bg));
+      padding: 2.5rem 0;
+      position: relative;
+      text-align: center;
+      border-top: 1px solid var(--primary-color);
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+    }
+
+    .footer-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+
+    .footer-link {
+      color: var(--text-light);
+      margin: 0 15px;
+      text-decoration: none;
+      transition: var(--transition);
+      font-family: 'Share Tech Mono', monospace;
+      position: relative;
+    }
+
+    .footer-link:hover {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .footer-link i {
+      margin-right: 5px;
+    }
+
+    /* Tab system for content */
+    .tabs-container {
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .tabs-nav {
+      display: flex;
+      border-bottom: 1px solid rgba(79, 195, 247, 0.3);
+      overflow-x: auto;
+      scrollbar-width: none; /* Firefox */
+    }
+
+    .tabs-nav::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Edge */
+    }
+
+    .tab-btn {
+      padding: 0.8rem 1.5rem;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: 'Share Tech Mono', monospace;
+      white-space: nowrap;
+      position: relative;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .tab-btn:focus {
+      outline: none;
+    }
+
+    .tab-btn.active {
+      color: var(--primary-color);
+    }
+
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      transition: var(--transition);
+    }
+
+    .tab-btn.active::after {
+      width: 100%;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 1.5rem 0;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Logic Gate Widget */
+    .logic-gate-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .gate-widget {
+      width: 150px;
+      height: 100px;
+      border: 2px solid var(--primary-color);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      background: rgba(26, 31, 54, }, 0.7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gate-widget::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(79, 195, 247, 0.3) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gate-widget:hover::after {
+      opacity: 1;
+    }
+
+    .gate-widget:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      border-color: var(--secondary-color);
+    }
+
+    .gate-symbol {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .gate-name {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    /* Truth table styling */
+    .truth-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    .truth-table th, 
+    .truth-table td {
+      padding: 0.75rem;
+      text-align: center;
+      border: 1px solid rgba(79, 195, 247, 0.2);
+    }
+
+    .truth-table th {
+      background: rgba(79, 195, 247, 0.1);
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .truth-table tbody tr {
+      transition: var(--transition);
+    }
+
+    .truth-table tbody tr:hover {
+      background: rgba(79, 195, 247, 0.1);
+    }
+
+    .truth-table td:last-child {
+      color: var(--secondary-color);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .course-number {
+        font-size: 5rem;
+      }
+      
+      .course-title {
+        font-size: 1.8rem;
+      }
+      
+      .section-heading {
+        font-size: 1.8rem;
+      }
+
+      .logic-gate-container {
+        gap: 1rem;
+      }
+
+      .gate-widget {
+        width: 120px;
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NavBar with Tech Style -->
+  <nav class="navbar navbar-expand-md navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <img
+          src="../img/stonybrooklogo.png"
+          alt="Logo"
+          style="width: 220px; height: auto;"
+        />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="back-to-site" href="../index.html">
+              <i class="fas fa-chevron-left mr-2"></i> Back to Main Site
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section with Circuit Style -->
+  <div class="title-container">
+    <div class="bg-circuit-pattern"></div>
+    <div class="circuit-grid"></div>
+    
+    <!-- Pulse effects -->
+    <div class="pulse-dot" style="top: 20%; left: 30%;"></div>
+    <div class="pulse-dot blue" style="top: 70%; left: 70%;"></div>
+    <div class="pulse-dot orange" style="top: 40%; left: 80%;"></div>
+    
     <div class="title-content">
-      <h1
-        style="
-          font-size: 8rem;
-          font-family: 'Nunito', sans-serif;
-          font-weight: bold;
-          color: rgb(255, 225, 0);
-          text-shadow: 4px 4px 20px rgba(255, 162, 0, 0.894);
-          margin: 0;
-        "
-      >
-        ESE118
-      </h1>
-      <h2
-        style="
-          font-size: 3rem;
-          font-family: 'Nunito', sans-serif;
-          font-weight: 400;
-          margin-top: 10px;
-          text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
-        "
-      >
-        Digital Logic Design - Spring 2025
-      </h2>
+      <h1 class="course-number">ESE118</h1>
+      <h2 class="course-title">Digital Logic Design</h2>
+      <p class="course-subtitle">Spring 2025 | Boolean Algebra | Logic Circuits</p>
     </div>
   </div>
 
-  <!-- My Notes Section -->
-  <div class="container" style="padding-bottom: 3rem; padding-top: 2rem;">
-    <h2 class="heading" style="color: white;">Lecture Notes</h2>
-    <hr style="border-color: #444;" />
-    <ul style="list-style-type: none; padding-left: 0;">
-      <li style="margin: 0.5rem 0;">
-        <a
-          href="files/lecture1.pdf"
-          style="color: #ff9900; font-size: 1.1rem; text-decoration: none;"
-          target="_blank"
-        >
-          TBA
-        </a>
-      </li>
-      <li style="margin: 0.5rem 0;">
-        <a
-          href="files/lecture2.pdf"
-          style="color: #ff9900; font-size: 1.1rem; text-decoration: none;"
-          target="_blank"
-        >
-          TBA 2
-        </a>
-      </li>
-      <!-- Add more lectures as needed -->
-    </ul>
-  </div>
-
-  <!-- Homework Assignments Section -->
-  <div class="container" style="padding-bottom: 3rem;">
-    <h2 class="heading" style="color: white;">Homework Assignments</h2>
-    <hr style="border-color: #444;" />
-    <ul style="list-style-type: none; padding-left: 0;">
-      <!-- Replace with your actual homework PDFs -->
-      <li style="margin: 0.5rem 0;">
-        <a
-          href="../notes_files/ESE118_HW1.pdf"
-          style="color: #ff9900; font-size: 1.1rem; text-decoration: none;"
-          target="_blank"
-        >
-          Homework 1 (PDF)
-        </a>
-      </li>
-      <!-- etc. -->
-    </ul>
-  </div>
-
-  <!-- Lab Reports Section -->
-  <div class="container" style="padding-bottom: 3rem;">
-    <h2 class="heading" style="color: white;">Lab Reports</h2>
-    <hr style="border-color: #444;" />
-    <ul style="list-style-type: none; padding-left: 0;">
-      <!-- Replace with your actual lab PDFs -->
-      <li style="margin: 0.5rem 0;">
-        <a
-          href="../notes_files/ESE118_Lab1.pdf"
-          style="color: #ff9900; font-size: 1.1rem; text-decoration: none;"
-          target="_blank"
-        >
-          Lab 1 Report: Simulation (PDF)
-        </a>
-      </li>
-      <!-- etc. -->
-    </ul>
-  </div>
-
-  
-
-  <!-- Syllabus Section -->
-  <div class="container" style="padding-bottom: 3rem;">
-    <h2 class="heading" style="color: white;">Syllabus</h2>
-    <hr style="border-color: #444;" />
-    <!-- Syllabus text here -->
-    <div style="color: #ddd;">
-      <p>
-        <strong>Instructor:</strong> 
-        Peter Milder (he/him) 
-      <br>
-        Office Hours: Tuesday 2:30pm–4:30pm, Thursday 10:00am–12:00pm, Light Engineering 231
-      </p>
-      <p>
-        <strong>Course Description:</strong><br>
-        Develops methods of analysis and design of both combinational and sequential systems regarding 
-        digital circuits as functional blocks. Utilizes demonstrations and laboratory projects consisting 
-        of building hardware on breadboards and simulation of design using CAD tools. Topics include: number 
-        systems and codes; switching algebra and switching functions; standard combinational modules and arithmetic 
-        circuits; realization of switching functions; latches and flip-flops; standard sequential modules; memory, 
-        combinational, and sequential PLDs and their applications; design of system controllers. May not be taken 
-        for credit in addition to EEO 218/219.
-      </p>
-      <p>
-        <strong>Textbook:</strong><br>
-        "Digital Design," M. Morris Mano and Michael D. Ciletti (5th or 6th Edition).<br>
-        <a 
-          href="https://3rd.fcis2023.me/material/Books/DD.pdf" 
-          target="_blank" 
-          style="color: #ff9900; text-decoration: none;"
-        >
-          View/Download Textbook (PDF)
-        </a>
-      </p>
-      <p>
-        <strong>Grading:</strong><br>
-        Labs 25%<br>
-        Homework 20%<br>
-        Midterm #1 15% (3/13)<br>
-        Midterm #2 15% (4/24)<br>
-        Final Exam 25% (5/15)
-      </p>
-      <!-- Continue adding the full text of your syllabus here -->
+  <!-- Main Content Section -->
+  <div class="content-section">
+    <div class="container">
+      <!-- Tabs Navigation -->
+      <div class="tabs-container">
+        <div class="tabs-nav">
+          <button class="tab-btn active" data-tab="course-materials">Course Materials</button>
+          <button class="tab-btn" data-tab="syllabus">Syllabus</button>
+          <button class="tab-btn" data-tab="logic-gates">Logic Gates</button>
+          <button class="tab-btn" data-tab="truth-tables">Truth Tables</button>
+        </div>
+        
+        <!-- Course Materials Tab -->
+        <div id="course-materials" class="tab-content active">
+          <!-- Lecture Notes Section -->
+          <div class="logic-container">
+            <div class="logic-border">
+              <h2 class="section-heading">
+                <i class="fas fa-file-alt mr-2"></i> Lecture Notes
+              </h2>
+              
+              <ul class="resource-list">
+                <li class="resource-item">
+                  <a href="files/lecture1.pdf" target="_blank" class="resource-link">
+                    <i class="fas fa-file-pdf"></i>
+                    Lecture 1: Introduction to Digital Logic
+                    <span class="resource-badge">PDF</span>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="files/lecture2.pdf" target="_blank" class="resource-link">
+                    <i class="fas fa-file-pdf"></i>
+                    Lecture 2: Boolean Algebra and Logic Gates
+                    <span class="resource-badge">PDF</span>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="#" class="resource-link">
+                    <i class="fas fa-file-pdf"></i>
+                    Lecture 3: Combinational Logic Circuits
+                    <span class="resource-badge">Coming Soon</span>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="#" class="resource-link">
+                    <i class="fas fa-file-pdf"></i>
+                    Lecture 4: Sequential Logic
+                    <span class="resource-badge">Coming Soon</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Homework Assignments Section -->
+          <div class="logic-container">
+            <div class="logic-border">
+              <h2 class="section-heading">
+                <i class="fas fa-tasks mr-2"></i> Homework Assignments
+              </h2>
+              
+              <ul class="resource-list">
+                <li class="resource-item">
+                  <a href="../notes_files/ESE118_HW1.pdf" target="_blank" class="resource-link">
+                    <i class="fas fa-file-alt"></i>
+                    Homework 1: Number Systems and Boolean Algebra
+                    <span class="resource-badge">PDF</span>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="#" class="resource-link">
+                    <i class="fas fa-file-alt"></i>
+                    Homework 2: Logic Gates and Combinational Circuits
+                    <span class="resource-badge">Due Mar 15</span>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="#" class="resource-link">
+                    <i class="fas fa-file-alt"></i>
+                    Homework 3: Karnaugh Maps and Circuit Minimization
+                    <span class="resource-badge">Coming Soon</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Lab Reports Section -->
+          <div class="logic-container">
+            <div class="logic-border">
+              <h2 class="section-heading">
+                <i class="fas fa-microscope mr-2"></i> Lab Reports
+              </h2>
+              
+              <ul class="resource-list">
+                <li class="resource-item">
+                  <a href="../notes_files/ESE118_Lab1.pdf" target="_blank" class="resource-link">
+                    <i class="fas fa-flask"></i>
+                    Lab 1: Circuit Simulation with Logisim
+                    <span class="resource-badge">PDF</span>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="#" class="resource-link">
+                    <i class="fas fa-flask"></i>
+                    Lab 2: Building Basic Logic Gates
+                    <span class="resource-badge">Due Mar 20</span>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="#" class="resource-link">
+                    <i class="fas fa-flask"></i>
+                    Lab 3: Combinational Circuit Design
+                    <span class="resource-badge">Coming Soon</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Resources Section -->
+          <div class="logic-container">
+            <div class="logic-border">
+              <h2 class="section-heading">
+                <i class="fas fa-link mr-2"></i> Additional Resources
+              </h2>
+              
+              <ul class="resource-list">
+                <li class="resource-item">
+                  <a href="https://www.logisim.org/" target="_blank" class="resource-link">
+                    <i class="fas fa-desktop"></i>
+                    Logisim - Logic Circuit Simulator
+                    <span class="resource-badge">Tool</span>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="https://circuitverse.org/" target="_blank" class="resource-link">
+                    <i class="fas fa-project-diagram"></i>
+                    CircuitVerse - Online Circuit Simulator
+                    <span class="resource-badge">Tool</span>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="https://www.nand2tetris.org/" target="_blank" class="resource-link">
+                    <i class="fas fa-book"></i>
+                    Nand2Tetris - From Nand to Tetris Course
+                    <span class="resource-badge">Course</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Syllabus Tab -->
+        <div id="syllabus" class="tab-content">
+          <div class="logic-container">
+            <div class="logic-border">
+              <h2 class="section-heading">
+                <i class="fas fa-clipboard-list mr-2"></i> Course Syllabus
+              </h2>
+              
+              <div class="syllabus-content">
+                <div class="syllabus-section">
+                  <p>
+                    <strong>Instructor:</strong> 
+                    Peter Milder (he/him) 
+                  <br>
+                    Office Hours: Tuesday 2:30pm–4:30pm, Thursday 10:00am–12:00pm, Light Engineering 231
+                  </p>
+                </div>
+                
+                <div class="syllabus-section">
+                  <p>
+                    <strong>Course Description:</strong><br>
+                    Develops methods of analysis and design of both combinational and sequential systems regarding 
+                    digital circuits as functional blocks. Utilizes demonstrations and laboratory projects consisting 
+                    of building hardware on breadboards and simulation of design using CAD tools. Topics include: number 
+                    systems and codes; switching algebra and switching functions; standard combinational modules and arithmetic 
+                    circuits; realization of switching functions; latches and flip-flops; standard sequential modules; memory, 
+                    combinational, and sequential PLDs and their applications; design of system controllers. May not be taken 
+                    for credit in addition to EEO 218/219.
+                  </p>
+                </div>
+                
+                <div class="syllabus-section">
+                  <p>
+                    <strong>Textbook:</strong><br>
+                    "Digital Design," M. Morris Mano and Michael D. Ciletti (5th or 6th Edition).<br>
+                    <a 
+                      href="https://3rd.fcis2023.me/material/Books/DD.pdf" 
+                      target="_blank" 
+                      class="syllabus-link"
+                    >
+                      <i class="fas fa-download mr-1"></i> View/Download Textbook (PDF)
+                    </a>
+                  </p>
+                </div>
+                
+                <div class="syllabus-section">
+                  <p>
+                    <strong>Grading:</strong>
+                  </p>
+                  <ul style="list-style-type: none; padding-left: 0;">
+                    <li>• Labs: 25%</li>
+                    <li>• Homework: 20%</li>
+                    <li>• Midterm #1: 15% (3/13)</li>
+                    <li>• Midterm #2: 15% (4/24)</li>
+                    <li>• Final Exam: 25% (5/15)</li>
+                  </ul>
+                </div>
+                
+                <div class="syllabus-section">
+                  <p>
+                    <strong>Course Objectives:</strong>
+                  </p>
+                  <ol style="padding-left: 1.5rem;">
+                    <li>Understand and apply Boolean algebra and switching theory to digital circuits</li>
+                    <li>Design and analyze combinational logic circuits</li>
+                    <li>Design and analyze sequential logic circuits</li>
+                    <li>Use CAD tools to simulate and analyze digital circuits</li>
+                    <li>Design digital systems using programmable logic devices</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Logic Gates Tab -->
+        <div id="logic-gates" class="tab-content">
+          <div class="logic-container">
+            <div class="logic-border">
+              <h2 class="section-heading">
+                <i class="fas fa-microchip mr-2"></i> Logic Gates
+              </h2>
+              
+              <p>These are the basic building blocks of digital circuits. Click on a gate to see its truth table and description.</p>
+              
+              <div class="logic-gate-container">
+                <div class="gate-widget" data-gate="and">
+                  <div class="gate-symbol">&amp;</div>
+                  <div class="gate-name">AND Gate</div>
+                </div>
+                
+                <div class="gate-widget" data-gate="or">
+                  <div class="gate-symbol">≥1</div>
+                  <div class="gate-name">OR Gate</div>
+                </div>
+                
+                <div class="gate-widget" data-gate="not">
+                  <div class="gate-symbol">1</div>
+                  <div class="gate-name">NOT Gate</div>
+                </div>
+                
+                <div class="gate-widget" data-gate="nand">
+                  <div class="gate-symbol">&amp;</div>
+                  <div class="gate-name">NAND Gate</div>
+                </div>
+                
+                <div class="gate-widget" data-gate="nor">
+                  <div class="gate-symbol">≥1</div>
+                  <div class="gate-name">NOR Gate</div>
+                </div>
+                
+                <div class="gate-widget" data-gate="xor">
+                  <div class="gate-symbol">⊕</div>
+                  <div class="gate-name">XOR Gate</div>
+                </div>
+              </div>
+              
+              <div id="gate-details" style="background: rgba(26, 31, 54, 0.5); padding: 1.5rem; border-radius: 8px; margin-top: 2rem; display: none;">
+                <h3 id="gate-detail-title" style="font-family: 'Orbitron', sans-serif; color: var(--primary-color); margin-bottom: 1rem;"></h3>
+                <p id="gate-detail-desc" style="margin-bottom: 1.5rem;"></p>
+                <div id="gate-truth-table"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Truth Tables Tab -->
+        <div id="truth-tables" class="tab-content">
+          <div class="logic-container">
+            <div class="logic-border">
+              <h2 class="section-heading">
+                <i class="fas fa-table mr-2"></i> Truth Tables
+              </h2>
+              
+              <p>Truth tables show all possible combinations of input values and their corresponding output values for logic functions.</p>
+              
+              <div class="tabs-container" style="margin-top: 1.5rem;">
+                <div class="tabs-nav">
+                  <button class="tab-btn active" data-gate-table="basic">Basic Gates</button>
+                  <button class="tab-btn" data-gate-table="combined">Combined Logic</button>
+                  <button class="tab-btn" data-gate-table="sequential">Sequential Logic</button>
+                </div>
+                
+                <div id="basic" class="gate-table-content active" style="margin-top: 1.5rem;">
+                  <table class="truth-table">
+                    <thead>
+                      <tr>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>AND</th>
+                        <th>OR</th>
+                        <th>NOT A</th>
+                        <th>NAND</th>
+                        <th>NOR</th>
+                        <th>XOR</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div id="combined" class="gate-table-content" style="display: none; margin-top: 1.5rem;">
+                  <h4 style="font-family: 'Orbitron', sans-serif; color: var(--primary-color); margin-bottom: 1rem;">Example: Full Adder</h4>
+                  <table class="truth-table">
+                    <thead>
+                      <tr>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>Cin</th>
+                        <th>Sum</th>
+                        <th>Cout</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div id="sequential" class="gate-table-content" style="display: none; margin-top: 1.5rem;">
+                  <h4 style="font-family: 'Orbitron', sans-serif; color: var(--primary-color); margin-bottom: 1rem;">Example: JK Flip-Flop</h4>
+                  <table class="truth-table">
+                    <thead>
+                      <tr>
+                        <th>J</th>
+                        <th>K</th>
+                        <th>Q(t)</th>
+                        <th>Q(t+1)</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>No Change</td>
+                      </tr>
+                      <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>No Change</td>
+                      </tr>
+                      <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>Reset</td>
+                      </tr>
+                      <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>Reset</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>Set</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Set</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>Toggle</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>Toggle</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+  <!-- Circuit Animation Elements -->
+  <div id="circuit-elements"></div>
 
   <!-- Footer -->
-  <footer
-    class="text-center"
-    style="padding: 2rem 0; color: white; font-family: 'Nunito', sans-serif;"
-  >
-    <p>
-      <small>
-        © <script>document.write(new Date().getFullYear())</script> 
-        <a 
-          href="mailto:lucas.rhode@stonybrook.edu"
-          style="text-decoration: none; color: #fff;"
-          >Lucas Rhode</a>
-        |
-        <a
-          href="../index.html"
-          style="text-decoration: none; color: #fff;"
-          >Back to Main Site</a>
-      </small>
-    </p>
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary-color);">
+          ESE118 - Digital Logic Design
+        </div>
+        
+        <p style="color: var(--text-muted);">Spring 2025 | Stony Brook University</p>
+        
+        <div class="footer-links">
+          <a href="mailto:lucas.rhode@stonybrook.edu" class="footer-link">
+            <i class="fas fa-envelope"></i> Contact
+          </a>
+          <a href="https://github.com/LucasHRhode" class="footer-link">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="../index.html" class="footer-link">
+            <i class="fas fa-home"></i> Main Site
+          </a>
+        </div>
+        
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">
+          <span style="font-family: 'Share Tech Mono', monospace;">&copy; <script>document.write(new Date().getFullYear())</script> Lucas Rhode | All Rights Reserved</span>
+        </p>
+      </div>
+    </div>
   </footer>
 
   <!-- JS Scripts -->
-  <script
-    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"
-  ></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Tab navigation functionality
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Handle main tabs
+          if (btn.hasAttribute('data-tab')) {
+            const tabId = btn.getAttribute('data-tab');
+            
+            // Remove active class from all tabs and content
+            document.querySelectorAll('.tab-btn[data-tab]').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding content
+            btn.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+          }
+          
+          // Handle gate table tabs
+          if (btn.hasAttribute('data-gate-table')) {
+            const tableId = btn.getAttribute('data-gate-table');
+            
+            // Remove active class from all table tabs and content
+            document.querySelectorAll('.tab-btn[data-gate-table]').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.gate-table-content').forEach(content => content.style.display = 'none');
+            
+            // Add active class to clicked tab and show corresponding content
+            btn.classList.add('active');
+            document.getElementById(tableId).style.display = 'block';
+          }
+        });
+      });
+      
+      // Logic gate widgets functionality
+      const gateWidgets = document.querySelectorAll('.gate-widget');
+      const gateDetails = document.getElementById('gate-details');
+      const gateTitle = document.getElementById('gate-detail-title');
+      const gateDesc = document.getElementById('gate-detail-desc');
+      const gateTruthTable = document.getElementById('gate-truth-table');
+      
+      const gateInfo = {
+        and: {
+          title: 'AND Gate',
+          desc: 'The AND gate outputs 1 only when all inputs are 1. It performs logical conjunction.',
+          truthTable: `
+            <table class="truth-table">
+              <thead><tr><th>A</th><th>B</th><th>A AND B</th></tr></thead>
+              <tbody>
+                <tr><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>0</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td></tr>
+              </tbody>
+            </table>
+          `
+        },
+        or: {
+          title: 'OR Gate',
+          desc: 'The OR gate outputs 1 when at least one input is 1. It performs logical disjunction.',
+          truthTable: `
+            <table class="truth-table">
+              <thead><tr><th>A</th><th>B</th><th>A OR B</th></tr></thead>
+              <tbody>
+                <tr><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td></tr>
+              </tbody>
+            </table>
+          `
+        },
+        not: {
+          title: 'NOT Gate (Inverter)',
+          desc: 'The NOT gate outputs the opposite of its input. It performs logical negation.',
+          truthTable: `
+            <table class="truth-table">
+              <thead><tr><th>A</th><th>NOT A</th></tr></thead>
+              <tbody>
+                <tr><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td></tr>
+              </tbody>
+            </table>
+          `
+        },
+        nand: {
+          title: 'NAND Gate',
+          desc: 'The NAND gate is an AND gate followed by a NOT gate. It outputs 0 only when all inputs are 1.',
+          truthTable: `
+            <table class="truth-table">
+              <thead><tr><th>A</th><th>B</th><th>A NAND B</th></tr></thead>
+              <tbody>
+                <tr><td>0</td><td>0</td><td>1</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>1</td><td>0</td></tr>
+              </tbody>
+            </table>
+          `
+        },
+        nor: {
+          title: 'NOR Gate',
+          desc: 'The NOR gate is an OR gate followed by a NOT gate. It outputs 1 only when all inputs are 0.',
+          truthTable: `
+            <table class="truth-table">
+              <thead><tr><th>A</th><th>B</th><th>A NOR B</th></tr></thead>
+              <tbody>
+                <tr><td>0</td><td>0</td><td>1</td></tr>
+                <tr><td>0</td><td>1</td><td>0</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td></tr>
+                <tr><td>1</td><td>1</td><td>0</td></tr>
+              </tbody>
+            </table>
+          `
+        },
+        xor: {
+          title: 'XOR Gate (Exclusive OR)',
+          desc: 'The XOR gate outputs 1 when the number of 1 inputs is odd. It performs exclusive disjunction.',
+          truthTable: `
+            <table class="truth-table">
+              <thead><tr><th>A</th><th>B</th><th>A XOR B</th></tr></thead>
+              <tbody>
+                <tr><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>1</td><td>0</td></tr>
+              </tbody>
+            </table>
+          `
+        }
+      };
+      
+      gateWidgets.forEach(widget => {
+        widget.addEventListener('click', () => {
+          const gateType = widget.getAttribute('data-gate');
+          const info = gateInfo[gateType];
+          
+          gateTitle.textContent = info.title;
+          gateDesc.textContent = info.desc;
+          gateTruthTable.innerHTML = info.truthTable;
+          gateDetails.style.display = 'block';
+          
+          // Scroll to gate details
+          gateDetails.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+      });
+      
+      // Create circuit elements animation
+      function createCircuitElements() {
+        const circuitElements = document.getElementById('circuit-elements');
+        
+        // Create logic nodes and lines
+        for (let i = 0; i < 10; i++) {
+          // Create node
+          const node = document.createElement('div');
+          node.className = 'logic-node';
+          
+          // Set random position
+          const top = Math.random() * 100 + 'vh';
+          const left = Math.random() * 100 + 'vw';
+          node.style.top = top;
+          node.style.left = left;
+          
+          // Randomly assign color class
+          const colorClasses = ['', 'blue', 'orange'];
+          const randomClass = colorClasses[Math.floor(Math.random() * colorClasses.length)];
+          if (randomClass) {
+            node.classList.add(randomClass);
+          }
+          
+          // Add to DOM
+          circuitElements.appendChild(node);
+          
+          // Create connecting line
+          if (i > 0) {
+            const line = document.createElement('div');
+            line.className = 'logic-line';
+            if (randomClass) {
+              line.classList.add(randomClass);
+            }
+            
+            // Position line to connect nodes
+            const prevNode = circuitElements.querySelector(`.logic-node:nth-child(${i * 2 - 1})`);
+            const prevRect = prevNode.getBoundingClientRect();
+            const nodeRect = node.getBoundingClientRect();
+            
+            // Calculate line position and dimensions
+            const x1 = prevRect.left + prevRect.width / 2;
+            const y1 = prevRect.top + prevRect.height / 2;
+            const x2 = nodeRect.left + nodeRect.width / 2;
+            const y2 = nodeRect.top + nodeRect.height / 2;
+            
+            const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+            
+            line.style.width = length + 'px';
+            line.style.left = x1 + 'px';
+            line.style.top = y1 + 'px';
+            line.style.transform = `rotate(${angle}deg)`;
+            
+            circuitElements.appendChild(line);
+          }
+        }
+      }
+      
+      // Call once at page load
+      createCircuitElements();
+    });
+  </script>
 </body>
-</html>
+</html>>
+                    
